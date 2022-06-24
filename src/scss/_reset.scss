@@ -6,6 +6,8 @@ html {
 	word-wrap: break-word;
 	font-size: 10px;
 	box-sizing: border-box;
+	background-color: red;
+	padding-top: 500px;
 }
 :lang(ko) { word-break: keep-all; }
 body {
