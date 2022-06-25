@@ -49,7 +49,7 @@ module.exports = (env, options) => {
                   @use "sass:selector";
                   @use "sass:string";
                   @import "~/scss/variables";
-                  @import "~/scss/reset";
+                  @import "~/scss/_reset";
                   @import "~/scss/mixins";
                 `
               }
