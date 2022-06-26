@@ -2,7 +2,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
- 
+
 module.exports = (env, options) => {
   console.log(env, options)
   return {
