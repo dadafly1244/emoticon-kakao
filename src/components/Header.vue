@@ -149,7 +149,9 @@ export default {
 </script>
 <style lang="scss" scoped>
   $head-height: 60px;
-
+  header {
+    height: 104px;
+  }
   #leftnav {
     position: fixed;
     left: 0;
