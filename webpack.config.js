@@ -9,8 +9,8 @@ module.exports = (env, options) => {
     resolve: {
       extensions: ['.js', '.vue'],
       alias: {
-        '~': `${__dirname}/src`
-      }
+        '~': `${__dirname}/src`,
+      },
     },
     entry: './src/main.js',
     // entry: { main: './src/main.js' },
@@ -18,18 +18,18 @@ module.exports = (env, options) => {
       // path: `${__dirname}/dist`,
       // filename: '[name].js',
       publicPath: '/',
-      clean: true
+      clean: true,
     },
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          use: 'babel-loader'
+          use: 'babel-loader',
         },
         {
           test: /\.vue$/,
-          use: 'vue-loader'
+          use: 'vue-loader',
         },
         {
           test: /\.s?css$/,
@@ -48,37 +48,34 @@ module.exports = (env, options) => {
                   @use "sass:meta";
                   @use "sass:selector";
                   @use "sass:string";
-                  @import "~/scss/variables";
+                  @import "~/scss/_variables";
                   @import "~/scss/_reset";
-                  @import "~/scss/mixins";
-                `
-              }
-            }
-          ]
+                  @import "~/scss/_mixins";
+                `,
+              },
+            },
+          ],
         },
         // https://webpack.kr/guides/asset-modules/
         {
           test: /\.(png|jpe?g|svg|gif|webp)/,
-          type: 'asset/resource'
-        }
-      ]
+          type: 'asset/resource',
+        },
+      ],
     },
     plugins: [
       new VueLoaderPlugin(),
       new HtmlPlugin({
-        template: './src/index.html'
+        template: './src/index.html',
       }),
       new CopyPlugin({
-        patterns: [
-          { from: 'static' }
-        ]
+        patterns: [{ from: 'static' }],
       }),
-      new Dotenv({systemvars: true}),
-      
+      new Dotenv({ systemvars: true }),
     ],
     devServer: {
       // port: 8080,
-      historyApiFallback: true
-    }
+      historyApiFallback: true,
+    },
   }
 }

@@ -45,6 +45,7 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    // SIGNUP
     async signUpUser(payload) {
       const { email, password, passwordConfirm, displayName, img, validation } = payload
       if (!validation()) {

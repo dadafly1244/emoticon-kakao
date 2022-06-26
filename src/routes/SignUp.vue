@@ -1,6 +1,5 @@
 <template>
-  <section>
-    <div class="description">설명에 대한 내용 넣을 곳</div>
+  <section class="signup-form-wrap">
     <form @submit.prevent="signUp">
       <div class="login-container">
         <div class="title">KOKOA</div>
@@ -105,3 +104,12 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.signup-form-wrap {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -1,26 +1,15 @@
 <template>
-	<div>
-
-	</div>
+  <div></div>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		computed: {
-			
-		},
-		methods: {
-			
-		},
-
-	}
+export default {
+  data() {
+    return {}
+  },
+  computed: {},
+  methods: {},
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<!-- <style lang="scss" scoped></style> -->
