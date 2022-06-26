@@ -2,7 +2,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
- 
+
 module.exports = (env, options) => {
   console.log(env, options)
   return {
@@ -48,9 +48,9 @@ module.exports = (env, options) => {
                   @use "sass:meta";
                   @use "sass:selector";
                   @use "sass:string";
-                  @import "~/scss/variables";
+                  @import "~/scss/_variables";
+                  @import "~/scss/_mixins";
                   @import "~/scss/_reset";
-                  @import "~/scss/mixins";
                 `
               }
             }
