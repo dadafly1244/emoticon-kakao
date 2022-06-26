@@ -1,7 +1,6 @@
 <template>
   <main>
     <h1>Home page..</h1>
-    <a href="#none">abcdefg</a>
   </main>
 </template>
 
@@ -13,5 +12,6 @@ export default {
 <style lang="scss" scoped>
   main {
     height: 100vh;
+    background-color: #eee;
   }
 </style>
