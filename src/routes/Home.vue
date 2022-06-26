@@ -1,7 +1,6 @@
 <template>
   <main>
     <h1>Home page..</h1>
-    <a href="#none">abcdefg</a>
   </main>
 </template>
 
