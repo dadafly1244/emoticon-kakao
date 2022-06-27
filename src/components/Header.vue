@@ -66,6 +66,7 @@
     </div>
     <div @click="searchOn = !searchOn" v-if="searchOn" class="search-curtain"></div>
     <!-- 왼쪽 nav -->
+    <!-- 현재는 이동되고 나서는 안 없어지는데 이 부분 클릭에 똑같이true/false 값을 줘서 같이 꺼지게 해도 좋을 것 같습니다..! ex) @click="leftNavOn = !leftNavOn"-->
     <nav v-show="leftNavOn" id="leftnav">
       <div class="leftnav__inner">
         <RouterLink to="/login" class="nav-profile">
