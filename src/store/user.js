@@ -10,7 +10,10 @@ export const useUserStore = defineStore('user', {
   actions: {
     // LOGIN
     async loginUser(payload) {
-      const { email, password } = payload
+      const { email, password, validation } = payload
+      if (!validation()) {
+        return
+      }
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login',
@@ -45,6 +48,7 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    // SIGNUP
     async signUpUser(payload) {
       const { email, password, passwordConfirm, displayName, img, validation } = payload
       if (!validation()) {
