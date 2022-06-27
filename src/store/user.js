@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { setTransitionHooks } from 'vue'
 export const useUserStore = defineStore('user', {
   state() {
     return {
-      user: {},
+      user: '',
       accessToken: '',
     }
   },
@@ -34,6 +35,7 @@ export const useUserStore = defineStore('user', {
         window.localStorage.setItem('token', accessToken)
         this.user = user
         this.accessToken = accessToken
+        console.log(user)
         if (res.status === 200) {
           alert('로그인이 완료되었습니다')
           this.$router.push('/')
@@ -85,5 +87,23 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    // LOGOUT
+    async logout() {
+      const res = axios('https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          apikey: 'FcKdtJs202204',
+          username: 'KDT2TEAM8',
+          Authorization: this.accessToken,
+        },
+      })
+      localStorage.removeItem('token')
+      this.user = ''
+      this.accessToken = ''
+      console.log(res)
+    },
+    // CERTIFICATE
+    async certificateUser() {},
   },
 })

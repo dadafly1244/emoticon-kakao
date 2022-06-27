@@ -3,6 +3,7 @@ import Home from './Home'
 import Style from './Style'
 import Login from './Login.vue'
 import SignUp from './SignUp.vue'
+import EditUser from './EditUser.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -23,6 +24,10 @@ export default createRouter({
     {
       path: '/signup',
       component: SignUp,
+    },
+    {
+      path: '/user',
+      component: EditUser,
     },
   ],
 })

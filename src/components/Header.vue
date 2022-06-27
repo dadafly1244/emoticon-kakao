@@ -69,11 +69,17 @@
     <!-- 현재는 이동되고 나서는 안 없어지는데 이 부분 클릭에 똑같이true/false 값을 줘서 같이 꺼지게 해도 좋을 것 같습니다..! ex) @click="leftNavOn = !leftNavOn"-->
     <nav v-show="leftNavOn" id="leftnav">
       <div class="leftnav__inner">
-        <RouterLink to="/login" class="nav-profile">
+        <RouterLink v-if="!userStore.user" to="/login" class="nav-profile">
           <div class="profile-big">
             <img src="profile_default.png" alt="profile-default" />
           </div>
           <div class="profile-name">로그인</div>
+        </RouterLink>
+        <RouterLink v-else to="/login" @click="userStore.logout" class="nav-profile">
+          <div class="profile-big">
+            <img src="profile_default.png" alt="profile-default" />
+          </div>
+          <div class="profile-name">{{ userStore.user.displayName }}</div>
         </RouterLink>
         <ul class="list-mypage">
           <li>
@@ -110,8 +116,11 @@
           </li>
         </ul>
         <ul class="list-aside">
-          <li>
+          <li v-if="userStore.user">
             <RouterLink to="/">로그아웃</RouterLink>
+          </li>
+          <li v-if="userStore.user">
+            <RouterLink to="/user">정보 수정</RouterLink>
           </li>
         </ul>
       </div>
@@ -125,6 +134,8 @@
   </header>
 </template>
 <script>
+import { mapStores } from 'pinia'
+import { useUserStore } from '~/store/user'
 export default {
   data() {
     return {
@@ -135,6 +146,12 @@ export default {
       searchValue: '',
     }
   },
+  computed: {
+    ...mapStores(useUserStore),
+  },
+  created() {
+    
+  },  
   methods: {
     isMatch(path) {
       if (!path) return false
