@@ -1,9 +1,13 @@
 <template>
   <header>
     <!-- header -->
-    <div class="head">
+    <div class="head" @click="userStore.certificateUser">
       <div class="head__inner">
-        <div class="menu-icon" :class="{ clicked: leftNavOn }" @click="leftNavOn = !leftNavOn">
+        <div
+          class="menu-icon"
+          :class="{ clicked: leftNavOn }"
+          @click=";(leftNavOn = !leftNavOn), userStore.certificateUser()"
+        >
           <img src="hamburger_menu.svg" alt="menu-icon" />
         </div>
         <RouterLink to="/">
@@ -75,7 +79,7 @@
           </div>
           <div class="profile-name">로그인</div>
         </RouterLink>
-        <RouterLink v-else to="/login" @click="userStore.logout" class="nav-profile">
+        <RouterLink v-else to="/mypage" class="nav-profile">
           <div class="profile-big">
             <img src="profile_default.png" alt="profile-default" />
           </div>
@@ -116,7 +120,7 @@
           </li>
         </ul>
         <ul class="list-aside">
-          <li v-if="userStore.user">
+          <li v-if="userStore.user" @click="userStore.logoutUser">
             <RouterLink to="/">로그아웃</RouterLink>
           </li>
           <li v-if="userStore.user">
@@ -144,14 +148,14 @@ export default {
       leftNavOn: false,
       popupOn: false,
       searchValue: '',
+      // header에 프로필 화면 보여주는 변수
+      // img: this.userStore.img || 'profile_default.png',
+      // user: this.userStore.user || '',
     }
   },
   computed: {
     ...mapStores(useUserStore),
   },
-  created() {
-    
-  },  
   methods: {
     isMatch(path) {
       if (!path) return false

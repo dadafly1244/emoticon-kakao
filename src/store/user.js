@@ -5,7 +5,8 @@ export const useUserStore = defineStore('user', {
   state() {
     return {
       user: '',
-      accessToken: '',
+      accessToken: localStorage.getItem('token') || '',
+      img: '',
     }
   },
   actions: {
@@ -31,11 +32,12 @@ export const useUserStore = defineStore('user', {
             },
           }
         )
+        console.log(res.data)
         const { user, accessToken } = res.data
         window.localStorage.setItem('token', accessToken)
         this.user = user
         this.accessToken = accessToken
-        console.log(user)
+        this.img = user.profileImg
         if (res.status === 200) {
           alert('로그인이 완료되었습니다')
           this.$router.push('/')
@@ -88,22 +90,84 @@ export const useUserStore = defineStore('user', {
       }
     },
     // LOGOUT
-    async logout() {
-      const res = axios('https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          apikey: 'FcKdtJs202204',
-          username: 'KDT2TEAM8',
-          Authorization: this.accessToken,
-        },
-      })
-      localStorage.removeItem('token')
-      this.user = ''
-      this.accessToken = ''
-      console.log(res)
+    async logoutUser() {
+      try {
+        const res = await axios(
+          'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout',
+          {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              apikey: 'FcKdtJs202204',
+              username: 'KDT2TEAM8',
+              Authorization: this.accessToken,
+            },
+          }
+        )
+        localStorage.removeItem('token')
+        this.user = ''
+        this.accessToken = ''
+        console.log(res)
+      } catch (err) {
+        console.log(err)
+      }
     },
     // CERTIFICATE
-    async certificateUser() {},
+    async certificateUser() {
+      if (!this.accessToken) {
+        return
+      }
+      try {
+        const res = await axios(
+          'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me',
+          {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              apikey: 'FcKdtJs202204',
+              username: 'KDT2TEAM8',
+              Authorization: this.accessToken,
+            },
+          }
+        )
+        console.log(res)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    // MODIFYUSER
+    async modifyUser(payload) {
+      console.log(payload)
+      const { email, displayName, img, password, validation } = payload
+      if (!validation()) {
+        return
+      }
+      try {
+        const res = await axios(
+          'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
+          {
+            method: 'PUT',
+            headers: {
+              'content-type': 'application/json',
+              apikey: 'FcKdtJs202204',
+              username: 'KDT2TEAM8',
+              Authorization: this.accessToken,
+            },
+            data: {
+              email,
+              displayName,
+              profileImgBase64: img,
+              password,
+            },
+          }
+        )
+        if (res.data.status === 200) {
+          alert('수정이 완료 되었습니다!')
+        }
+        this.$router.push('/')
+      } catch (err) {
+        console.log(err)
+      }
+    },
   },
 })
