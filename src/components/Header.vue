@@ -66,6 +66,7 @@
     </div>
     <div @click="searchOn = !searchOn" v-if="searchOn" class="search-curtain"></div>
     <!-- 왼쪽 nav -->
+    <!-- 현재는 이동되고 나서는 안 없어지는데 이 부분 클릭에 똑같이true/false 값을 줘서 같이 꺼지게 해도 좋을 것 같습니다..! ex) @click="leftNavOn = !leftNavOn"-->
     <nav v-show="leftNavOn" id="leftnav">
       <div class="leftnav__inner">
         <RouterLink to="/login" class="nav-profile">
@@ -143,46 +144,35 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  $head-height: 60px;
-  header {
-    height: 104px;
-  }
-  #leftnav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 11;
-    width: 290px;
-    height: 100%;
-    padding-bottom: 54px;
-    background: #fff;
-  }
-  .leftnav__inner {
-    overflow-y: auto;
-    height: 100%;
-    padding: 18px 0 12px;
-    .nav-profile {
-      display: flex;
-      align-items: center;
-      padding: 12px 20px;
-      .profile-big {
-        width: 56px;
-        height: 56px;
-        img {
-          object-fit: cover;
-          border-radius: 50%;
-        }
-      }
-      .profile-name {
-        color: #000;
-        font-weight: bold;
-        flex: 1;
-        padding-left: 12px;
-        &::after {
-          margin-left: 8px;
-          content: '>';
-          color: gray;
-        }
+$head-height: 60px;
+header {
+  width: 100vw;
+  height: 104px;
+}
+#leftnav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 11;
+  width: 290px;
+  height: 100%;
+  padding-bottom: 54px;
+  background: #fff;
+}
+.leftnav__inner {
+  overflow-y: auto;
+  height: 100%;
+  padding: 18px 0 12px;
+  .nav-profile {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    .profile-big {
+      width: 56px;
+      height: 56px;
+      img {
+        object-fit: cover;
+        border-radius: 50%;
       }
     }
     .profile-name {
