@@ -250,7 +250,7 @@ export default {
       }
     }
   }
-}
+
 .leftnav__copyright {
   position: relative;
   height: 54px;
