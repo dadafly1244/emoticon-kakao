@@ -5,7 +5,9 @@ export const useUserStore = defineStore('user', {
   state() {
     return {
       user: '',
-      accessToken: localStorage.getItem('token') || '',
+      email: '',
+      displayName: '',
+      accessToken: '',
       img: '',
     }
   },
@@ -100,7 +102,7 @@ export const useUserStore = defineStore('user', {
               'content-type': 'application/json',
               apikey: 'FcKdtJs202204',
               username: 'KDT2TEAM8',
-              Authorization: this.accessToken,
+              Authorization: `Bearer ${this.accessToken}`,
             },
           }
         )
@@ -112,9 +114,9 @@ export const useUserStore = defineStore('user', {
         console.log(err)
       }
     },
-    // CERTIFICATE
-    async certificateUser() {
-      if (!this.accessToken) {
+    // AUTH
+    async authUser() {
+      if (!localStorage.getItem('token')) {
         return
       }
       try {
@@ -126,11 +128,17 @@ export const useUserStore = defineStore('user', {
               'content-type': 'application/json',
               apikey: 'FcKdtJs202204',
               username: 'KDT2TEAM8',
-              Authorization: this.accessToken,
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
           }
         )
-        console.log(res)
+        console.log(res.data)
+        // const { email, displayName, profileImg } = res.data
+        // this.email = email
+        // this.displayName = displayName
+        // this.img = profileImg
+        // console.log(this.email, this.displayName, this.img)
+        return res.data
       } catch (err) {
         console.log(err)
       }
