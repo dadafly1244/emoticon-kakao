@@ -7,8 +7,8 @@ import EditUser from './user/EditUser.vue'
 import PurchaseHistory from './PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
 import MyPage from './MyPage.vue'
-import ReadAccount from './ReadAccount.vue'
-import CreateAccount from './CreateAccount.vue'
+import ReadAccount from './account/ReadAccount.vue'
+import CreateAccount from './account/CreateAccount.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -37,6 +37,14 @@ export default createRouter({
     {
       path: '/PurchaseHistory',
       component: PurchaseHistory,
+    },
+    {
+      path: '/account',
+      component: ReadAccount
+    },
+    {
+      path: '/newaccount',
+      component: CreateAccount
     },
     {
       path: '/:notFound(.*)*',
