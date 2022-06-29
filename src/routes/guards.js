@@ -4,16 +4,17 @@ import { validateTokenUser } from '~/core'
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore()
-  console.log(userStore)
+  console.log(to)
+
   if (to.meta.auth) {
     const user = await validateTokenUser()
-    // if (user.email === 'admin@kdt.com' && user.displayName === 'admin') {
-    //   console.log('admin!')
-    //   window.location.href = 'http://localhost:1000/login'
-    // }
+    console.log(user.email)
+    if (user.email === 'testemail@test.com' && user.displayName === 'test') {
+      console.log('admin!')
+      window.location.href = 'http://localhost:1000/login'
+    }
     if (user && user.email) {
       userStore.user = user
-      console.log('success')
       return true
     }
     return '/signin'

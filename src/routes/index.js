@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import Style from './Style'
-import Login from './Login.vue'
-import SignUp from './SignUp.vue'
-import EditUser from './EditUser.vue'
+import Login from './user/Login.vue'
+import SignUp from './user/SignUp.vue'
+import EditUser from './user/EditUser.vue'
 import PurchaseHistory from './PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
+import MyPage from './MyPage.vue'
 import ReadAccount from './ReadAccount.vue'
 import CreateAccount from './CreateAccount.vue'
 
@@ -39,16 +40,12 @@ export default createRouter({
     },
     {
       path: '/:notFound(.*)*',
-      component: NotFound
+      component: NotFound,
     },
+    { path: '/mypage', component: MyPage },
     {
-      path: '/account',
-      component: ReadAccount,
+      path: '/mypage/purchaseHistory',
+      component: PurchaseHistory,
     },
-    {
-      path: '/newAccount',
-      component: CreateAccount,
-    }
-
   ],
 })
