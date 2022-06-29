@@ -1,17 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import Style from './Style'
-import Login from './Login.vue'
-import SignUp from './SignUp.vue'
-import EditUser from './EditUser.vue'
+import Login from './user/Login.vue'
+import SignUp from './user/SignUp.vue'
+import EditUser from './user/EditUser.vue'
 import PurchaseHistory from './PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
-<<<<<<< HEAD
 import MyPage from './MyPage.vue'
-=======
 import ReadAccount from './ReadAccount.vue'
 import CreateAccount from './CreateAccount.vue'
->>>>>>> 6f8e6be11bfab56afa7695ef9be680545a0ef3ec
 
 export default createRouter({
   history: createWebHistory(),
