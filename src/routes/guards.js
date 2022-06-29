@@ -4,9 +4,11 @@ import { validateTokenUser } from '~/core'
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore()
-  console.log(userStore)
+  console.log(to)
+
   if (to.meta.auth) {
     const user = await validateTokenUser()
+    console.log(user.email)
     // if (user.email === 'admin@kdt.com' && user.displayName === 'admin') {
     //   console.log('admin!')
     //   window.location.href = 'http://localhost:1000/login'
