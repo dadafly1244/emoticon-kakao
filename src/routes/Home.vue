@@ -6,16 +6,19 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import Account from '~/components/Account'
 export default {
   components: {
     Account
   }
 }
+=======
+export default {}
+>>>>>>> main
 </script>
 <style lang="scss" scoped>
-  main {
-    height: 100vh;
-    background-color: #eee;
-  }
+main {
+  height: 100vh;
+}
 </style>

@@ -9,7 +9,7 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
     },
     {
       path: '/style',
@@ -19,5 +19,5 @@ export default createRouter({
       path: '/newAccount',
       component: AccountForm
     }
-  ]
+  ],
 })
