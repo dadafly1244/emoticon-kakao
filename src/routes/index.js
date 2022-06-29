@@ -4,6 +4,8 @@ import Style from './Style'
 import Login from './Login.vue'
 import SignUp from './SignUp.vue'
 import EditUser from './EditUser.vue'
+import PurchaseHistory from './PurchaseHistory.vue'
+import NotFound from './NotFound.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -29,5 +31,13 @@ export default createRouter({
       path: '/user',
       component: EditUser,
     },
+    {
+      path: '/PurchaseHistory',
+      component: PurchaseHistory,
+    },
+    {
+      path: '/:notFound(.*)*',
+      component: NotFound
+    }
   ],
 })

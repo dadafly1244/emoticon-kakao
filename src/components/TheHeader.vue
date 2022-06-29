@@ -82,7 +82,7 @@
         </RouterLink>
         <ul class="list-mypage">
           <li>
-            <RouterLink to="/구매내역">
+            <RouterLink to="/PurchaseHistory">
               <div class="nav-icon buy-icon">
                 <img src="buy_icon.svg" alt="buy-icon" />
               </div>
