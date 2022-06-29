@@ -109,7 +109,9 @@ export const useUserStore = defineStore('user', {
           }
         )
         localStorage.removeItem('token')
-        this.user = ''
+        this.displayName = ''
+        this.email = ''
+        this.img = ''
         this.accessToken = ''
       } catch (err) {
         console.log(err)

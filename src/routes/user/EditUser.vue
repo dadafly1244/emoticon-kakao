@@ -21,7 +21,7 @@
         <label>
           사진 변경
           <input class="img-input" type="file" @change.prevent="selectImg" />
-          <img class="img" v-bind:src="userStore.profileImg" />
+          <img class="img" v-bind:src="userStore.img" />
         </label>
       </div>
       <div>
