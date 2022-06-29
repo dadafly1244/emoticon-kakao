@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import Style from './Style'
+import AccountForm from './AccountForm'
 
 export default createRouter({
   history: createWebHistory(),
@@ -13,6 +14,10 @@ export default createRouter({
     {
       path: '/style',
       component: Style
+    },
+    {
+      path: '/newAccount',
+      component: AccountForm
     }
   ]
 })

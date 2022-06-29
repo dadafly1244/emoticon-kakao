@@ -45,10 +45,12 @@ export const useAccountStore = defineStore('account', {
     async getAccounts() {
       const data = await readAccounts()
       console.log(data)
+			return data
     },
     async getAccount() {
       const data = await readAccount()
       console.log(data)
+			return data
     },
     async setAccount(payload) {
       // const payload = {
