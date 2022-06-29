@@ -6,7 +6,12 @@ import SignUp from './SignUp.vue'
 import EditUser from './EditUser.vue'
 import PurchaseHistory from './PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
+<<<<<<< HEAD
 import MyPage from './MyPage.vue'
+=======
+import ReadAccount from './ReadAccount.vue'
+import CreateAccount from './CreateAccount.vue'
+>>>>>>> 6f8e6be11bfab56afa7695ef9be680545a0ef3ec
 
 export default createRouter({
   history: createWebHistory(),
