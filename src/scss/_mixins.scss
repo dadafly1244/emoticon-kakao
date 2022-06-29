@@ -1,0 +1,26 @@
+@mixin input {
+	border: none;
+	outline: 1px solid;
+	width: 500px;
+	color: #EC6F66;
+	height: 50px;
+	padding: 0 20px;
+	font-size: 20px;
+	transition: .35s;
+	border-radius: 5px;
+	&:focus {
+		box-shadow: 0 0 0 0.25rem rgba(253, 118, 0, 0.816);
+	}
+	box-sizing: border-box;  
+}
+@mixin select-options {
+	@include input;
+	appearance: none;
+	option {
+		text-align: center;
+		&[disabled] {
+			color: #fff;
+			display: none;
+		}
+	}
+}
