@@ -1,7 +1,7 @@
 <template>
   <header>
     <!-- header -->
-    <div class="head" @click="this.userStore.authUser">
+    <div class="head">
       <div class="head__inner">
         <div class="menu-icon" :class="{ clicked: leftNavOn }" @click="leftNavOn = !leftNavOn">
           <img src="hamburger_menu.svg" alt="menu-icon" />
@@ -13,18 +13,24 @@
           <div class="search-icon" :class="{ clicked: searchOn }" @click="searchOn = !searchOn">
             <img src="search_icon.svg" alt="search-icon" />
           </div>
-          <div class="profile-default" @click="popupOn = !popupOn">
+          <div v-if="userStore.img" class="profile-default" @click="popupOn = !popupOn">
+            <img v-bind:src="userStore.img" alt="profile-default" />
+          </div>
+          <div v-else class="profile-default" @click="popupOn = !popupOn">
             <img src="profile_default.png" alt="profile-default" />
           </div>
         </div>
         <!-- popup -->
         <div v-show="popupOn" class="popup">
-          <div class="popup-profile">
+          <div v-if="userStore.img" class="popup-profile">
+            <img v-bind:src="userStore.img" alt="profile-default" />
+          </div>
+          <div v-else class="popup-profile">
             <img src="profile_default.png" alt="profile-default" />
           </div>
           <div class="popup-name">{{ this.userStore.displayName }}</div>
           <div class="popup-email">{{ this.userStore.email }}</div>
-          <button class="btn--logout">로그아웃</button>
+          <button class="btn--logout" @click="userStore.logoutUser">로그아웃</button>
         </div>
         <div v-if="popupOn" @click="popupOn = !popupOn" class="popup-container"></div>
       </div>
@@ -68,17 +74,17 @@
     <!-- 왼쪽 nav -->
     <nav v-show="leftNavOn" id="leftnav" @click="leftNavOn = !leftNavOn">
       <div class="leftnav__inner">
-        <RouterLink v-if="!userStore.displayName" to="/login" class="nav-profile">
+        <RouterLink v-if="userStore.displayName" to="/mypage" class="nav-profile">
+          <div class="profile-big">
+            <img v-bind:src="userStore.img" alt="profile-default" />
+          </div>
+          <div class="profile-name">{{ this.userStore.displayName }}</div>
+        </RouterLink>
+        <RouterLink v-else to="/login" class="nav-profile">
           <div class="profile-big">
             <img src="profile_default.png" alt="profile-default" />
           </div>
           <div class="profile-name">로그인</div>
-        </RouterLink>
-        <RouterLink v-else to="/mypage" class="nav-profile">
-          <div class="profile-big">
-            <img src="profile_default.png" alt="profile-default" />
-          </div>
-          <div class="profile-name">{{ this.userStore.displayName }}</div>
         </RouterLink>
         <ul class="list-mypage">
           <li>
@@ -191,9 +197,9 @@ header {
     align-items: center;
     padding: 12px 20px;
     .profile-big {
-      width: 56px;
-      height: 56px;
       img {
+        width: 56px;
+        height: 56px;
         object-fit: cover;
         border-radius: 50%;
       }
@@ -305,9 +311,9 @@ header {
 .search-icon,
 .profile-default {
   cursor: pointer;
-  width: 30px;
-  height: 30px;
   img {
+    width: 30px;
+    height: 30px;
     object-fit: cover;
   }
 }
