@@ -7,21 +7,21 @@
         <label>
           이메일
           <input class="email-input" type="text" v-model="email" placeholder="이메일" />
-          <span> {{ userStore.user.email }}</span>
+          <span> {{ userStore.email }}</span>
         </label>
       </div>
       <div>
         <label>
           이름
           <input class="name-input" type="text" v-model="displayName" placeholder="이름" />
-          <span> {{ userStore.user.displayName }}</span>
+          <span> {{ userStore.displayName }}</span>
         </label>
       </div>
       <div>
         <label>
           사진 변경
           <input class="img-input" type="file" @change.prevent="selectImg" />
-          <img class="img" v-bind:src="userStore.user.profileImg" />
+          <img class="img" v-bind:src="userStore.profileImg" />
         </label>
       </div>
       <div>

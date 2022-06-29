@@ -22,8 +22,8 @@
           <div class="popup-profile">
             <img src="profile_default.png" alt="profile-default" />
           </div>
-          <div class="popup-name">{{ this.userStore.user.displayName }}</div>
-          <div class="popup-email">{{ this.userStore.user.email }}</div>
+          <div class="popup-name">{{ this.userStore.displayName }}</div>
+          <div class="popup-email">{{ this.userStore.email }}</div>
           <button class="btn--logout">로그아웃</button>
         </div>
         <div v-if="popupOn" @click="popupOn = !popupOn" class="popup-container"></div>
@@ -68,7 +68,7 @@
     <!-- 왼쪽 nav -->
     <nav v-show="leftNavOn" id="leftnav" @click="leftNavOn = !leftNavOn">
       <div class="leftnav__inner">
-        <RouterLink v-if="!userStore.user" to="/login" class="nav-profile">
+        <RouterLink v-if="!userStore.displayName" to="/login" class="nav-profile">
           <div class="profile-big">
             <img src="profile_default.png" alt="profile-default" />
           </div>
@@ -78,7 +78,7 @@
           <div class="profile-big">
             <img src="profile_default.png" alt="profile-default" />
           </div>
-          <div class="profile-name">{{ this.userStore.user.displayName }}</div>
+          <div class="profile-name">{{ this.userStore.displayName }}</div>
         </RouterLink>
         <ul class="list-mypage">
           <li>
@@ -115,10 +115,10 @@
           </li>
         </ul>
         <ul class="list-aside">
-          <li v-if="userStore.user" @click="userStore.logoutUser">
+          <li v-if="userStore.displayName" @click="userStore.logoutUser">
             <RouterLink to="/">로그아웃</RouterLink>
           </li>
-          <li v-if="userStore.user">
+          <li v-if="userStore.displayName">
             <RouterLink to="/user">정보 수정</RouterLink>
           </li>
         </ul>
@@ -152,7 +152,7 @@ export default {
     }
   },
   created() {
-    //this.userStore.authUser()
+    this.userStore.authUser()
   },
   computed: {
     ...mapStores(useUserStore),
