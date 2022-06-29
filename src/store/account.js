@@ -36,8 +36,8 @@ export const useAccountStore = defineStore('account', {
 				method: 'POST',
         headers,
         body: JSON.stringify({
-          email: 'ajapag@gmail.com',
-          password: '12345!@#12345ab',
+          email: 'abcdef@naver.com',
+          password: '12341234',
         })
 			})).json()
 			console.log(accessToken)
