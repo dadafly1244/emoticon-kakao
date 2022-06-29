@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const TEST_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJUZmI2Z3UxWmxZVmhwb3hYSFBEIiwiaWF0IjoxNjU2NDg5MjI3LCJleHAiOjE2NTY1NzU2MjcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.g2swWME6BDFYr-3OsyryzQGOixJCnd77CVUic97zFME"
+const TEST_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1VaEU1WVVMY2VzeDVjNEU3aFNpIiwiaWF0IjoxNjU2NDkyMTgyLCJleHAiOjE2NTY1Nzg1ODIsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.ixB3Z1PXq_Codiwav2o5jf8ABomfIG4IXWndvBGuAqw"
 const headers = {
 	"content-type": "application/json",
 	"apikey": "FcKdtJs202204",
-	"username": "jusang_test",
+	"username": "KDT2TEAM8",
 	'Authorization': `Bearer ${TEST_TOKEN}`
 }
 const instance = axios.create({
