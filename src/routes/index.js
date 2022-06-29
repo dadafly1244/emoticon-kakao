@@ -6,6 +6,7 @@ import SignUp from './SignUp.vue'
 import EditUser from './EditUser.vue'
 import PurchaseHistory from './PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
+import MyPage from './MyPage.vue'
 import ReadAccount from './ReadAccount.vue'
 import CreateAccount from './CreateAccount.vue'
 
@@ -39,16 +40,12 @@ export default createRouter({
     },
     {
       path: '/:notFound(.*)*',
-      component: NotFound
+      component: NotFound,
     },
+    { path: '/mypage', component: MyPage },
     {
-      path: '/account',
-      component: ReadAccount,
+      path: '/mypage/purchaseHistory',
+      component: PurchaseHistory,
     },
-    {
-      path: '/newAccount',
-      component: CreateAccount,
-    }
-
   ],
 })
