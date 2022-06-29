@@ -1,13 +1,9 @@
 <template>
   <header>
     <!-- header -->
-    <div class="head" @click="userStore.certificateUser">
+    <div class="head" @click="this.userStore.authUser">
       <div class="head__inner">
-        <div
-          class="menu-icon"
-          :class="{ clicked: leftNavOn }"
-          @click=";(leftNavOn = !leftNavOn), userStore.certificateUser()"
-        >
+        <div class="menu-icon" :class="{ clicked: leftNavOn }" @click="leftNavOn = !leftNavOn">
           <img src="hamburger_menu.svg" alt="menu-icon" />
         </div>
         <RouterLink to="/">
@@ -26,8 +22,8 @@
           <div class="popup-profile">
             <img src="profile_default.png" alt="profile-default" />
           </div>
-          <div class="popup-name">주상</div>
-          <div class="popup-email">abc123@naver.com</div>
+          <div class="popup-name">{{ this.userStore.user.displayName }}</div>
+          <div class="popup-email">{{ this.userStore.user.email }}</div>
           <button class="btn--logout">로그아웃</button>
         </div>
         <div v-if="popupOn" @click="popupOn = !popupOn" class="popup-container"></div>
@@ -71,7 +67,7 @@
     <div @click="searchOn = !searchOn" v-if="searchOn" class="search-curtain"></div>
     <!-- 왼쪽 nav -->
     <!-- 현재는 이동되고 나서는 안 없어지는데 이 부분 클릭에 똑같이true/false 값을 줘서 같이 꺼지게 해도 좋을 것 같습니다..! ex) @click="leftNavOn = !leftNavOn"-->
-    <nav v-show="leftNavOn" id="leftnav">
+    <nav v-show="leftNavOn" id="leftnav" @click="leftNavOn = !leftNavOn">
       <div class="leftnav__inner">
         <RouterLink v-if="!userStore.user" to="/login" class="nav-profile">
           <div class="profile-big">
@@ -83,7 +79,7 @@
           <div class="profile-big">
             <img src="profile_default.png" alt="profile-default" />
           </div>
-          <div class="profile-name">{{ userStore.user.displayName }}</div>
+          <div class="profile-name">{{ this.userStore.user.displayName }}</div>
         </RouterLink>
         <ul class="list-mypage">
           <li>
@@ -148,10 +144,16 @@ export default {
       leftNavOn: false,
       popupOn: false,
       searchValue: '',
+      // email: '',
+      // displayName: '로그인 해주세요',
+      // img: '',
       // header에 프로필 화면 보여주는 변수
       // img: this.userStore.img || 'profile_default.png',
       // user: this.userStore.user || '',
     }
+  },
+  created() {
+    //this.userStore.authUser()
   },
   computed: {
     ...mapStores(useUserStore),
@@ -162,6 +164,7 @@ export default {
       return path.test(this.$route.fullPath)
     },
   },
+  watch: {},
 }
 </script>
 <style lang="scss" scoped>
