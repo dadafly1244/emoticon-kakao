@@ -4,6 +4,7 @@ import { validateTokenUser } from '~/core'
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore()
+  console.log(userStore)
   console.log(to)
   if (to.meta.auth) {
     const user = await validateTokenUser()
