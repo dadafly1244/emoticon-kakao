@@ -4,7 +4,6 @@ import { setTransitionHooks } from 'vue'
 export const useUserStore = defineStore('user', {
   state() {
     return {
-      user: '',
       email: '',
       displayName: '',
       accessToken: '',
@@ -34,12 +33,15 @@ export const useUserStore = defineStore('user', {
             },
           }
         )
-        console.log(res.data)
-        const { user, accessToken } = res.data
+
+        const { user, accessToken } = await res.data
         window.localStorage.setItem('token', accessToken)
-        this.user = user
+        console.log(user)
+        this.email = user.email
+        this.displayName = user.displayName
         this.accessToken = accessToken
         this.img = user.profileImg
+        console.log(this.user)
         if (res.status === 200) {
           alert('로그인이 완료되었습니다')
           this.$router.push('/')
@@ -102,14 +104,13 @@ export const useUserStore = defineStore('user', {
               'content-type': 'application/json',
               apikey: 'FcKdtJs202204',
               username: 'KDT2TEAM8',
-              Authorization: `Bearer ${this.accessToken}`,
+              Authorization: `Bearer ${window.localStorage.getItem('token')}`,
             },
           }
         )
         localStorage.removeItem('token')
         this.user = ''
         this.accessToken = ''
-        console.log(res)
       } catch (err) {
         console.log(err)
       }
@@ -132,11 +133,11 @@ export const useUserStore = defineStore('user', {
             },
           }
         )
+        const { email, displayName, profileImg } = res.data
+        this.email = email
+        this.displayName = displayName
+        this.img = profileImg
         console.log(res.data)
-        // const { email, displayName, profileImg } = res.data
-        // this.email = email
-        // this.displayName = displayName
-        // this.img = profileImg
         // console.log(this.email, this.displayName, this.img)
         return res.data
       } catch (err) {
@@ -159,7 +160,7 @@ export const useUserStore = defineStore('user', {
               'content-type': 'application/json',
               apikey: 'FcKdtJs202204',
               username: 'KDT2TEAM8',
-              Authorization: this.accessToken,
+              Authorization: `Bearer ${this.accessToken}`,
             },
             data: {
               email,

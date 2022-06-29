@@ -47,7 +47,7 @@ export default createRouter({
     },
     { path: '/mypage', component: MyPage },
     {
-      path: '/mypage/boughtproduct',
+      path: '/mypage/purchaseHistory',
       component: PurchaseHistory,
     },
   ],

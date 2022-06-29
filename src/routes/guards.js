@@ -9,13 +9,12 @@ router.beforeEach(async (to) => {
   if (to.meta.auth) {
     const user = await validateTokenUser()
     console.log(user.email)
-    // if (user.email === 'admin@kdt.com' && user.displayName === 'admin') {
-    //   console.log('admin!')
-    //   window.location.href = 'http://localhost:1000/login'
-    // }
+    if (user.email === 'testemail@test.com' && user.displayName === 'test') {
+      console.log('admin!')
+      window.location.href = 'http://localhost:1000/login'
+    }
     if (user && user.email) {
       userStore.user = user
-      console.log('success')
       return true
     }
     return '/signin'
