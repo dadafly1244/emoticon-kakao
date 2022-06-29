@@ -2,6 +2,7 @@ import { createApp, markRaw } from 'vue'
 import App from '~/App.vue'
 import router from '~/routes'
 import { createPinia } from 'pinia'
+import request  from './plugins/request'
 
 const pinia = createPinia()
 pinia.use(({ store }) => {
@@ -11,4 +12,5 @@ pinia.use(({ store }) => {
 createApp(App)
   .use(pinia)
   .use(router)
+  .use(request)
   .mount('#app')
