@@ -1,17 +1,18 @@
 <template>
-  <Header />
+  <TheHeader />
   <RouterView />
-  <Footer />
+  <TheFooter />
 </template>
 
 <script>
-import Header from '~/components/Header'
-import Footer from '~/components/Footer'
+import TheHeader from '~/components/TheHeader'
+import TheFooter from '~/components/TheFooter'
+import './routes/guards'
 
 export default {
   components: {
-    Header,
-    Footer,
+    TheHeader,
+    TheFooter,
   },
 }
 </script>

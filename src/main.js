@@ -8,4 +8,7 @@ pinia.use(({ store }) => {
   store.$router = markRaw(router)
 })
 
-createApp(App).use(pinia).use(router).mount('#app')
+createApp(App)
+  .use(pinia)
+  .use(router)
+  .mount('#app')
