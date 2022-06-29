@@ -6,16 +6,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Account from '~/components/Account'
 export default {
   components: {
     Account
   }
 }
-=======
-export default {}
->>>>>>> main
 </script>
 <style lang="scss" scoped>
 main {
