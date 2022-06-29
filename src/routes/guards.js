@@ -4,20 +4,18 @@ import { validateTokenUser } from '~/core'
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore()
-  console.log(to)
-
-  if (to.meta.auth) {
+  if (to.path === '/mypage') {
     const user = await validateTokenUser()
-    console.log(user.email)
-    if (user.email === 'testemail@test.com' && user.displayName === 'test') {
+    if (user.data.email === 'testemail@test.com' && user.data.displayName === 'test') {
       console.log('admin!')
-      window.location.href = 'http://localhost:1000/login'
+      window.location.href = 'http://localhost:8080/admin'
     }
-    if (user && user.email) {
-      userStore.user = user
+    if (user.data && user.data.email) {
       return true
     }
-    return '/signin'
+    console.log(user)
+    alert('로그인 해주세요!')
+    return '/login'
   }
   return true
 })

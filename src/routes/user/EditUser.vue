@@ -7,27 +7,32 @@
         <label>
           이메일
           <input class="email-input" type="text" v-model="email" placeholder="이메일" />
-          <span> {{ userStore.email }}</span>
+          <div><span>현재 이메일:</span> {{ userStore.email }}</div>
         </label>
       </div>
       <div>
         <label>
           이름
           <input class="name-input" type="text" v-model="displayName" placeholder="이름" />
-          <span> {{ userStore.displayName }}</span>
+          <div><span>현재 이름:</span> {{ userStore.displayName }}</div>
         </label>
       </div>
       <div>
         <label>
           사진 변경
           <input class="img-input" type="file" @change.prevent="selectImg" />
+          <div>현재 이미지</div>
           <img class="img" v-bind:src="userStore.img" />
         </label>
       </div>
       <div>
         <label for="">
-          패스워드
-          <input type="password" v-model="password" placeholder="8자 이상 입력해주세요!" />
+          패스워드*
+          <input
+            type="password"
+            v-model="password"
+            placeholder="변경이 없으시면 기존의 비밀번호 입력!"
+          />
         </label>
       </div>
     </form>
@@ -53,9 +58,9 @@ export default {
   methods: {
     modify() {
       this.userStore.modifyUser({
-        email: this.email,
-        displayName: this.displayName,
-        img: this.img,
+        email: this.email || this.userStore.email,
+        displayName: this.displayName || this.userStore.displayName,
+        img: this.img || this.userStore.img,
         password: this.password,
         validation: this.validation,
       })
@@ -103,9 +108,54 @@ export default {
     font-weight: 900;
   }
   form {
-    .img {
-      width: 300px;
-      height: 300px;
+    div {
+      margin: 10px 30px;
+      label {
+        input {
+          width: 250px;
+          height: 48px;
+          border-style: solid;
+          border-width: 0 0 2px 0;
+          border-color: #ebebeb;
+          padding: 11px 0px 8px 0;
+          margin-left: 10px;
+          color: #252525;
+          outline: 0;
+          border-radius: 0;
+          box-sizing: border-box;
+          caret-color: #191919;
+          text-decoration: none;
+          &.email-input {
+            margin-left: 20px;
+          }
+          &.name-input {
+            margin-left: 40px;
+          }
+          &:focus {
+            border-bottom: 3px solid;
+          }
+        }
+      }
+      span {
+        font-weight: 900;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .img {
+    width: 300px;
+    height: 300px;
+  }
+  button {
+    width: 100px;
+    margin: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #fee500;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
   }
 }
