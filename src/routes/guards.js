@@ -4,7 +4,7 @@ import { validateTokenUser } from '~/core'
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore()
-  console.log(to)
+  console.log(userStore)
   if (to.meta.auth) {
     const user = await validateTokenUser()
     // if (user.email === 'admin@kdt.com' && user.displayName === 'admin') {
