@@ -40,20 +40,33 @@ export default createRouter({
     },
     {
       path: '/account',
-      component: ReadAccount
+      component: ReadAccount,
     },
     {
       path: '/newaccount',
-      component: CreateAccount
+      component: CreateAccount,
     },
     {
       path: '/:notFound(.*)*',
       component: NotFound,
     },
-    { path: '/mypage', component: MyPage },
     {
-      path: '/mypage/purchaseHistory',
-      component: PurchaseHistory,
+      path: '/mypage',
+      component: MyPage,
+      children: [
+        {
+          path: '/mypage/PurchaseHistory',
+          component: PurchaseHistory,
+        },
+        {
+          path: '/mypage/edituser',
+          component: EditUser,
+        },
+      ],
     },
+    // {
+    //   path: '/mypage/purchaseHistory',
+    //   component: PurchaseHistory,
+    // },
   ],
 })

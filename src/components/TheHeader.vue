@@ -88,7 +88,7 @@
         </RouterLink>
         <ul class="list-mypage">
           <li>
-            <RouterLink to="/PurchaseHistory">
+            <RouterLink to="/mypage/PurchaseHistory">
               <div class="nav-icon buy-icon">
                 <img src="buy_icon.svg" alt="buy-icon" />
               </div>
@@ -126,6 +126,9 @@
           </li>
           <li v-if="userStore.displayName">
             <RouterLink to="/user">정보 수정</RouterLink>
+          </li>
+          <li v-if="userStore.email === 'testemail@test.com'">
+            <RouterLink to="/admin">관리자 페이지</RouterLink>
           </li>
         </ul>
       </div>
@@ -364,9 +367,9 @@ header {
   flex-direction: column;
   align-items: center;
   .popup-profile {
-    width: 40px;
-    height: 40px;
     img {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       object-fit: cover;
     }
