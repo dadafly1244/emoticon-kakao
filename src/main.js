@@ -3,7 +3,11 @@ import App from '~/App.vue'
 import router from '~/routes'
 import '~/routes/guards'
 import { createPinia } from 'pinia'
-import request  from '~/plugins/request'
+
+import BaseCard from '~/components/ui/BaseCard.vue';
+import BaseButton from '~/components/ui/BaseButton.vue';
+
+
 
 const pinia = createPinia()
 pinia.use(({ store }) => {
@@ -11,7 +15,8 @@ pinia.use(({ store }) => {
 })
 
 createApp(App)
+  .component('base-card', BaseCard)
+  .component('base-button', BaseButton)
   .use(pinia)
   .use(router)
-  .use(request)
   .mount('#app')

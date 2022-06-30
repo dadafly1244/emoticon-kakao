@@ -1,8 +1,23 @@
 <template>
-<div class="propro"
- @click="searchAll">
+  <div class="propro"
+  @click="searchAll">
 
-</div>
+  </div>
+
+  <base-card>
+    <h2>이미지이름</h2>
+    <p>
+      이거 뭐 어케 하누? 
+    </p>
+
+  </base-card>
+   <base-card>
+    <h2>이미지이름</h2>
+    <p>
+      이거 뭐 어케 하누? 
+    </p>
+
+  </base-card>
 </template>
 
 <script>
@@ -20,8 +35,7 @@ export default {
   },
   methods: {
     async searchAll() {
-      console.log(await this.productStore.productsArray)
-
+      console.log(await this.productStore.productSearch())
     }
   }
 }
