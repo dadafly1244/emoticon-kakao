@@ -31,7 +31,7 @@
           <input
             type="password"
             v-model="password"
-            placeholder="변경이 없으시면 기존의 비밀번호 입력!"
+            placeholder="변경이 없다면 기존의 비밀번호 입력!"
           />
         </label>
       </div>

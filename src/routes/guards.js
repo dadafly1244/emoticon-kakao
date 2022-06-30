@@ -8,7 +8,7 @@ router.beforeEach(async (to) => {
     const user = await validateTokenUser()
     if (user.data.email === 'testemail@test.com' && user.data.displayName === 'test') {
       console.log('admin!')
-      window.location.href = 'http://localhost:8080/admin'
+      window.location.href = 'http://localhost:8080/admin' // 나중에는 준석님 repo의 netlify 주소로
     }
     if (user.data && user.data.email) {
       return true
@@ -17,5 +17,6 @@ router.beforeEach(async (to) => {
     alert('로그인 해주세요!')
     return '/login'
   }
+
   return true
 })
