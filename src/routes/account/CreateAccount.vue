@@ -3,8 +3,11 @@
 		<h2>계좌 생성</h2>
 		<form class="account-form">
 			<label for="bank-name">은행</label>
-			<select name="bank-name" id="bank-name">
+			<select name="bank-name" id="bank-name" required>
 				<option value="" disabled selected>--------- 은행 선택 ---------</option>
+				<option v-for="bank in banks" :key="bank" :value="bank">
+					{{bank}}
+				</option>
 			</select>
 			<label for="account-number">계좌번호</label>
 			<input type="number" id="account-number" />
@@ -14,14 +17,33 @@
 			<input type="text" id="signature" />
 			<button type="submit">확인</button>
 		</form>
+		<button @click="login">로그인</button>
 	</div>
 </template>
 
 <script>
 import { mapStores } from 'pinia'
+import { useUserStore } from '~/store/user.js'
 import { useAccountStore } from '~/store/account.js'
 	export default {
-		
+		data() {
+			return {
+				banks: []
+			}
+		},
+		async created() {
+			this.banks = await this.accountStore.getAccounts()
+			console.log(this.banks)
+			//console.log(userStore.getCurrentUser())
+		},
+		computed: {
+    	...mapStores(useAccountStore, useUserStore)
+  	},
+		methods: {
+			async login() {
+				this.accountStore.login()
+			}
+		}
 	}
 </script>
 

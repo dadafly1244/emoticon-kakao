@@ -108,6 +108,7 @@ export default {
       margin: 30px;
       padding: 10px;
       font-size: 16px;
+      border-radius: 5px;
       background-color: #fee500;
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
