@@ -1,7 +1,7 @@
 <template>
 	<AccountLayout heading="계좌 조회">
 		<Account v-on:selected="onSelected"/>
-		<p class="account-explanation"></p>
+		<p ref="paragraph" class="account-explanation"></p>
 	</AccountLayout>
 </template>
 
@@ -16,8 +16,7 @@ import AccountLayout from '~/components/AccountLayout'
 		methods: {
 			/* Account.vue에서 emit 받아오기 */
 			onSelected(account) {
-				const $explanation = document.querySelector('.account-explanation')
-				$explanation.innerHTML = `고객님 <strong class="emp">${account.bankName}</strong> 계좌에 <br>
+				this.$refs.paragraph.innerHTML = `고객님 <strong class="emp">${account.bankName}</strong> 계좌에 <br>
 				잔액이 <strong class="emp">${account.balance.toLocaleString()}원</strong> 있습니다`
 			}
 		}
