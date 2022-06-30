@@ -9,12 +9,9 @@
 				{{account.accountNumber}}
 			</option>
 		</select>
-
 		<p class="account-bankName"></p>
 		<p class="account-balance"></p>
-
-		<button @click="accountStore.login()">로그인</button>
-		<!-- <button @click="createAccount">계좌생성</button> -->
+		<button @click="createAccount">계좌생성</button>
 	</div>
 </template>
 
@@ -45,7 +42,7 @@ export default {
 		methods: {
 			async createAccount() {
 				const PAYLOAD = {
-					"bankCode": "004",
+					"bankCode": "088",
   				"accountNumber": "123456789012",
   				"phoneNumber": "01012345678",
   				"signature": true

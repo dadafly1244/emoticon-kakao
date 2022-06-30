@@ -19,37 +19,12 @@ export const useAccountStore = defineStore('account', {
 
   },
   actions: {
-    async signup() {
-      const {accessToken} = await(await fetch(AUTH_URL, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          email: 'ajapag@gmail.com',
-          password: '12345!@#12345ab',
-          displayName: 'HONGGILDONG123'
-        })
-      })).json()
-			console.log(accessToken)
-    },
-		async login() {
-			const { accessToken } = await(await fetch(LOGIN_URL, {
-				method: 'POST',
-        headers,
-        body: JSON.stringify({
-          email: 'abcdef@naver.com',
-          password: '12341234',
-        })
-			})).json()
-			console.log(accessToken)
-		},
     async getAccounts() {
       const data = await readAccounts()
-      console.log(data)
 			return data
     },
     async getAccount() {
       const data = await readAccount()
-      console.log(data)
 			return data
     },
     async setAccount(payload) {

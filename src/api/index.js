@@ -11,7 +11,7 @@ const instance = axios.create({
 	baseURL: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
 	headers
 })
-const readAccounts = () => withHandler(instance.get('/banks'), data => data.map(bank => bank.name))
+const readAccounts = () => withHandler(instance.get('/banks'), data => data)
 const readAccount = () => withHandler(instance.get('/'), data => data)
 const createAccount = (accountObj) => {
 	withHandler(instance.post('/', {
