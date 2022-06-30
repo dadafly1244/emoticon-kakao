@@ -36,7 +36,7 @@ export const useUserStore = defineStore('user', {
 
         const { user, accessToken } = await res.data
         window.localStorage.setItem('token', accessToken)
-        console.log(user)
+        console.log(user, accessToken)
         this.email = user.email
         this.displayName = user.displayName
         this.accessToken = accessToken
