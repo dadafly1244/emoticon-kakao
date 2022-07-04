@@ -11,6 +11,7 @@ import ReadAccount from './account/ReadAccount.vue'
 import AccountNav from '~/components/AccountNav.vue'
 import CreateAccount from './account/CreateAccount.vue'
 import DeleteAccount from './account/DeleteAccount.vue'
+import CompletePage from './account/CompletePage.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -51,6 +52,10 @@ export default createRouter({
     {
       path: '/removeaccount',
       component: DeleteAccount,
+    },
+    {
+      path: '/completed/:createOrDelete',
+      component: CompletePage,
     },
     {
       path: '/:notFound(.*)*',

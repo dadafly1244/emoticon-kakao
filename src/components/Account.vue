@@ -33,19 +33,6 @@ export default {
 		computed: {
     	...mapStores(useAccountStore)
   	}, 
-		methods: {
-			async createAccount() {
-				const PAYLOAD = {
-					"bankCode": "004",
-  				"accountNumber": "123456789012",
-  				"phoneNumber": "01012345678",
-  				"signature": true
-				}
-				await this.accountStore.setAccount(PAYLOAD)
-				this.$router.push("/")
-			}
-		},
-
 }
 </script>
 

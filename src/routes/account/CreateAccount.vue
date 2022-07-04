@@ -3,7 +3,7 @@
 		<form class="account-form" @submit.prevent="onSubmit" autocomplete="off">
 			<label for="bank-name">은행</label>
 			<select v-model="bankValue" name="bank-name" id="bank-name">
-				<option value="" disabled selected>--------- 은행 선택 ---------</option>
+				<option value="" disabled selected>은행 선택</option>
 				<option v-for="bank in banks" :key="bank.code" :value="bank" :disabled="bank.disabled">
 					{{bank.name}}
 				</option>
@@ -11,7 +11,7 @@
 			<p v-if="errors['bank']">{{ errors['bank'] }}</p>
 			<label for="account-number">계좌번호 <strong class="account-length"
 					v-if="digitsLength">{{digitsLength}}자리</strong></label>
-			<input v-model="accountValue" @focus="accountValue = ''" @keyup="accountMask(currentDigits)" type="text"
+			<input v-model="accountValue" @focus="accountValue = ''" type="number"
 				id="account-number" :disabled="!bankValue" />
 			<p v-if="errors['account']">{{ errors['account'] }}</p>
 			<label for="phone-number">전화번호</label>
@@ -54,6 +54,9 @@ import AccountLayout from '~/components/AccountLayout'
 				this.accountValue = ''
 				this.currentDigits = value.digits
 			},
+			accountValue(value) {
+				this.errors['account'] = `현재 ${String(value).length}자리`
+			}
 		},
 		computed: {
     	...mapStores(useAccountStore, useUserStore),
@@ -63,10 +66,10 @@ import AccountLayout from '~/components/AccountLayout'
 			},
 			isFormValid() {
 				this.errors = {}
-				const accountLength = this.accountValue.replaceAll('-','').length
+				const accountLength = this.accountValue.length
 				const phoneLength = this.phoneValue.replaceAll('-','').length
 				if (!this.bankValue) this.errors['bank'] = '은행을 선택 하세요.'
-				if (accountLength < this.digitsLength) this.errors['account'] = '계좌번호 길이가 짧습니다.'
+				if (accountLength !== this.digitsLength) this.errors['account'] = '올바른 길이의 계좌를 입력해주세요.'
 				if (phoneLength < 11) this.errors['phone'] = '전화번호 길이가 짧습니다.'
 				if (!this.signValue) this.errors['sign'] = '서명을 입력 하세요.'
 				return !Object.keys(this.errors).length
@@ -77,21 +80,15 @@ import AccountLayout from '~/components/AccountLayout'
 				const num = this.phoneValue.replace(/\D/g,'')
 				this.phoneValue = num.substring(0,3) + '-' + num.substring(3,7) + '-' + num.substring(7,11)
 			},
-			accountMask(digits) {
-				const num = this.accountValue.replace(/\D/g,'')
-				let value = num.substring(0,digits[0]) + '-' + num.substring(digits[0],digits[0] + digits[1]) + '-' + num.substring(digits[0] + digits[1],digits[0] + digits[1] + digits[2])
-				digits.length > 3 && (value += '-' + num.substring(digits[0] + digits[1],digits[0] + digits[1] + digits[2]))
-				this.accountValue = value
-			},
 			async onSubmit() {
 				if (!this.isFormValid) return
 				await this.accountStore.setAccount({
 					bankCode: this.bankValue.code,
-        	accountNumber: this.accountValue.replaceAll('-',''),
+        	accountNumber: this.accountValue,
         	phoneNumber: this.phoneValue.replaceAll('-',''),
         	signature: true
 				})
-				this.$router.push('/completed/newaccount')
+				this.$router.push('/completed/create')
 			}
 		}
 	}
