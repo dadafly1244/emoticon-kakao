@@ -56,15 +56,15 @@ export default createRouter({
       component: MyPage,
       children: [
         {
-          path: '/mypage/PurchaseHistory',
+          path: 'PurchaseHistory',
           component: PurchaseHistory,
         },
         {
-          path: '/mypage/reservation',
+          path: 'reservation',
           component: PurchaseHistory,
         },
         {
-          path: '/mypage/accountmanagement',
+          path: 'accountmanagement',
           component: AccountNav
         }
       ],
