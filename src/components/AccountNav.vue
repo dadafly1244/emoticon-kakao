@@ -7,7 +7,7 @@
 			<RouterLink to="/newaccount">계좌 생성</RouterLink>
 		</li>
 		<li>
-			<RouterLink to="/deleteaccount">계좌 해지</RouterLink>
+			<RouterLink to="/removeaccount">계좌 해지</RouterLink>
 		</li>
 	</ul>
 </template>
@@ -21,14 +21,17 @@
 <style lang="scss" scoped>
 .lists {
 	width: 500px;
-	border: 2px solid #EC6F66;
+	color: #FF8251;
+	border: 1px solid;
+	background-color: #fff;
 	border-radius: 5px;
 	li {
 		padding: 20px;
 		font-size: 25px;
-		border-bottom: 1px solid #EC6F66;
+		border-bottom: 1px solid;
+		transition: .4s;
 		&:hover {
-			background-color: #EC6F66;
+			background-color: #FF8251;
 			color: #fff;
 		}
 		&:last-child{
@@ -36,6 +39,7 @@
 		}
 	}
 	a {
+		font-weight: bold;
 		color: inherit; text-decoration: none; outline: none;
 		&:hover, &:active {
 			text-decoration: none; background-color:transparent;

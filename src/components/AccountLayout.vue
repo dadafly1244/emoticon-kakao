@@ -24,12 +24,12 @@
 		background-color: #F6F5EE;
 		.subtitle {
 			background-color: #FF8251;
-			color: #723210;
+			color: #fff;
 			h3 {
-			font-size: 40px;
-			margin: 0 auto;
-			width: 600px;
-			padding: 30px 0;
+				font-size: 33px;
+				margin: 0 auto;
+				width: 600px;
+				padding: 40px 0;
 			}
 		}
 		.inner {

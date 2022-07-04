@@ -10,6 +10,7 @@ import MyPage from './MyPage.vue'
 import ReadAccount from './account/ReadAccount.vue'
 import AccountNav from '~/components/AccountNav.vue'
 import CreateAccount from './account/CreateAccount.vue'
+import DeleteAccount from './account/DeleteAccount.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -46,6 +47,10 @@ export default createRouter({
     {
       path: '/newaccount',
       component: CreateAccount,
+    },
+    {
+      path: '/removeaccount',
+      component: DeleteAccount,
     },
     {
       path: '/:notFound(.*)*',

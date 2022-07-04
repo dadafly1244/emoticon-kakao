@@ -4,10 +4,10 @@
 		<div class="account-text">
 			<svg v-if="!isSelected" class="up-arrow" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path></svg>
 			<p ref="paragraph">
-				<strong>클릭하여 계좌 조회</strong>
+				<strong>클릭하여 계좌 선택</strong>
 			</p>
 		</div>
-		<button class="button" @click="$router.push('/mypage/accountmanagement')">마이 페이지로</button>
+		<button class="button" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
 	</AccountLayout>
 </template>
 
@@ -28,7 +28,7 @@ import AccountLayout from '~/components/AccountLayout'
 			/* Account.vue에서 emit 받아오기 */
 			onSelected(account) {
 				this.isSelected = true
-				this.$refs.paragraph.innerHTML = `고객님 <strong class="emp">${account.bankName}</strong> 계좌에 <br>
+				this.$refs.paragraph.innerHTML = `고객님 <strong>${account.bankName}</strong> 계좌에 <br>
 				잔액이 <strong class="emp">${account.balance.toLocaleString()}원</strong> 있습니다`
 			}
 		}
@@ -37,23 +37,7 @@ import AccountLayout from '~/components/AccountLayout'
 
 <style lang="scss" scoped>
 	.account-text {
-		margin: 35px 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		min-height: 140px;
-		color: #808080;
-	}
-	p {
-		font-size: 30px;
-		text-align: center;
-		line-height: 1.8;
-	}
-	.up-arrow {
-		width: 50px;
-		height: 50px;
-		display: block;
-		margin-right: 10px;
+		@include account-text;
 	}
 	.button {
 		margin: 10px auto 0 auto;

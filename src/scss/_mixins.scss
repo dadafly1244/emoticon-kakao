@@ -35,11 +35,11 @@
 	}
 
 	@else if $func==ok {
-		$bgc: #EC6F66;
+		$bgc: #FF8251;
 	}
 
 	@else if $func==delete {
-		$bgc: tomato;
+		$bgc: red;
 	}
 
 	@else {
@@ -63,4 +63,22 @@
 	display: block;
 	transition: .4s;
 }
-
+@mixin account-text {
+	margin: 35px 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 140px;
+		color: #808080;
+		p {
+			font-size: 30px;
+			text-align: center;
+			line-height: 1.8;
+		}
+		.up-arrow {
+			width: 50px;
+			height: 50px;
+			display: block;
+			margin-right: 10px;
+		}
+}

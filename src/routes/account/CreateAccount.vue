@@ -48,7 +48,6 @@ import AccountLayout from '~/components/AccountLayout'
 		},
 		async created() {
 			this.banks = await this.accountStore.getAccounts()
-			console.log(this.banks)
 		},
 		watch: {
 			bankValue(value) {
@@ -112,7 +111,7 @@ import AccountLayout from '~/components/AccountLayout'
 			width: 100%;
 			font-size: 22px;
 			text-align: left;
-			margin: 40px 0 20px 0;
+			margin: 30px 0;
 			&:first-child {
 				margin: 20px 0;
 			}
