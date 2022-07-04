@@ -8,6 +8,7 @@ import PurchaseHistory from './PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
 import MyPage from './MyPage.vue'
 import ReadAccount from './account/ReadAccount.vue'
+import AccountNav from '~/components/AccountNav.vue'
 import CreateAccount from './account/CreateAccount.vue'
 
 export default createRouter({
@@ -64,7 +65,7 @@ export default createRouter({
         },
         {
           path: '/mypage/accountmanagement',
-          component:PurchaseHistory
+          component: AccountNav
         }
       ],
     },

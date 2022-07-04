@@ -96,7 +96,7 @@
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/예약">
+            <RouterLink to="/mypage/reservation">
               <div class="nav-icon reserve-icon">
                 <img src="reserve_icon.svg" alt="reserve-icon" />
               </div>
@@ -104,7 +104,7 @@
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/계좌관리">
+            <RouterLink to="/mypage/accountmanagement">
               <div class="nav-icon account-icon">
                 <img src="account_icon.svg" alt="account-icon" />
               </div>

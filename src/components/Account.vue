@@ -1,13 +1,12 @@
 <template>
 	<div class="container">
 		<select v-model="accountValue" name="account" id="account" required>
-			<option value="" disabled selected>--------- 계좌 선택 ---------</option>
+			<option value="" disabled selected>나의 계좌</option>
 			<option v-for="account in myAccount.accounts" :key="account.id" :value="account">
 				{{account.bankName}}
 				{{account.accountNumber}}
 			</option>
 		</select>
-		<!-- <button @click="createAccount">계좌생성</button> -->
 	</div>
 </template>
 

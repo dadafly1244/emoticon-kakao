@@ -15,7 +15,7 @@
   <div class="mypage-main">
     <div class="main-inner">
       <h4>{{ getRoute() }}</h4>
-      <slot />
+      <router-view></router-view>
     </div>
   </div>
 
@@ -99,6 +99,7 @@
     h4 {
       color: #191919;
       font-size: 18px;
+      margin-bottom: 40px;
     }
   }
 </style>

@@ -47,13 +47,14 @@
 	}
 
 	&:hover {
-		background-color: darken($bgc, 15%);
+		background-color: #fff;
+		color: $bgc;
+		border: 2px solid $bgc;
 	}
-
+	border: 2px solid transparent;
 	background-color: $bgc;
-	width: 130px;
-	height: 35px;
-	padding: 0 12px;
+	min-width: 130px;
+	padding: 10px 15px;
 	border-radius: 7px;
 	color: #fff;
 	font-size: 20px;
