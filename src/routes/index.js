@@ -59,9 +59,13 @@ export default createRouter({
           component: PurchaseHistory,
         },
         {
-          path: '/mypage/edituser',
-          component: EditUser,
+          path: '/mypage/reservation',
+          component: PurchaseHistory,
         },
+        {
+          path: '/mypage/accountmanagement',
+          component:PurchaseHistory
+        }
       ],
     },
     // {

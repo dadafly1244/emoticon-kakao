@@ -179,7 +179,7 @@ export default {
 $head-height: 60px;
 header {
   width: 100vw;
-  height: 104px;
+  height: 97px;
 }
 #leftnav {
   position: fixed;
@@ -427,6 +427,7 @@ header {
     padding: 0 16px;
     display: flex;
     justify-content: center;
+    border-bottom: 2px transparent;
     li {
       padding: 10px 70px;
       color: gray;
@@ -453,7 +454,7 @@ header {
 
 .search-container {
   position: fixed;
-  top: 104px;
+  top: 97px;
   left: 0;
   right: 0;
   height: 100px;
