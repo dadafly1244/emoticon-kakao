@@ -30,7 +30,14 @@
           </div>
           <div class="popup-name">{{ this.userStore.displayName }}</div>
           <div class="popup-email">{{ this.userStore.email }}</div>
-          <button class="btn--logout" @click="userStore.logoutUser">로그아웃</button>
+          <button
+            v-if="!userStore.img"
+            class="btn--logout"
+            @click="$router.push('/login'), (popupOn = !popupOn)"
+          >
+            로그인
+          </button>
+          <button v-else class="btn--logout" @click="logout">로그아웃</button>
         </div>
         <div v-if="popupOn" @click="popupOn = !popupOn" class="popup-container"></div>
       </div>
@@ -74,7 +81,7 @@
     <!-- 왼쪽 nav -->
     <nav v-show="leftNavOn" id="leftnav" @click="leftNavOn = !leftNavOn">
       <div class="leftnav__inner">
-        <RouterLink v-if="userStore.displayName" to="/mypage" class="nav-profile">
+        <RouterLink v-if="userStore.displayName" to="/mypage/PurchaseHistory" class="nav-profile">
           <div class="profile-big">
             <img v-bind:src="userStore.img" alt="profile-default" />
           </div>
@@ -170,6 +177,10 @@ export default {
     isMatch(path) {
       if (!path) return false
       return path.test(this.$route.fullPath)
+    },
+    logout() {
+      this.userStore.logoutUser()
+      this.popupOn = !this.popupOn
     },
   },
   watch: {},
