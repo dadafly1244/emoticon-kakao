@@ -21,7 +21,7 @@
 <style lang="scss" scoped>
 .lists {
 	width: 500px;
-	border: 1px solid #EC6F66;
+	border: 2px solid #EC6F66;
 	border-radius: 5px;
 	li {
 		padding: 20px;

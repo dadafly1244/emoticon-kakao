@@ -34,6 +34,7 @@ export const useAccountStore = defineStore('account', {
       //   phoneNumber: '01011114444',
       //   signature: true
       // }
+      console.log(payload)
       const newAccount = await createAccount(payload)
       console.log(newAccount)
     },

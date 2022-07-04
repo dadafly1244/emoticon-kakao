@@ -61,6 +61,16 @@ import AccountLayout from '~/components/AccountLayout'
 			digitsLength() {
 				if (!this.currentDigits.length) return 0
 				return this.currentDigits.reduce((a,c) => a+c)
+			},
+			isFormValid() {
+				this.errors = {}
+				const accountLength = this.accountValue.replaceAll('-','').length
+				const phoneLength = this.phoneValue.replaceAll('-','').length
+				if (!this.bankValue) this.errors['bank'] = '은행을 선택 하세요.'
+				if (accountLength < this.digitsLength) this.errors['account'] = '계좌번호 길이가 짧습니다.'
+				if (phoneLength < 11) this.errors['phone'] = '전화번호 길이가 짧습니다.'
+				if (!this.signValue) this.errors['sign'] = '서명을 입력 하세요.'
+				return !Object.keys(this.errors).length
 			}
   	},
 		methods: {
@@ -74,13 +84,14 @@ import AccountLayout from '~/components/AccountLayout'
 				digits.length > 3 && (value += '-' + num.substring(digits[0] + digits[1],digits[0] + digits[1] + digits[2]))
 				this.accountValue = value
 			},
-			onSubmit() {
-				this.errors = {}
-				if (!this.bankValue) this.errors['bank'] = '은행을 선택 하세요.'
-				if (this.accountValue.length < this.digitsLength) this.errors['account'] = '계좌번호 길이가 짧습니다.'
-				if (this.phoneValue.length < 11) this.errors['phone'] = '전화번호 길이가 짧습니다.'
-				if (!this.signValue) this.errors['sign'] = '서명을 입력 하세요.'
-				if (Object.keys(this.errors).length) return
+			async onSubmit() {
+				if (!this.isFormValid) return
+				await this.accountStore.setAccount({
+					bankCode: this.bankValue.code,
+        	accountNumber: this.accountValue.replaceAll('-',''),
+        	phoneNumber: this.phoneValue.replaceAll('-',''),
+        	signature: true
+				})
 				this.$router.push('/completed/newaccount')
 			}
 		}
