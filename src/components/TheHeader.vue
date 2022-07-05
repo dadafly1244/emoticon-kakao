@@ -49,20 +49,22 @@
     <!-- 검색창 -->
     <div v-show="searchOn" class="search-container">
       <div class="search-inner">
-        <form class="search-form">
+        <form v-on:submit.prevent class="search-form">
           <input
-            v-model="searchValue"
+            :value= "searchValue" 
+            @input="searchValue = ($event.target).value" 
+            @keydown.enter.prevent="searchEmoticon"
             placeholder="이모티콘을 검색해보세요!"
             class="search-input"
             type="text"
             autocomplete="off"
           />
-          <button v-show="searchValue" type="reset" @click="searchValue = ''">
-            <div class="cancel-icon">
+          <button v-show="searchValue" type="reset" >
+            <div class="cancel-icon" >
               <img src="cancel_icon.svg" alt="cancel-icon" />
             </div>
           </button>
-          <button type="submit">
+          <button type="submit"  @click="searchEmoticon">
             <div class="search-icon button">
               <img src="search_icon.svg" alt="search-icon" />
             </div>
@@ -96,7 +98,7 @@
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/예약">
+            <RouterLink to="/mypage/reservation">
               <div class="nav-icon reserve-icon">
                 <img src="reserve_icon.svg" alt="reserve-icon" />
               </div>
@@ -104,7 +106,7 @@
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/계좌관리">
+            <RouterLink to="/mypage/accountmanagement">
               <div class="nav-icon account-icon">
                 <img src="account_icon.svg" alt="account-icon" />
               </div>
@@ -144,6 +146,7 @@
 <script>
 import { mapStores } from 'pinia'
 import { useUserStore } from '~/store/user'
+import { useProductStore } from '~/store/product'
 export default {
   data() {
     return {
@@ -164,13 +167,42 @@ export default {
     this.userStore.authUser()
   },
   computed: {
-    ...mapStores(useUserStore),
+    ...mapStores(useUserStore, useProductStore),
   },
   methods: {
     isMatch(path) {
       if (!path) return false
       return path.test(this.$route.fullPath)
     },
+    searchEmoticon(event){
+      //console.log('이벤트',event)
+      //console.log('이벤트',event.target.value)
+      if(event.isComposing) return //한글 입력중인가?  
+      if(!this.searchValue.trim()) return // 빈문자인가?
+      
+      let input = this.searchValue 
+      input = input.replace(', ', ' ') // 검색이 '제품제목, #태그'와 같이 콤마와 공백을 모두 사용한 경우.! 
+      let array = input.split(/[\s,]/) //공백, 콤마로 구분 해서 배열에 넣기!
+
+      let title = []
+      let tags = []
+      for(const item of array){
+        if(item.indexOf('#') === -1) { // 제목 검색일 때! 사용자가 여러개의 제목을 검색한 값 다 받아옴
+          title = [...title, item]
+        }
+        else{
+          let temp = item.replace('#','')
+          tags = [...tags, temp]
+        }
+      }
+
+      console.log('title',title,'tags',tags)
+      
+      this.productStore.productSearch( {"searchText": title[0], "searchTags":tags}) // 사용자가 입력한 제목 중에서 첫번째로 입력한 제목만 입력하기!
+      
+      this.searchValue='' // api 보내고 입력값 초기화
+      
+    }
   },
   watch: {},
 }
