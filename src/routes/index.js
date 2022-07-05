@@ -8,7 +8,10 @@ import PurchaseHistory from './product/PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
 import MyPage from './MyPage.vue'
 import ReadAccount from './account/ReadAccount.vue'
+import AccountNav from '~/components/AccountNav.vue'
 import CreateAccount from './account/CreateAccount.vue'
+import DeleteAccount from './account/DeleteAccount.vue'
+import CompletePage from './account/CompletePage.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -47,6 +50,14 @@ export default createRouter({
       component: CreateAccount,
     },
     {
+      path: '/removeaccount',
+      component: DeleteAccount,
+    },
+    {
+      path: '/completed/:createOrDelete',
+      component: CompletePage,
+    },
+    {
       path: '/:notFound(.*)*',
       component: NotFound,
     },
@@ -55,16 +66,16 @@ export default createRouter({
       component: MyPage,
       children: [
         {
-          path: '/mypage/PurchaseHistory',
+          path: 'PurchaseHistory',
           component: PurchaseHistory,
         },
         {
-          path: '/mypage/reservation',
+          path: 'reservation',
           component: PurchaseHistory,
         },
         {
-          path: '/mypage/accountmanagement',
-          component:PurchaseHistory
+          path: 'accountmanagement',
+          component: AccountNav
         }
       ],
     },

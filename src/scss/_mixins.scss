@@ -35,11 +35,11 @@
 	}
 
 	@else if $func==ok {
-		$bgc: #EC6F66;
+		$bgc: #FF8251;
 	}
 
 	@else if $func==delete {
-		$bgc: tomato;
+		$bgc: red;
 	}
 
 	@else {
@@ -47,13 +47,14 @@
 	}
 
 	&:hover {
-		background-color: darken($bgc, 15%);
+		background-color: #fff;
+		color: $bgc;
+		border: 2px solid $bgc;
 	}
-
+	border: 2px solid transparent;
 	background-color: $bgc;
-	width: 130px;
-	height: 35px;
-	padding: 0 12px;
+	min-width: 130px;
+	padding: 10px 15px;
 	border-radius: 7px;
 	color: #fff;
 	font-size: 20px;
@@ -62,4 +63,22 @@
 	display: block;
 	transition: .4s;
 }
-
+@mixin account-text {
+	margin: 35px 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 140px;
+		color: #808080;
+		p {
+			font-size: 30px;
+			text-align: center;
+			line-height: 1.8;
+		}
+		.up-arrow {
+			width: 50px;
+			height: 50px;
+			display: block;
+			margin-right: 10px;
+		}
+}
