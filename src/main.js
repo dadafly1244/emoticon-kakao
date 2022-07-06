@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 
 import BaseCard from '~/components/ui/BaseCard.vue';
 import BaseButton from '~/components/ui/BaseButton.vue';
-
+import TheLoader from './components/ui/TheLoader.vue'
 
 
 const pinia = createPinia()
@@ -15,8 +15,9 @@ pinia.use(({ store }) => {
 })
 
 createApp(App)
-  .component('base-card', BaseCard)
-  .component('base-button', BaseButton)
   .use(pinia)
   .use(router)
+  .component('BaseCard', BaseCard)
+  .component('BaseButton', BaseButton)
+  .component('TheLoader', TheLoader)
   .mount('#app')

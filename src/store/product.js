@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import axios from 'axios'
 
 const VITE_API_KEY = 'FcKdtJs202204'
-const  VITE_USERNAME = 'KDTTEAM8'
+const  VITE_USERNAME = 'KDT2TEAM8'
 const END_POINT = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products'
 
 
