@@ -7,16 +7,14 @@ export const useUserStore = defineStore('user', {
       email: '',
       displayName: '',
       accessToken: '',
-      img : '',
+      img: '',
     }
   },
   actions: {
     // LOGIN
     async loginUser(payload) {
-      const { email, password, validation } = payload
-      if (!validation()) {
-        return
-      }
+      const { email, password } = payload
+
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login',
@@ -58,10 +56,8 @@ export const useUserStore = defineStore('user', {
     },
     // SIGNUP
     async signUpUser(payload) {
-      const { email, password, passwordConfirm, displayName, img, validation } = payload
-      if (!validation()) {
-        return
-      }
+      const { email, password, passwordConfirm, displayName, img } = payload
+
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup',
@@ -139,7 +135,7 @@ export const useUserStore = defineStore('user', {
         this.email = email
         this.displayName = displayName
         this.img = profileImg
-        console.log(res.data)
+        // console.log(res.data)
         // console.log(this.email, this.displayName, this.img)
         return res.data
       } catch (err) {
@@ -148,11 +144,7 @@ export const useUserStore = defineStore('user', {
     },
     // MODIFYUSER
     async modifyUser(payload) {
-      console.log(payload)
-      const { email, displayName, img, password, validation } = payload
-      if (!validation()) {
-        return
-      }
+      const { email, displayName, img, password } = payload
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',

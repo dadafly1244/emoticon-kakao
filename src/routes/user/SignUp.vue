@@ -5,15 +5,29 @@
       <div>
         <label>
           이메일*
-          <input class="email" type="text" v-model="email" placeholder="이메일" />
+          <input
+            class="email"
+            type="text"
+            v-model="email"
+            placeholder="이메일"
+            @blur="emailValidation"
+          />
         </label>
       </div>
+      <span v-if="emailVali">이메일 형식을 확인해주세요</span>
       <div>
         <label>
           이름*
-          <input class="name" type="text" v-model="displayName" placeholder="이름" />
+          <input
+            class="name"
+            type="text"
+            v-model="displayName"
+            placeholder="이름"
+            @blur="displayNameValidation"
+          />
         </label>
       </div>
+      <span v-if="displayNameVali">이름을 확인해주세요</span>
       <div>
         <label>
           패스워드*
@@ -22,9 +36,11 @@
             type="password"
             v-model="password"
             placeholder="8자 이상 입력해주세요!"
+            @blur="passwordValidation"
           />
         </label>
       </div>
+      <span v-if="passwordVali">패스워드를 8자 이상 입력해주세요</span>
       <div>
         <label>
           패스워드 확인*
@@ -32,16 +48,18 @@
             type="password"
             v-model="passwordConfirm"
             placeholder="패스워드를 확인 해 주세요!"
+            @input="ableBtn"
           />
         </label>
       </div>
+      <span v-if="passwordConfirmVali">패스워드를 확인해주세요</span>
       <div>
         <label>
           프로필 사진
           <input class="profile" type="file" @change.prevent="selectImg" />
         </label>
       </div>
-      <button>회원가입</button>
+      <button :disabled="!ableBtnBoolean">회원가입</button>
       <RouterLink to="/login">id가 있으신가요?</RouterLink>
       <RouterLink to="/login">id와 password 찾기</RouterLink>
     </form>
@@ -59,6 +77,11 @@ export default {
       passwordConfirm: '',
       displayName: '',
       img: '',
+      emailVali: false,
+      displayNameVali: false,
+      passwordVali: false,
+      passwordConfirmVali: false,
+      ableBtnBoolean: false,
     }
   },
   computed: {
@@ -72,8 +95,17 @@ export default {
         passwordConfirm: this.passwordConfirm,
         displayName: this.displayName,
         img: this.img,
-        validation: this.validation,
       })
+    },
+    ableBtn() {
+      if (
+        this.emailValidation() &&
+        this.displayNameValidation() &&
+        this.passwordValidation() &&
+        this.passwordConfirmValidation()
+      ) {
+        this.ableBtnBoolean = true
+      }
     },
     selectImg(e) {
       const { files } = e.target
@@ -85,28 +117,40 @@ export default {
         })
       }
     },
-    validation() {
-      if (this.emailValidation() === false) {
-        alert('이메일 형식을 확인해주세요!')
-        return false
-      } else if (!this.displayName.trim()) {
-        alert('이름을 입력해주세요!')
-        return false
-      } else if (this.password.length < 8) {
-        alert('패스워드를 8자 이상 입력해주세요!')
-        return false
-      } else if (this.password !== this.passwordConfirm) {
-        alert('입력하신 패스워드가 다릅니다!')
-        return false
-      } else return true
-    },
     emailValidation() {
       const expressEmail =
         /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/
       if (expressEmail.test(this.email) === false) {
+        this.emailVali = true
         return false
       }
+      this.emailVali = false
       return true
+    },
+    displayNameValidation() {
+      if (!this.displayName.trim()) {
+        this.displayNameVali = true
+      } else {
+        this.displayNameVali = false
+        return true
+      }
+    },
+    passwordValidation() {
+      if (this.password.length < 8) {
+        this.passwordVali = true
+      } else {
+        this.passwordVali = false
+        return true
+      }
+    },
+    passwordConfirmValidation() {
+      if (this.password !== this.passwordConfirm) {
+        this.passwordConfirmVali = true
+        return false
+      } else {
+        this.passwordConfirmVali = false
+        return true
+      }
     },
   },
 }
@@ -120,6 +164,7 @@ export default {
   font-size: 16px;
   box-sizing: border-box;
   border: 1px solid #e5e5e5;
+  border-radius: 5px;
   text-align: center;
   h1 {
     font-size: 30px;
@@ -128,6 +173,7 @@ export default {
   form {
     div {
       margin: 30px 0;
+      font-weight: 900;
       label {
         input {
           width: 220px;
@@ -174,6 +220,9 @@ export default {
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       }
+      &:disabled {
+        box-shadow: none;
+      }
     }
     a {
       color: #333;
@@ -181,6 +230,11 @@ export default {
       &:hover {
         text-decoration: underline;
       }
+    }
+    span {
+      height: 20px;
+      color: red;
+      font-size: 14px;
     }
   }
 }
