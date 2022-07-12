@@ -12,6 +12,7 @@ import AccountNav from '~/components/AccountNav.vue'
 import CreateAccount from './account/CreateAccount.vue'
 import DeleteAccount from './account/DeleteAccount.vue'
 import CompletePage from './account/CompletePage.vue'
+import ProductDetail from './product/ProductDetail.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -38,8 +39,8 @@ export default createRouter({
       component: EditUser,
     },
     {
-      path: '/PurchaseHistory',
-      component: PurchaseHistory,
+      path: '/ProductDetail/:productId',
+      component: ProductDetail,
     },
     {
       path: '/account',
