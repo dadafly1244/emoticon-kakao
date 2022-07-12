@@ -58,10 +58,6 @@ export default createRouter({
       component: CompletePage,
     },
     {
-      path: '/:notFound(.*)*',
-      component: NotFound,
-    },
-    {
       path: '/mypage',
       component: MyPage,
       children: [
@@ -78,6 +74,10 @@ export default createRouter({
           component: AccountNav
         }
       ],
+    },
+    {
+      path: '/:notFound(.*)*',
+      component: NotFound,
     },
     // {
     //   path: '/mypage/purchaseHistory',

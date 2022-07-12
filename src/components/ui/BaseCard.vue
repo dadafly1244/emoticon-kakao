@@ -29,6 +29,8 @@ export default {
   box-sizing: border-box;
   &:hover {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
+    text-decoration: underline;
+    font-weight: 800;
   }
 }
 
