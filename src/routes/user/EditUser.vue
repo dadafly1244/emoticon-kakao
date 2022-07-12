@@ -6,22 +6,31 @@
       <div>
         <label>
           이메일
-          <input class="email-input" type="text" v-model="email" placeholder="이메일" />
-          <div><span>현재 이메일:</span> {{ userStore.email }}</div>
+          <input
+            class="email-input"
+            type="text"
+            v-model="email"
+            :placeholder="userStore.email"
+            @blur="emailValidation"
+          />
         </label>
       </div>
+      <span v-if="emailVali">이메일 형식을 확인해주세요</span>
       <div>
         <label>
           이름
-          <input class="name-input" type="text" v-model="displayName" placeholder="이름" />
-          <div><span>현재 이름:</span> {{ userStore.displayName }}</div>
+          <input
+            class="name-input"
+            type="text"
+            v-model="displayName"
+            :placeholder="userStore.displayName"
+          />
         </label>
       </div>
       <div>
         <label>
           사진 변경
           <input class="img-input" type="file" @change.prevent="selectImg" />
-          <div>현재 이미지</div>
           <img class="img" v-bind:src="userStore.img" />
         </label>
       </div>
@@ -32,12 +41,14 @@
             type="password"
             v-model="password"
             placeholder="변경이 없다면 기존의 비밀번호 입력!"
+            @input="ableBtn"
           />
         </label>
       </div>
+      <span v-if="passwordVali">패스워드를 8자 이상 입력해주세요</span>
     </form>
     <button @click="toHome">취소</button>
-    <button @click="modify">확인</button>
+    <button @click="modify" :disabled="!ableBtnBoolean">확인</button>
   </div>
 </template>
 <script>
@@ -50,6 +61,9 @@ export default {
       displayName: '',
       password: '',
       img: '',
+      emailVali: false,
+      passwordVali: false,
+      ableBtnBoolean: false,
     }
   },
   computed: {
@@ -62,20 +76,35 @@ export default {
         displayName: this.displayName || this.userStore.displayName,
         img: this.img || this.userStore.img,
         password: this.password,
-        validation: this.validation,
       })
     },
-    validation() {
+    ableBtn() {
+      if (this.emailValidation() && this.passwordValidation()) {
+        this.ableBtnBoolean = true
+      }
+    },
+    emailValidation() {
       const expressEmail =
         /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/
-      if (expressEmail.test(this.email) === false) {
-        alert('이메일을 확인해주세요')
+      if (!this.email) {
+        this.emailVali = false
+        return true
+      } else if (expressEmail.test(this.email) === false) {
+        this.emailVali = true
         return false
-      } else if (this.password.length < 8) {
-        alert('패스워드를 8자 이상 입력해주세요')
-        return false
+      } else {
+        this.emailVali = false
+        return true
       }
-      return true
+    },
+    passwordValidation() {
+      if (this.password.length < 8) {
+        this.passwordVali = true
+        return false
+      } else {
+        this.passwordVali = false
+        return true
+      }
     },
     selectImg(e) {
       const { files } = e.target
@@ -102,6 +131,7 @@ export default {
   font-size: 16px;
   box-sizing: border-box;
   border: 1px solid #e5e5e5;
+  border-radius: 5px;
   text-align: center;
   h1 {
     font-size: 30px;
@@ -110,6 +140,7 @@ export default {
   form {
     div {
       margin: 10px 30px;
+      font-weight: 900;
       label {
         input {
           width: 250px;
@@ -141,11 +172,18 @@ export default {
         font-size: 14px;
       }
     }
+    span {
+      height: 20px;
+      color: red;
+      font-size: 14px;
+    }
   }
 
   .img {
+    display: block;
     width: 300px;
     height: 300px;
+    margin: 0 auto;
   }
   button {
     width: 100px;

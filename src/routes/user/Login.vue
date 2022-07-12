@@ -6,16 +6,24 @@
       <div>
         <label>
           이메일*
-          <input class="email-input" type="text" v-model="email" placeholder="이메일" />
+          <input
+            class="email-input"
+            type="text"
+            v-model="email"
+            placeholder="이메일"
+            @blur="emailValidation"
+          />
         </label>
       </div>
+      <span v-if="emailVali">이메일 형식을 확인해주세요</span>
       <div>
         <label for="">
           패스워드*
           <input type="password" v-model="password" placeholder="8자 이상 입력해주세요!" />
         </label>
       </div>
-      <button>로그인</button>
+      <span v-if="passwordVali">비밀번호를 확인해주세요</span>
+      <button :disabled="password.length <= 7">로그인</button>
     </form>
     <RouterLink to="/searchuser">id나 비밀번호가 기억나지 않는다면?</RouterLink>
     <RouterLink to="/signup">회원가입</RouterLink>
@@ -29,6 +37,8 @@ export default {
     return {
       email: '',
       password: '',
+      emailVali: false,
+      passwordVali: false,
     }
   },
   computed: {
@@ -39,25 +49,27 @@ export default {
       this.userStore.loginUser({
         email: this.email,
         password: this.password,
-        validation: this.validation,
       })
     },
-    validation() {
-      if (this.emailValidation() === false) {
-        alert('이메일을 확인해주세요!')
-        return false
-      } else if (this.password.length < 8) {
-        alert('패스워드를 8자 이상 입력해주세요!')
-        return false
-      } else return true
-    },
+
     emailValidation() {
       const expressEmail =
         /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/
       if (expressEmail.test(this.email) === false) {
+        this.emailVali = true
         return false
       }
+      this.emailVali = false
       return true
+    },
+    passwordValidation() {
+      if (this.password.length < 8) {
+        this.passwordvali = true
+        return false
+      } else {
+        this.passVali = false
+        return true
+      }
     },
   },
 }
@@ -71,6 +83,7 @@ export default {
   font-size: 16px;
   box-sizing: border-box;
   border: 1px solid #e5e5e5;
+  border-radius: 5px;
   text-align: center;
   h1 {
     font-size: 30px;
@@ -79,6 +92,7 @@ export default {
   form {
     div {
       margin: 30px;
+      font-weight: 900;
       label {
         input {
           width: 220px;
@@ -113,6 +127,14 @@ export default {
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       }
+      &:disabled {
+        box-shadow: none;
+      }
+    }
+    span {
+      height: 20px;
+      color: red;
+      font-size: 14px;
     }
   }
   a {
