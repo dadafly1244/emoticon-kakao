@@ -7,9 +7,10 @@
 				<strong>해지할 계좌 선택</strong>
 			</p>
 		</div>
+
 		<div class="buttons">
-			<button class="button--goback" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
-			<button class="button--delete" @click="onDelete">해지 하기</button>
+			<button type="button" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
+			<button type="button" @click="onDelete">해지</button>
 		</div>
 	</AccountLayout>
 </template>
@@ -60,14 +61,14 @@ import { useAccountStore } from '~/store/account.js'
 		display: flex;
 		justify-content: center;
 		gap: 30px;
-	}
-	.button {
-		&--delete {
-			@include btn(delete);
+		button {
+			&:first-child {
+				@include btn(back);
+			}
+			&:last-child {
+				@include btn(delete);
+			}
 		}
-		&--goback {
-			@include btn(ok);
-		}
-		
 	}
+
 </style>

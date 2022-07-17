@@ -30,11 +30,11 @@
 @mixin btn($func: false) {
 	$bgc: '';
 
-	@if $func==home {
-		$bgc: yellowgreen;
+	@if $func==ok {
+		$bgc: #0e8de4;
 	}
 
-	@else if $func==ok {
+	@else if $func==back {
 		$bgc: #FF8251;
 	}
 
@@ -51,6 +51,7 @@
 		color: $bgc;
 		border: 2px solid $bgc;
 	}
+	font-weight: bold;
 	border: 2px solid transparent;
 	background-color: $bgc;
 	min-width: 130px;
