@@ -1,6 +1,9 @@
 <template>
 
+
+
 <div class="wrap">
+  <Modal v-if="showModal" />
   <div class="product--top">
     <div class="product--top--inner">
       <div class="product--thumbnail">
@@ -32,7 +35,7 @@
           <button class="round-btn" > <span class="material-symbols-rounded">favorite</span></button>
         </div>
         <div class="product--purchase">
-          <button class="square-btn yellow">구매하기</button>
+          <button class="square-btn yellow" @click="showModal=true">구매하기</button>
           <button class="square-btn">선물하기</button>
         </div>
       </div>
@@ -113,58 +116,61 @@
 <!-- <div class="see" @click="getProductDetail(`${$route.params.productId}`)"></div> -->
 
 
+
 </template>
 
 <script>
 import { mapStores } from "pinia";
 import { useProductStore } from "~/store/product";
 import { useUserStore } from "~/store/user";
+import Modal from "../../components/ui/Modal.vue";
 
 export default {
-  data() {
-    return {
-      loading: true,
-      productId: this.$route.params.productId,
-      iscloseDd: true,
-      iscloseDd2: true
-    
-    }
-  },
-  computed: {
-    ...mapStores(useProductStore, useUserStore)
-  },
-  async created() {
-    await this.productStore.productDetail(this.productId) // 다 불러오기..!!
-    this.loading = false
-  },
-  methods: {
-    async getProductDetail(productId) {
-      this.loading = true
-      await this.productStore.productDetail(productId)
-      this.loading = false
+    data() {
+        return {
+            loading: true,
+            productId: this.$route.params.productId,
+            iscloseDd: true,
+            iscloseDd2: true,
+            showModal: false
+        };
     },
-    addComma(num){
-      const regexp = /\B(?=(\d{3})+(?!\d))/g;
-      return num.toString().replace(regexp, ',');
-    }, 
-    changeIcon() {
-      this.iscloseDd = !this.iscloseDd
-      if (this.iscloseDd){
-        console.log(this.$refs.ico_open)
-        this.$refs.ico_open.content = 'expand_less'
-      }
-      else{
-        this.$refs.ico_open.content = 'expand_more'
-      }
-
-    }
-  }
+    computed: {
+        ...mapStores(useProductStore, useUserStore)
+    },
+    async created() {
+        await this.productStore.productDetail(this.productId); // 다 불러오기..!!
+        this.loading = false;
+    },
+    methods: {
+        async getProductDetail(productId) {
+            this.loading = true;
+            await this.productStore.productDetail(productId);
+            this.loading = false;
+        },
+        addComma(num) {
+            const regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ",");
+        },
+        changeIcon() {
+            this.iscloseDd = !this.iscloseDd;
+            if (this.iscloseDd) {
+                console.log(this.$refs.ico_open);
+                this.$refs.ico_open.content = "expand_less";
+            }
+            else {
+                this.$refs.ico_open.content = "expand_more";
+            }
+        }
+    },
+    components: { Modal }
 }
 
 </script>
 
 <style scoped lang="scss">
 .wrap{ 
+  // position:relative;
   // height: 30vh;
   border: 1px solid red;
   

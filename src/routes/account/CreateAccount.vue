@@ -73,7 +73,7 @@ import AccountLayout from '~/components/AccountLayout'
 				console.log(this.accountValue, this.digitsLength)
 				const phoneLength = this.phoneValue.replaceAll('-','').length
 				if (!this.bankValue) this.errors['bank'] = '은행을 선택 하세요.'
-				// if (accountLength !== this.digitsLength) this.errors['account'] = '올바른 길이의 계좌를 입력해주세요.'
+				if (accountLength !== this.digitsLength) this.errors['account'] = '올바른 길이의 계좌를 입력해주세요.'
 				if (phoneLength < 11) this.errors['phone'] = '전화번호 길이가 짧습니다.'
 				if (!this.signValue) this.errors['sign'] = '서명을 입력 하세요.'
 				return !Object.keys(this.errors).length

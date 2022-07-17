@@ -12,7 +12,8 @@ export const useProductStore = defineStore('product', {
     return {
     inputText: '',
     product: {},
-    productsArray: []
+    productsArray: [],
+    ispruchaseSuccess: false
     }
   },
   actions: {
@@ -80,6 +81,60 @@ export const useProductStore = defineStore('product', {
       }catch( error) {
         console.log(error.response.status)
       }
+    }, 
+  
+    //제품 거래(구매)신청
+    async productPurchase(payload) {
+      const { productId='', accountId='', isreservation = false, reservationStart, reservationEnd} = payload
+      if(!productId || !accountId ) { // productId가 없거나 accountId 전달되지 않으면
+        throw '구매하려는 제품의 iD나 계좌 id가 선택되지 않았습니다.'
+      }
+      
+      try {
+        const { data } = await requestApi({
+          requestCategory: 'buy',
+          method: 'POST',
+          data: {
+            productId,
+            accountId,
+            reservation : isreservation ? {start: reservationStart, end: reservationEnd } : {} //isreservation 값이 true면 예약정보 보내기!
+          }
+        })
+
+        
+
+        // if(!isreservation){ //예약이 
+        //   const { data } = await requestApi({
+        //     requestCategory: 'buy',
+        //     method: 'POST',
+        //     data: {
+        //       productId,
+        //       accountId
+        //     }
+        //   })
+        // }else {
+        //   const { data } = await requestApi({
+        //     requestCategory: 'buy',
+        //     method: 'POST',
+        //     data: {
+        //       productId,
+        //       accountId,
+        //       reservation: {
+        //         start: reservationStart,
+        //         end: reservationEnd
+        //       }
+        //     }
+        //   })
+        // }
+
+        console.log(data)
+        // this.ispruchaseSuccess = data
+        
+      } catch (error)  {
+        console.log(error)
+      }
+      
+
     }
   }
 
