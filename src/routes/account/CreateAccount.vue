@@ -20,7 +20,10 @@
 			<label for="signature">서명</label>
 			<input v-model="signValue" type="text" id="signature" />
 			<p v-if="errors['sign']">{{ errors['sign'] }}</p>
-			<button type="submit">확인</button>
+			<div class="buttons">
+				<button type="button" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
+				<button type="submit">생성</button>
+			</div>
 		</form>
 	</AccountLayout>
 </template>
@@ -123,9 +126,19 @@ import AccountLayout from '~/components/AccountLayout'
 		input {
 			@include input;
 		}
-		button {
+		.buttons {
 			margin-top: 40px;
-			@include btn(ok);
+			display: flex;
+			justify-content: center;
+			gap: 30px;
+			button {
+				&:first-child{
+					@include btn(back);
+				}
+				&:last-child{
+					@include btn(ok);
+				}
+			}
 		}
 		p {
 			font-size: 15px;

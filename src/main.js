@@ -3,6 +3,7 @@ import App from '~/App.vue'
 import router from '~/routes'
 import '~/routes/guards'
 import { createPinia } from 'pinia'
+import { useUserStore } from '~/store/user.js'
 
 import BaseCard from '~/components/ui/BaseCard.vue';
 import BaseButton from '~/components/ui/BaseButton.vue';
@@ -21,3 +22,6 @@ createApp(App)
   .component('BaseButton', BaseButton)
   .component('TheLoader', TheLoader)
   .mount('#app')
+
+export const userStore = useUserStore();
+

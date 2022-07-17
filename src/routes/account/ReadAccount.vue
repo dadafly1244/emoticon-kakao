@@ -7,13 +7,14 @@
 				<strong>클릭하여 계좌 선택</strong>
 			</p>
 		</div>
-		<button class="button" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
+		<button type="button" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
 	</AccountLayout>
 </template>
 
 <script>
 import Account from '~/components/Account'
 import AccountLayout from '~/components/AccountLayout'
+
 	export default {
 		data() {
 			return {
@@ -39,8 +40,8 @@ import AccountLayout from '~/components/AccountLayout'
 	.account-text {
 		@include account-text;
 	}
-	.button {
+	button {
 		margin: 10px auto 0 auto;
-		@include btn(ok);
+		@include btn(back);
 	}
 </style>
