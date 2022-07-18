@@ -4,7 +4,58 @@
 
 <div class="wrap">
   <Modal v-if="showModal" @close-modal="showModal=false">
-    
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div class="modal-head--title yellow">구매하기</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body--card">
+          <div class="thumbnail">
+            <img 
+            v-if ="productStore.product.thumbnail"
+            :src="productStore.product.thumbnail" 
+            :alt="productStore.product.title">
+            <div v-else class="no-image"></div>
+          </div>
+          <div class="detail">
+            <div class="detail--title">{{productStore.product.title}}</div>
+            <div class="detail--author"> {{productStore.product.description}}</div>
+            <div class="detail--price">
+              <div class="price--no-discount">{{addComma(productStore.product.price * 1.2)}}원</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-body--card">
+          <div class="coupon">
+            <!-- <div class="coupon--title">할인쿠폰</div> -->
+            <!-- <div class="coupon--dropdown">할인쿠폰</div> -->
+            <CouponDropdown />
+            <div class="coupon--price">
+              <div class="title">결제금액</div>
+              <div class="nodiscount">
+                <div class="nodiscount-title">판매금액</div>
+                <div class="nodiscount-price">{{addComma(productStore.product.price * 1.2)}}원</div>
+              </div>
+              <div class="discount">
+                <div class="discount-title">할인금액</div>
+                <div class="discount-price">- {{addComma( (productStore.product.price * 1.2)-productStore.chooseCoupone)}}원</div>
+              </div>
+              <div class="payment">
+                <div class="payment-title">최종 결제금액</div>
+                <div class="payment-price">{{addComma(productStore.chooseCoupone)}}원</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body--card">
+
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="square-btn yellow" @click="showModal=true">구매하기</button>
+      </div>
+    </div>
   </Modal>
   <div class="product--top">
     <div class="product--top--inner">
@@ -125,7 +176,8 @@
 import { mapStores } from "pinia";
 import { useProductStore } from "~/store/product";
 import { useUserStore } from "~/store/user";
-import Modal from "../../components/ui/Modal.vue";
+import Modal from "~/components/ui/Modal.vue";
+import CouponDropdown from "~/components/CouponDropdown.vue";
 
 export default {
     data() {
@@ -165,7 +217,7 @@ export default {
             }
         }
     },
-    components: { Modal }
+    components: { Modal, CouponDropdown }
 }
 
 </script>

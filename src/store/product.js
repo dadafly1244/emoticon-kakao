@@ -13,7 +13,17 @@ export const useProductStore = defineStore('product', {
     inputText: '',
     product: {},
     productsArray: [],
-    ispruchaseSuccess: false
+    ispruchaseSuccess: false,
+    coupone: 'discount'
+    }
+  },
+  getters: {
+    chooseCoupone(state) {
+      if(state.coupone !== 'discount') {
+       
+        return this.product.price * 1.2
+      }
+      return this.product.price
     }
   },
   actions: {
