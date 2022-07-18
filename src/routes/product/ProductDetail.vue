@@ -3,7 +3,7 @@
 
 
 <div class="wrap">
-  <Modal v-if="showModal" @close-modal="showModal=false">
+  <Modal v-if="showModal" @close-modal="showModal=false, isButtonDisable=true">
     <div class="modal-inner">
       <div class="modal-head">
         <div class="modal-head--title yellow">구매하기</div>
@@ -49,11 +49,18 @@
           </div>
         </div>
         <div class="modal-body--card">
-
+          <div class="agree">
+            <button @click="isButtonDisable = !isButtonDisable">
+              <span class="material-symbols-rounded" :class = '{yellow:!isButtonDisable}' >done</span>
+              <div class="agree--title" >아래 내용에 동의합니다.</div>
+            </button>
+            <p>쿠폰은 중복사용 불가하며, 일부 결제수단은 할인쿠폰 적용이 불가합니다.</p>
+            <p>주문취소 및 환불 시 이미 사용한 쿠폰은 재발급되지 않습니다.</p>
+          </div>
         </div>
       </div>
       <div class="modal-foot">
-        <button class="square-btn yellow" @click="showModal=true">구매하기</button>
+        <button class="square-btn yellow" @click="$router.push('./')" :disabled='isButtonDisable'>구매하기</button>
       </div>
     </div>
   </Modal>
@@ -186,7 +193,8 @@ export default {
             productId: this.$route.params.productId,
             iscloseDd: true,
             iscloseDd2: true,
-            showModal: false
+            showModal: false,
+            isButtonDisable: true
         };
     },
     computed: {
@@ -241,6 +249,47 @@ export default {
     .modal-body{
       &--card {
         border-bottom: 4px solid #fafafa;
+        .agree {
+          button {
+            .material-symbols-rounded {
+              color: #ccc;
+              border: 1px solid #fafafa;
+              border-radius: 50%;
+              &.yellow {
+                color: #fff;
+                background-color: #fee500;
+                border: 1px solid rgba($color: #000000, $alpha: 0);
+
+              }
+            }
+          }
+          p{
+            color: #7f7f7f;
+          }
+        }
+      }
+    }
+    .modal-foot {
+      display: flex;
+      justify-content: center;
+      align-items:center;
+      .square-btn {
+        border: 1px solid rgba($color: #000000, $alpha: 0.14);
+        width: 350px;
+        height: 44px;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 10px;
+        margin-right: 20px;
+        cursor: pointer;
+        &.yellow{
+          background-color: #fee500;
+          border: 1px solid rgba($color: #000000, $alpha: 0);
+        }
+        &:disabled {
+          cursor: default;
+          background-color: #fafafa;
+        }
       }
     }
   }
