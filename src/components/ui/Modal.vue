@@ -1,13 +1,20 @@
 <template>
-<Backdrop @click="closeModal()" :display="this.display" />
-<div class="modal"
-  :class="{closeModal: this.isCloseModal}"
-  :style="{
-    width: `${width}px`,
-    height: `${width * 1.65}px`
-  }"
->
+<div class="modal">
+  <Backdrop @click="$emit('close-modal')" :display="this.display" />
+  <!-- <Backdrop class="modal-backdrop" @click="closeModal()" :display="this.display" /> -->
+  <div class="modal-card"
+    :class="{closeModal: this.isCloseModal}"
+    :style="{
+      width: `${width}px`,
+      height: `${width * 1.65}px`
+    }"
+  >
+  <button class="close-btn" @click="$emit('close-modal')">
+    <span class="material-symbols-rounded">close</span>
+  </button>
   <slot></slot>
+  
+</div>
 </div>
 
 </template>
@@ -46,13 +53,24 @@ export default {
 
 <style scoped lang="scss">
 .modal  {
-  position: fixed;
-  left: calc(50% - 200px);
-  top: 50%;
-  // margin:0 auto;
-  background-color: #fff;
-  &.closeModal{
-    display: none;
+  display: flex;
+
+  // justify-content: center;
+  // align-items: center;
+  &-card {
+    z-index: 10;
+    position: absolute;
+    left: calc(50% - 200px);
+    top: 25%;
+    background-color: #fff;
+    &.closeModal{
+      display: none;
+    }
+    .close-btn {
+      position: relative;
+      top: 10px;
+      left: calc(400px - 40px)
+    }
   }
 }
 

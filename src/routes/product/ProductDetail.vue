@@ -3,7 +3,9 @@
 
 
 <div class="wrap">
-  <Modal v-if="showModal" />
+  <Modal v-if="showModal" @close-modal="showModal=false">
+    
+  </Modal>
   <div class="product--top">
     <div class="product--top--inner">
       <div class="product--thumbnail">
@@ -174,6 +176,23 @@ export default {
   // height: 30vh;
   border: 1px solid red;
   
+  .modal-inner{
+    display: flex;
+    flex-direction: column;
+    .modal-head {
+      &--title{
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding: 5px 0 10px 28px;
+      }
+    }
+    .modal-body{
+      &--card {
+        border-bottom: 4px solid #fafafa;
+      }
+    }
+  }
+
   .product--top {
     background-color: #fff;
 

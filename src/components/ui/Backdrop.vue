@@ -21,8 +21,11 @@ export default {
 
 <style scoped lang="scss">
 .backdrop {
+  z-index: 10;
   position: absolute;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  height: 200vh;
   width: 100vw;
   background-color: rgba($color: #000000, $alpha: .15);
 }
