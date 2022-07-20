@@ -14,7 +14,8 @@ export const useProductStore = defineStore('product', {
     product: {},
     productsArray: [],
     ispruchaseSuccess: false,
-    coupone: 'discount'
+    coupone: 'discount',
+    transactions: []
     }
   },
   getters: {
@@ -101,50 +102,36 @@ export const useProductStore = defineStore('product', {
       }
       
       try {
-        const { data } = await requestApi({
+        await requestApi({
           requestCategory: 'buy',
           method: 'POST',
           data: {
             productId,
             accountId,
-            reservation : isreservation ? {start: reservationStart, end: reservationEnd } : {} //isreservation 값이 true면 예약정보 보내기!
           }
         })
 
-        
-
-        // if(!isreservation){ //예약이 
-        //   const { data } = await requestApi({
-        //     requestCategory: 'buy',
-        //     method: 'POST',
-        //     data: {
-        //       productId,
-        //       accountId
-        //     }
-        //   })
-        // }else {
-        //   const { data } = await requestApi({
-        //     requestCategory: 'buy',
-        //     method: 'POST',
-        //     data: {
-        //       productId,
-        //       accountId,
-        //       reservation: {
-        //         start: reservationStart,
-        //         end: reservationEnd
-        //       }
-        //     }
-        //   })
-        // }
-
-        console.log(data)
-        // this.ispruchaseSuccess = data
+        this.$router.push(`/mypage/PurchaseHistory`)
         
       } catch (error)  {
-        console.log(error)
+        // console.log(error)
+        alert('잔액부족으로 구매할 수 없습니다.')
+        this.$router.push(`/`)
       }
       
 
+    },
+    //제품 전체 거래(구매) 내역
+    async transactionHistory() {
+      try{
+        const {data} = await requestApi({
+          requestCategory: 'transactions/details',
+          method: 'GET'
+        })
+        this.transactions = data
+      }catch(error){
+        console.log(error)
+      }
     }
   }
 
@@ -163,7 +150,7 @@ async function requestApi(options) {
       'content-type': 'application/json',
       apikey: VITE_API_KEY,
       username: VITE_USERNAME,
-      masterkey: true,
+      // masterkey: true,
       Authorization: `Bearer ${accessToken}`,
     },
     data

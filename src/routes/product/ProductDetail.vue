@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="modal-foot">
-        <button class="square-btn yellow" @click="$router.push('./')" :disabled='isButtonDisable'>구매하기</button>
+        <button class="square-btn  yellow" @click="$router.push('/PurchaseProduct')" :disabled='isButtonDisable'>구매하기</button>
       </div>
     </div>
   </Modal>
@@ -212,7 +212,7 @@ export default {
         },
         addComma(num) {
             const regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ",");
+            return String(num).toString().replace(regexp, ",");
         },
         changeIcon() {
             this.iscloseDd = !this.iscloseDd;
