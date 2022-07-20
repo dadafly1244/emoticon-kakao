@@ -13,6 +13,7 @@ import CreateAccount from './account/CreateAccount.vue'
 import DeleteAccount from './account/DeleteAccount.vue'
 import CompletePage from './account/CompletePage.vue'
 import ProductDetail from './product/ProductDetail.vue'
+import PurchaseProduct from './product/PurchaseProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -41,6 +42,16 @@ export default createRouter({
     {
       path: '/ProductDetail/:productId',
       component: ProductDetail,
+      // children: [
+      //   {
+      //     path: 'PurchaseProduct',
+      //     component: PurchaseProduct,
+      //   }
+      // ]
+    },
+    {
+      path: '/PurchaseProduct',
+      component: PurchaseProduct,
     },
     {
       path: '/account',

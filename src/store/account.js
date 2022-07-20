@@ -8,7 +8,7 @@ const LOGIN_URL = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/aut
 const headers = {
 	"content-type": "application/json",
 	"apikey": "FcKdtJs202204",
-	"username": "jusang_test",
+	"username": "KDT2TEAM8",
 }
 export const useAccountStore = defineStore('account', {
   state() {
