@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', {
       displayName: '',
       accessToken: '',
       img: '',
+      password: ''
     }
   },
   actions: {
@@ -38,6 +39,7 @@ export const useUserStore = defineStore('user', {
         this.email = user.email
         this.displayName = user.displayName
         this.accessToken = accessToken
+        this.password = password
         this.img = user.profileImg
         console.log(this.user)
         if (res.status === 200) {
@@ -145,6 +147,7 @@ export const useUserStore = defineStore('user', {
     // MODIFYUSER
     async modifyUser(payload) {
       const { email, displayName, img, password } = payload
+      //if (password) 
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',

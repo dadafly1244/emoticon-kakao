@@ -75,7 +75,7 @@ export default {
         email: this.email || this.userStore.email,
         displayName: this.displayName || this.userStore.displayName,
         img: this.img || this.userStore.img,
-        password: this.password,
+        password: this.password
       })
     },
     ableBtn() {
