@@ -146,13 +146,8 @@ export const useUserStore = defineStore('user', {
     },
     // MODIFYUSER
     async modifyUser(payload) {
-<<<<<<< HEAD
-      const { email, displayName, img, password } = payload
-      //if (password) 
-=======
       const { email, displayName, img, oldPassword, newPassword } = payload
       console.log(email, displayName, img, oldPassword, newPassword)
->>>>>>> develop
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
