@@ -1,7 +1,10 @@
 <template>
 	<div class="container">
 		<select v-model="accountValue" name="account" id="account" required>
-			<option value="" disabled selected>나의 계좌</option>
+			<option value="" disabled selected>
+				<span v-if="isEmpty">계좌가 없습니다</span>
+				<span v-else>계좌 선택</span>
+			</option>
 			<option v-for="account in myAccount.accounts" :key="account.id" :value="account">
 				{{account.bankName}}
 				{{account.accountNumber}}
@@ -18,11 +21,13 @@ export default {
 		data() {
 			return {
 				myAccount: {},
-				accountValue: ''
+				accountValue: '',
+				isEmpty: false
 			}
 		},
 		async created() {
 			this.myAccount = await this.accountStore.getAccount()
+			if (this.myAccount.accounts.length===0) this.isEmpty=true
 		},
 		watch: {
 			accountValue(selectedAccount) {
