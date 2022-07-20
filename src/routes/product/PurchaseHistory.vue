@@ -23,40 +23,7 @@
   
 
 
-  <!-- {{productStore.transactions}} -->
-  <!-- <table>
-    <thead>
-      <th>거래 내역 ID</th>
-      <th>거래 시간</th>
-      <th>거래 취소 여부</th>
-      <th>거래 완료 여부</th>
-      <th>제품 ID</th>
-      <th>제품 제목</th>
-      <th>제품 가격</th>
-      <th>작가</th>
-      <th>태그</th>
-      <th>썸네일</th>
-      
-    </thead>
-    <template v-for="transaction in productStore.transactions">
-    <tbody>
-      <tr @click="makepopup() ">
-        <td>{{transaction.detailId}}</td>
-        <td>{{transaction.timePaid}}</td>
-        <td>{{transaction.isCanceled}}</td>
-        <td>{{transaction.done}}</td>
-        <td>{{transaction.product.productId}}</td>
-        <td>{{transaction.product.title}}</td>
-        <td>{{transaction.product.price}}</td>
-        <td>{{transaction.product.description}}</td>
-        <td>{{transaction.product.tags}}</td>
-        <td>{{transaction.product.thumbnail}}</td>
-      </tr>
-    </tbody>
-  </template>
-  </table>
-   -->
-
+ 
 </template>
 
 <script>
@@ -72,8 +39,7 @@ export default {
    data() {
     return {
       loading: true,
-      hello: {},
-      titles: ["제품", "구매ID", "구매일시", "거래상태" ]
+      titles: ["","제품", "구매ID", "구매일시", "거래상태" ]
     }
   },
   computed: {
@@ -84,10 +50,7 @@ export default {
     this.loading = false;
   },
   methods: {
-    makepopup(){
-      console.log(this.hello)
-      alert(`${this.hello.detailId}`)
-    }
+    
   }
 
 }
@@ -97,7 +60,7 @@ export default {
   .history-container{
     &--title {
     display: grid;
-    grid-template-columns: [col-start] 300px [col1] 150px [col1] 150px [col1]  100px[col-end];
+    grid-template-columns: [col-start] 50px [col1] 1fr [col1] 150px [col1] 150px [col1] 100px[col-end];
     gap: 20px 10px;
     justify-content: center;
     align-items: center;

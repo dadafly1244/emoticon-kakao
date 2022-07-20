@@ -4,15 +4,15 @@
     @click="inFocusTitle = true"
     class="container">
     
-    
-    <div class="product">
-      <div class="product-img">
+    <div class="product-img">
         <img 
           v-if="transaction.product.thumbnail"
           :src="transaction.product.thumbnail" 
           :alt="transaction.product.title"> 
         <div v-else class="no-image"></div>
       </div>
+    <div class="product">
+      
       <div class="product-txt">
         <div class="product-txt--id">제품ID : {{transaction.product.productId}}</div>
         <div class="product-txt--title">제품이름 : {{transaction.product.title}}</div>
@@ -31,6 +31,7 @@
       <div>{{!transaction.isCanceled ? (!transaction.done ? '거래요청': '거래완료') : '취소됨'}}</div>
     </div>
   </div>
+
 
 </template>
 
@@ -71,15 +72,18 @@ export default {
 <style lang="scss" scoped>
 
 .container {
+  background-color: aquamarine;
   display: grid;
-  grid-template-columns: [col-start] 300px [col1] 150px [col1] 150px [col1] 100px[col-end];
+  grid-template-columns: [col-start] 50px [col1] 1fr [col1] 150px [col1] 150px [col1] 100px[col-end];
   gap: 20px 10px;
   justify-content: center;
   align-items: center;
-  .product {
-    display: flex;
-    flex-direction: column;
-    &-img {
+  &:hover {
+      transform:scale(1.02);
+      transition: transform .1s;
+      cursor: pointer;
+    }
+  .product-img {
       img{
         width: 50px;
         height: 50px;
@@ -93,6 +97,11 @@ export default {
         background-size: cover;
       }
     }
+  .product {
+    display: flex;
+    flex-direction: column;
+    
+    
     &-txt {
       display: flex;
       flex-direction: column;
