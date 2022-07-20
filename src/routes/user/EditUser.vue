@@ -36,16 +36,22 @@
       </div>
       <div>
         <label for="">
-          패스워드*
+          기존 패스워드*
           <input
             type="password"
-            v-model="password"
-            placeholder="변경이 없다면 기존의 비밀번호 입력!"
+            v-model="oldPassword"
+            placeholder="변경이 없다면 기존의 패스워드 입력!"
             @input="ableBtn"
           />
         </label>
       </div>
-      <span v-if="passwordVali">패스워드를 8자 이상 입력해주세요</span>
+      <span v-if="passwordVali">기존 패스워드를 8자 이상 입력해주세요</span>
+      <div>
+        <label for="" id="new-password">
+          변경할 패스워드
+          <input type="password" v-model="newPassword" placeholder="패스워드 변경하시려면 입력!" />
+        </label>
+      </div>
     </form>
     <button @click="toHome">취소</button>
     <button @click="modify" :disabled="!ableBtnBoolean">확인</button>
@@ -59,11 +65,13 @@ export default {
     return {
       email: '',
       displayName: '',
-      password: '',
       img: '',
+      oldPassword: '',
+      newPassword: '',
       emailVali: false,
       passwordVali: false,
       ableBtnBoolean: false,
+      changePhoto: false,
     }
   },
   computed: {
@@ -74,8 +82,9 @@ export default {
       this.userStore.modifyUser({
         email: this.email || this.userStore.email,
         displayName: this.displayName || this.userStore.displayName,
-        img: this.img || this.userStore.img,
-        password: this.password,
+        img: this.changePhoto ? this.img : /(.gif|.jpg|.jpeg|.webp)$/i.test(this.img),
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword,
       })
     },
     ableBtn() {
@@ -98,7 +107,7 @@ export default {
       }
     },
     passwordValidation() {
-      if (this.password.length < 8) {
+      if (this.oldPassword.length < 8) {
         this.passwordVali = true
         return false
       } else {
@@ -107,6 +116,7 @@ export default {
       }
     },
     selectImg(e) {
+      this.changePhoto = true
       const { files } = e.target
       for (const file of files) {
         const reader = new FileReader()
@@ -139,7 +149,7 @@ export default {
   }
   form {
     div {
-      margin: 10px 30px;
+      margin: 10px 20px;
       font-weight: 900;
       label {
         input {

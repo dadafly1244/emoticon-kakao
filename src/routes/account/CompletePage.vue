@@ -2,7 +2,7 @@
 	<AccountLayout :heading="isCreate ? '계좌 생성' : '계좌 해지'">
 		<p v-if="isCreate">계좌가 정상적으로 생성 되었습니다</p>
 		<p v-else>계좌가 정상적으로 해지 되었습니다</p>
-		<button class="button" @click="$router.push('/')">홈으로</button>
+		<button class="button" @click="$router.push('/mypage/accountmanagement')">계좌 관리로</button>
 	</AccountLayout>
 </template>
 
@@ -32,6 +32,6 @@ import AccountLayout from '~/components/AccountLayout'
 	}
 	.button{
 		margin: 50px auto 0 auto;
-		@include btn(ok);
+		@include btn(back);
 	}
 </style>
