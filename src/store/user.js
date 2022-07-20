@@ -146,8 +146,13 @@ export const useUserStore = defineStore('user', {
     },
     // MODIFYUSER
     async modifyUser(payload) {
+<<<<<<< HEAD
       const { email, displayName, img, password } = payload
       //if (password) 
+=======
+      const { email, displayName, img, oldPassword, newPassword } = payload
+      console.log(email, displayName, img, oldPassword, newPassword)
+>>>>>>> develop
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
@@ -157,17 +162,19 @@ export const useUserStore = defineStore('user', {
               'content-type': 'application/json',
               apikey: 'FcKdtJs202204',
               username: 'KDT2TEAM8',
-              Authorization: `Bearer ${this.accessToken}`,
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
             data: {
               email,
               displayName,
               profileImgBase64: img,
-              password,
+              oldPassword,
+              newPassword,
             },
           }
         )
-        if (res.data.status === 200) {
+        console.log(res)
+        if (res.status === 200) {
           alert('수정이 완료 되었습니다!')
         }
         this.$router.push('/')

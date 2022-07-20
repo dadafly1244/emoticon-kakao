@@ -22,8 +22,9 @@
         </div>
         <!-- popup -->
         <div v-show="popupOn" class="popup">
-          <div v-if="userStore.img" class="popup-profile">
-            <img v-bind:src="userStore.img" alt="profile-default" />
+          <div v-if="userStore.displayName" class="popup-profile">
+            <img v-if="userStore.img" v-bind:src="userStore.img" alt="profile-default" />
+            <img v-else v-bind:src="'/assets/profile_default.png'" alt="profile-default" />
           </div>
           <div v-else class="popup-profile">
             <img src="/assets/profile_default.png" alt="profile-default" />
@@ -31,7 +32,7 @@
           <div class="popup-name">{{ this.userStore.displayName }}</div>
           <div class="popup-email">{{ this.userStore.email }}</div>
           <button
-            v-if="!userStore.img"
+            v-if="!userStore.displayName"
             class="btn--logout"
             @click="$router.push('/login'), (popupOn = !popupOn)"
           >
@@ -58,20 +59,20 @@
       <div class="search-inner">
         <form v-on:submit.prevent class="search-form">
           <input
-            :value= "searchValue" 
-            @input="searchValue = ($event.target).value" 
+            :value="searchValue"
+            @input="searchValue = $event.target.value"
             @keydown.enter.prevent="searchEmoticon"
             placeholder="이모티콘을 검색해보세요!"
             class="search-input"
             type="text"
             autocomplete="off"
           />
-          <button v-show="searchValue" type="reset" >
-            <div class="cancel-icon" >
+          <button v-show="searchValue" type="reset">
+            <div class="cancel-icon">
               <img src="/assets/cancel_icon.svg" alt="cancel-icon" />
             </div>
           </button>
-          <button type="submit"  @click="searchEmoticon">
+          <button type="submit" @click="searchEmoticon">
             <div class="search-icon button">
               <img src="/assets/search_icon.svg" alt="search-icon" />
             </div>
@@ -85,7 +86,12 @@
       <div class="leftnav__inner">
         <RouterLink v-if="userStore.displayName" to="/mypage/PurchaseHistory" class="nav-profile">
           <div class="profile-big">
-            <img v-bind:src="userStore.img" alt="profile-default" />
+            <img
+              v-if="!userStore.img"
+              v-bind:src="'/assets/profile_default.png'"
+              alt="profile-default"
+            />
+            <img v-else v-bind:src="userStore.img" alt="" />
           </div>
           <div class="profile-name">{{ this.userStore.displayName }}</div>
         </RouterLink>
@@ -137,7 +143,7 @@
             <RouterLink to="/user">정보 수정</RouterLink>
           </li>
           <li v-if="userStore.email === 'testemail@test.com'">
-            <RouterLink to="/admin">관리자 페이지</RouterLink>
+            <a href="https://lovely-queijadas-a67809.netlify.app/">관리자 페이지</a>
           </li>
         </ul>
       </div>
@@ -172,6 +178,7 @@ export default {
   },
   created() {
     this.userStore.authUser()
+    console.log(this.userStore.img)
   },
   computed: {
     ...mapStores(useUserStore, useProductStore),
@@ -181,34 +188,33 @@ export default {
       if (!path) return false
       return path.test(this.$route.fullPath)
     },
-    searchEmoticon(event){
+    searchEmoticon(event) {
       //console.log('이벤트',event)
       //console.log('이벤트',event.target.value)
-      if(event.isComposing) return //한글 입력중인가?  
-      if(!this.searchValue.trim()) return // 빈문자인가?
-      
-      let input = this.searchValue 
-      input = input.replace(', ', ' ') // 검색이 '제품제목, #태그'와 같이 콤마와 공백을 모두 사용한 경우.! 
+      if (event.isComposing) return //한글 입력중인가?
+      if (!this.searchValue.trim()) return // 빈문자인가?
+
+      let input = this.searchValue
+      input = input.replace(', ', ' ') // 검색이 '제품제목, #태그'와 같이 콤마와 공백을 모두 사용한 경우.!
       let array = input.split(/[\s,]/) //공백, 콤마로 구분 해서 배열에 넣기!
 
       let title = []
       let tags = []
-      for(const item of array){
-        if(item.indexOf('#') === -1) { // 제목 검색일 때! 사용자가 여러개의 제목을 검색한 값 다 받아옴
+      for (const item of array) {
+        if (item.indexOf('#') === -1) {
+          // 제목 검색일 때! 사용자가 여러개의 제목을 검색한 값 다 받아옴
           title = [...title, item]
-        }
-        else{
-          let temp = item.replace('#','')
+        } else {
+          let temp = item.replace('#', '')
           tags = [...tags, temp]
         }
       }
 
-      console.log('title',title,'tags',tags)
-      
-      this.productStore.productSearch( {"searchText": title[0], "searchTags":tags}) // 사용자가 입력한 제목 중에서 첫번째로 입력한 제목만 입력하기!
-      
-      this.searchValue='' // api 보내고 입력값 초기화
-      
+      console.log('title', title, 'tags', tags)
+
+      this.productStore.productSearch({ searchText: title[0], searchTags: tags }) // 사용자가 입력한 제목 중에서 첫번째로 입력한 제목만 입력하기!
+
+      this.searchValue = '' // api 보내고 입력값 초기화
     },
     logout() {
       this.userStore.logoutUser()
@@ -246,6 +252,8 @@ header {
       width: 56px;
       height: 56px;
       img {
+        width: 56px;
+        height: 56px;
         object-fit: cover;
         border-radius: 50%;
       }
@@ -360,6 +368,8 @@ header {
   width: 30px;
   height: 30px;
   img {
+    width: 30px;
+    height: 30px;
     object-fit: cover;
   }
 }
@@ -410,9 +420,12 @@ header {
   flex-direction: column;
   align-items: center;
   .popup-profile {
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     img {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       object-fit: cover;
     }

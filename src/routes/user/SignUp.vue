@@ -114,6 +114,7 @@ export default {
         reader.readAsDataURL(file)
         reader.addEventListener('load', (event) => {
           this.img = event.target.result
+          this.userStore.img = event.target.result
         })
       }
     },
