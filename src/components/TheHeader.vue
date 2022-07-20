@@ -4,20 +4,20 @@
     <div class="head">
       <div class="head__inner">
         <div class="menu-icon" :class="{ clicked: leftNavOn }" @click="leftNavOn = !leftNavOn">
-          <img src="hamburger_menu.svg" alt="menu-icon" />
+          <img src="/assets/hamburger_menu.svg" alt="menu-icon" />
         </div>
         <RouterLink to="/">
           <div class="head-title">kakao<strong>emoticon</strong> shop</div>
         </RouterLink>
         <div class="search-profile">
           <div class="search-icon" :class="{ clicked: searchOn }" @click="searchOn = !searchOn">
-            <img src="search_icon.svg" alt="search-icon" />
+            <img src="/assets/search_icon.svg" alt="search-icon" />
           </div>
           <div v-if="userStore.img" class="profile-default" @click="popupOn = !popupOn">
             <img v-bind:src="userStore.img" alt="profile-default" />
           </div>
           <div v-else class="profile-default" @click="popupOn = !popupOn">
-            <img src="profile_default.png" alt="profile-default" />
+            <img src="/assets/profile_default.png" alt="profile-default" />
           </div>
         </div>
         <!-- popup -->
@@ -26,7 +26,7 @@
             <img v-bind:src="userStore.img" alt="profile-default" />
           </div>
           <div v-else class="popup-profile">
-            <img src="profile_default.png" alt="profile-default" />
+            <img src="/assets/profile_default.png" alt="profile-default" />
           </div>
           <div class="popup-name">{{ this.userStore.displayName }}</div>
           <div class="popup-email">{{ this.userStore.email }}</div>
@@ -68,12 +68,12 @@
           />
           <button v-show="searchValue" type="reset" >
             <div class="cancel-icon" >
-              <img src="cancel_icon.svg" alt="cancel-icon" />
+              <img src="/assets/cancel_icon.svg" alt="cancel-icon" />
             </div>
           </button>
           <button type="submit"  @click="searchEmoticon">
             <div class="search-icon button">
-              <img src="search_icon.svg" alt="search-icon" />
+              <img src="/assets/search_icon.svg" alt="search-icon" />
             </div>
           </button>
         </form>
@@ -91,7 +91,7 @@
         </RouterLink>
         <RouterLink v-else to="/login" class="nav-profile">
           <div class="profile-big">
-            <img src="profile_default.png" alt="profile-default" />
+            <img src="/assets/profile_default.png" alt="profile-default" />
           </div>
           <div class="profile-name">로그인</div>
         </RouterLink>
@@ -99,7 +99,7 @@
           <li>
             <RouterLink to="/mypage/PurchaseHistory">
               <div class="nav-icon buy-icon">
-                <img src="buy_icon.svg" alt="buy-icon" />
+                <img src="/assets/buy_icon.svg" alt="buy-icon" />
               </div>
               <div class="text-mypage">구매 내역</div>
             </RouterLink>
@@ -107,7 +107,7 @@
           <li>
             <RouterLink to="/mypage/reservation">
               <div class="nav-icon reserve-icon">
-                <img src="reserve_icon.svg" alt="reserve-icon" />
+                <img src="/assets/reserve_icon.svg" alt="reserve-icon" />
               </div>
               <div class="text-mypage">예약 하기</div>
             </RouterLink>
@@ -115,7 +115,7 @@
           <li>
             <RouterLink to="/mypage/accountmanagement">
               <div class="nav-icon account-icon">
-                <img src="account_icon.svg" alt="account-icon" />
+                <img src="/assets/account_icon.svg" alt="account-icon" />
               </div>
               <div class="text-mypage">계좌 관리</div>
             </RouterLink>
@@ -243,9 +243,9 @@ header {
     align-items: center;
     padding: 12px 20px;
     .profile-big {
+      width: 56px;
+      height: 56px;
       img {
-        width: 56px;
-        height: 56px;
         object-fit: cover;
         border-radius: 50%;
       }
@@ -357,9 +357,9 @@ header {
 .search-icon,
 .profile-default {
   cursor: pointer;
+  width: 30px;
+  height: 30px;
   img {
-    width: 30px;
-    height: 30px;
     object-fit: cover;
   }
 }
@@ -410,9 +410,9 @@ header {
   flex-direction: column;
   align-items: center;
   .popup-profile {
+    width: 40px;
+    height: 40px;
     img {
-      width: 40px;
-      height: 40px;
       border-radius: 50%;
       object-fit: cover;
     }
@@ -526,7 +526,7 @@ header {
     width: 130px;
     height: 117px;
     background-size: contain;
-    background: url('~/static/bg_search.png') no-repeat;
+    background: url('../../public/assets/bg_search.png') no-repeat;
     background-size: 130px 117px;
   }
   &:after {
@@ -537,7 +537,7 @@ header {
     width: 130px;
     height: 117px;
     background-size: contain;
-    background: url('~/static/bg_search2.png') no-repeat;
+    background: url('../../public/assets/bg_search2.png') no-repeat;
     background-size: 130px 117px;
   }
 }
