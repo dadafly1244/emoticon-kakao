@@ -78,7 +78,7 @@
       }
     }
     .bg-image {
-      background-image: url('~/static/mypage_header_bg.png');
+      background-image: url('../../public/assets/mypage_header_bg.png');
       background-size: cover;
       background-repeat: no-repeat;
       position: absolute;
