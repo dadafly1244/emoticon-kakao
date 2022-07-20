@@ -10,10 +10,6 @@ router.beforeEach(async (to) => {
       return '/login'
     } else {
       const user = await validateTokenUser(accessToken)
-      if (user.data.email === 'testemail@test.com' && user.data.displayName === 'test') {
-        console.log('admin!')
-        window.location.href = 'http://localhost:8080/admin' // 나중에는 준석님 repo의 netlify 주소로
-      }
       if (user.data && user.data.email) {
         return true
       }
@@ -21,5 +17,4 @@ router.beforeEach(async (to) => {
       return '/login'
     }
   }
-
 })
