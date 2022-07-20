@@ -7,13 +7,13 @@
     <button
       @click.stop="productStore.transactionFixed({detailId: currentTransactionId})"
       class="square-btn yellow"
-      :disabled="isdisabled">
+      :disabled="this.productStore.transactionDetail.isCanceled || this.productStore.transactionDetail.done">
       구매확정
     </button>
     <button 
       @click.stop="productStore.transactionCancel({detailId: currentTransactionId})"
       class="square-btn danger"
-      :disabled="isdisabled">
+      :disabled="this.productStore.transactionDetail.isCanceled || this.productStore.transactionDetail.done">
       거래취소
     </button>
     
@@ -32,16 +32,39 @@ export default {
   data() {
     return {
       showModal: false,
-      isdisabled: false
+      isdisabled: false,
+      isdisabled1: false
     }
   },
   computed: {
     ...mapStores(useProductStore),
     currentTransactionId() {
-      
       return this.$route.params.TransactionDetailId
     }
   },
+  watch: {
+    // $route() {
+    //   this.isButtonDisabled()
+    // }
+  },
+  methods: {
+    // isButtonDisabled() {
+
+    //   if(!this.productStore.transactionDetail.isCanceled) return false
+    //   if(!this.productStore.transactionDetail.done) return false
+      
+      
+    //   return true
+    //   // if(!this.productStore.transactionDetail.isCanceled || !this.productStore.transactionDetail.done){
+    //   //   console.log(this.productStore.transactionDetail.isCanceled, this.productStore.transactionDetail.done)
+
+    //   //   this.isdisabled = false
+    //   // }else{
+    //   //   this.isdisabled = true
+    //   //   console.log(this.productStore.transactionDetail.isCanceled, this.productStore.transactionDetail.done)
+    //   // }
+    // }
+  }
   
 
 }
@@ -73,6 +96,7 @@ export default {
     }
     &:disabled {
       cursor: default;
+      color: rgba($color: #000000, $alpha: 0.25);
       background-color: #fafafa;
     }
   }
