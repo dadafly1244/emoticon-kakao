@@ -1,6 +1,5 @@
 import axios from 'axios'
-export async function validateTokenUser() {
-  const accessToken = window.localStorage.getItem('token')
+export async function validateTokenUser(accessToken) {
   const res = await axios('https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me', {
     method: 'POST',
     headers: {
