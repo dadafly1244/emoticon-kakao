@@ -80,7 +80,7 @@ export default {
 
 .cover-img {
   width: 20;
-  background: url('~/static/bg_search.png') no-repeat;
+  background: url('../../public/assets/bg_search.png') no-repeat;
 }
 .card--wrap {
   margin: 2rem 0;
