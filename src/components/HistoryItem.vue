@@ -13,10 +13,12 @@
           :alt="transaction.product.title"> 
         <div v-else class="no-image"></div>
       </div>
-      <div>제품ID : {{transaction.product.productId}}</div>
-      <div>제품이름 : {{transaction.product.title}}</div>
-      <div>제품가격 : {{transaction.product.price}}원</div>
-      <div>작가 : {{transaction.product.description}}</div>
+      <div class="product-txt">
+        <div class="product-txt--id">제품ID : {{transaction.product.productId}}</div>
+        <div class="product-txt--title">제품이름 : {{transaction.product.title}}</div>
+        <div class="product-txt--price">제품가격 : {{transaction.product.price}}원</div>
+        <div class="product-txt--author">작가 : {{transaction.product.description}}</div>
+      </div>
     </div>
     <div class="detailId">
       <div>{{transaction.detailId}}</div>
@@ -26,20 +28,8 @@
       <!-- <div>{{transaction.timePaid}}</div> -->
     </div>
     <div class="isCanceled">
-      <div>{{transaction.isCanceled}}</div>
+      <div>{{!transaction.isCanceled ? (!transaction.done ? '거래요청': '거래완료') : '취소됨'}}</div>
     </div>
-    <div class="done">
-      <div>{{transaction.done}}</div>
-    </div>
-  <div >
-
-  </div>
-<!-- 
-<td></td>
-
-
-<td>{{transaction.product.tags}}</td>
--->
   </div>
 
 </template>
@@ -48,7 +38,6 @@
 import { mapStores } from "pinia";
 import { useProductStore } from "~/store/product";
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
 
 export default {
   props: {
@@ -83,14 +72,14 @@ export default {
 
 .container {
   display: grid;
-  grid-template-columns: [col-start] 2fr [col1] 1fr [col1] 1fr [col1] 1fr [col1] 1fr [col-end];
+  grid-template-columns: [col-start] 300px [col1] 150px [col1] 150px [col1] 100px[col-end];
   gap: 20px 10px;
   justify-content: center;
   align-items: center;
   .product {
     display: flex;
     flex-direction: column;
-    .product-img {
+    &-img {
       img{
         width: 50px;
         height: 50px;
@@ -103,6 +92,10 @@ export default {
         background-position: center;
         background-size: cover;
       }
+    }
+    &-txt {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

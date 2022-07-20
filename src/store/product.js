@@ -15,7 +15,9 @@ export const useProductStore = defineStore('product', {
     productsArray: [],
     ispruchaseSuccess: false,
     coupone: 'discount',
-    transactions: []
+    transactions: [],
+    transactionDetail: {}
+
     }
   },
   getters: {
@@ -132,7 +134,29 @@ export const useProductStore = defineStore('product', {
       }catch(error){
         console.log(error)
       }
-    }
+    },
+    //단일 제품 거래(구매) 내역
+    async transactionHistoryDetail(payload) {
+      const {detailId =''} = payload
+      if (!detailId) {
+        throw '제품을 선택해주세요!!'
+      }
+      try{
+        const {data} = await requestApi({
+          requestCategory: 'transactions/details',
+          method: 'GET',
+          data: {
+            detailId
+          }
+
+        }) 
+        //단일제품 거래 내역 
+        this.transactionDetail = data
+      }catch(error){
+        console.log(error)
+      }
+    },
+
   }
 
 })
