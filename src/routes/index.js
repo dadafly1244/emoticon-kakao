@@ -4,7 +4,7 @@ import Style from './Style'
 import Login from './user/Login.vue'
 import SignUp from './user/SignUp.vue'
 import EditUser from './user/EditUser.vue'
-import PurchaseHistory from './PurchaseHistory.vue'
+import PurchaseHistory from './product/PurchaseHistory.vue'
 import NotFound from './NotFound.vue'
 import MyPage from './MyPage.vue'
 import ReadAccount from './account/ReadAccount.vue'
@@ -12,6 +12,7 @@ import AccountNav from '~/components/AccountNav.vue'
 import CreateAccount from './account/CreateAccount.vue'
 import DeleteAccount from './account/DeleteAccount.vue'
 import CompletePage from './account/CompletePage.vue'
+import ProductDetail from './product/ProductDetail.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -38,8 +39,8 @@ export default createRouter({
       component: EditUser,
     },
     {
-      path: '/PurchaseHistory',
-      component: PurchaseHistory,
+      path: '/ProductDetail/:productId',
+      component: ProductDetail,
     },
     {
       path: '/account',
@@ -58,10 +59,6 @@ export default createRouter({
       component: CompletePage,
     },
     {
-      path: '/:notFound(.*)*',
-      component: NotFound,
-    },
-    {
       path: '/mypage',
       component: MyPage,
       children: [
@@ -78,6 +75,10 @@ export default createRouter({
           component: AccountNav
         }
       ],
+    },
+    {
+      path: '/:notFound(.*)*',
+      component: NotFound,
     },
     // {
     //   path: '/mypage/purchaseHistory',

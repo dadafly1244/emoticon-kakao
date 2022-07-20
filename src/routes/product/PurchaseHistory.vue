@@ -8,9 +8,11 @@ import { mapStores } from 'pinia'
 import { useUserStore } from '~/store/user'
 
 export default {
+
   computed: {
     ...mapStores(useUserStore),
   }
+
 }
 </script>
 

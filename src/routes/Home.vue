@@ -1,14 +1,44 @@
 <template>
   <main>
-    <h1>Home page..</h1>
+    <div class="home-header">
+      <div class="home-header--inner">
+        <a href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div class="content--inner">
+      <ProductSearch /> 
+    </div>
+  
   </main>
 </template>
 
 <script>
-export default {}
+import ProductSearch from '~/components/ProductSearch'
+export default {
+  components: {
+    ProductSearch
+  }
+}
 </script>
 <style lang="scss" scoped>
+
 main {
-  height: 100vh;
+  .home-header {
+    background-color: #A5D8F3;
+    &--inner {
+      position: relative;
+      background-image: url('~/static/home_cover_img.gif');
+      background-size: cover;
+      height: 540px;
+      width: 1024px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+  }
+  .content--inner {
+    border: 1px solid red;
+    width: 1024px;
+    margin: 0 auto;
+  }
 }
 </style>

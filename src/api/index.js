@@ -1,11 +1,11 @@
 import axios from 'axios'
-
-const TEST_TOKEN =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1VaEU1WVVMY2VzeDVjNEU3aFNpIiwiaWF0IjoxNjU2OTE1MTMwLCJleHAiOjE2NTcwMDE1MzAsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Znudge9LMf9B-XNSUaFPPZzAUBUOfxZCg38xxhrr6RE'
+import { userStore } from '~/main'
+const token = localStorage.getItem('token')
 const headers = {
 	"content-type": "application/json",
 	"apikey": "FcKdtJs202204",
 	"username": "KDT2TEAM8",
-	'Authorization': `Bearer ${TEST_TOKEN}`
+	'Authorization': `Bearer ${token}`
 }
 const instance = axios.create({
 	baseURL: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',

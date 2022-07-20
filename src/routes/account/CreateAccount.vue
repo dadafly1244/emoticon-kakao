@@ -20,7 +20,10 @@
 			<label for="signature">서명</label>
 			<input v-model="signValue" type="text" id="signature" />
 			<p v-if="errors['sign']">{{ errors['sign'] }}</p>
-			<button type="submit">확인</button>
+			<div class="buttons">
+				<button type="button" @click="$router.push('/mypage/accountmanagement')">뒤로 가기</button>
+				<button type="submit">생성</button>
+			</div>
 		</form>
 	</AccountLayout>
 </template>
@@ -66,7 +69,8 @@ import AccountLayout from '~/components/AccountLayout'
 			},
 			isFormValid() {
 				this.errors = {}
-				const accountLength = this.accountValue.length
+				const accountLength = String(this.accountValue).length
+				console.log(this.accountValue, this.digitsLength)
 				const phoneLength = this.phoneValue.replaceAll('-','').length
 				if (!this.bankValue) this.errors['bank'] = '은행을 선택 하세요.'
 				if (accountLength !== this.digitsLength) this.errors['account'] = '올바른 길이의 계좌를 입력해주세요.'
@@ -84,7 +88,7 @@ import AccountLayout from '~/components/AccountLayout'
 				if (!this.isFormValid) return
 				await this.accountStore.setAccount({
 					bankCode: this.bankValue.code,
-        	accountNumber: this.accountValue,
+        	accountNumber: String(this.accountValue),
         	phoneNumber: this.phoneValue.replaceAll('-',''),
         	signature: true
 				})
@@ -123,9 +127,19 @@ import AccountLayout from '~/components/AccountLayout'
 		input {
 			@include input;
 		}
-		button {
+		.buttons {
 			margin-top: 40px;
-			@include btn(ok);
+			display: flex;
+			justify-content: center;
+			gap: 30px;
+			button {
+				&:first-child{
+					@include btn(back);
+				}
+				&:last-child{
+					@include btn(ok);
+				}
+			}
 		}
 		p {
 			font-size: 15px;
