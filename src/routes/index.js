@@ -14,6 +14,8 @@ import DeleteAccount from './account/DeleteAccount.vue'
 import CompletePage from './account/CompletePage.vue'
 import ProductDetail from './product/ProductDetail.vue'
 import PurchaseProduct from './product/PurchaseProduct.vue'
+import TransactionDetailId from './product/TransactionDetailId.vue'
+
 
 export default createRouter({
   history: createWebHistory(),
@@ -76,6 +78,12 @@ export default createRouter({
         {
           path: 'PurchaseHistory',
           component: PurchaseHistory,
+          children: [
+            {
+              path: ':TransactionDetailId',
+              component: TransactionDetailId,
+            }
+          ]
         },
         {
           path: 'reservation',
