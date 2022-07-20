@@ -1,7 +1,5 @@
 <template>
   <div
-    :class="{ focus: inFocusTitle }"
-    @click="inFocusTitle = true"
     class="container">
     
     <div class="product-img">
@@ -28,7 +26,8 @@
       <!-- <div>{{transaction.timePaid}}</div> -->
     </div>
     <div class="isCanceled">
-      <div>{{!transaction.isCanceled ? (!transaction.done ? '거래요청': '거래완료') : '취소됨'}}</div>
+      <!-- <div>{{!transaction.isCanceled ? (!transaction.done ? '거래요청': '거래완료') : '취소됨'}}</div> -->
+      <div>{{isCanceledComputed}}</div>
     </div>
   </div>
 
@@ -49,12 +48,20 @@ export default {
   },
   data() {
     return {
-      inFocusTitle: false
+      inFocusTitle: false,
+      
     }
   },
   computed: {
-    ...mapStores(useProductStore)
+    ...mapStores(useProductStore),
+    isCanceledComputed() {
+      return !this.transaction.isCanceled ? (!this.transaction.done ? '거래요청': '거래완료') : '취소됨'
+    }
   },
+  //  watch: {
+  //   this.transaction.isCanceled,
+  //   this.transaction.done
+  // },
   methods: {
     // getDate(time) {
     //   // time 
@@ -62,7 +69,8 @@ export default {
     // }
     getDate(timestamp) {
       return dayjs(timestamp).format('MM월 YY일 HH:mm')
-    }
+    },
+    
   }
 
 }

@@ -18,14 +18,23 @@
     <HistoryItem 
     v-for="transaction in productStore.transactions"
     :key="transaction.detailId"
-    :transaction = "transaction"/>
+    :transaction = "transaction"
+    @click="showTransactionDetail(transaction.detailId)"/>
+
+    <TheLoader
+    :loading="routerloading"
+    :size="50"
+    :width="10"
+    class="loader" />
+    <RouterView />
   </div>
   
 
-  <RouterView />
+  
  
 </template>
-
+<!-- @click="$router.push(`/mypage/PurchaseHistory/${transaction.detailId}`)"/> -->
+<!--  -->
 <script>
 import { mapStores } from 'pinia'
 import { useUserStore } from '~/store/user'
@@ -39,18 +48,25 @@ export default {
    data() {
     return {
       loading: true,
+      routerloading: false,
       titles: ["","제품", "구매ID", "구매일시", "거래상태" ]
     }
   },
   computed: {
     ...mapStores(useUserStore, useProductStore),
   },
+ 
   async created() {
     await this.productStore.transactionHistory(); // 거래내역 불러오기!! 
     this.loading = false;
   },
   methods: {
-    
+    async showTransactionDetail(id){
+      this.$router.push(`/mypage/PurchaseHistory/${id}`)
+      this.routerloading=true
+      await this.productStore.transactionHistoryDetail({detailId:id})
+      this.routerloading=false
+    }
   }
 
 }
