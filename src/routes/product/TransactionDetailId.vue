@@ -6,7 +6,7 @@
         <div class="content">
           <div class="tags">
             <span class="subtitle">카테고리</span>
-            <span class="tag" v-for="tag in parsedTags">{{ tag }}</span>
+            <span class="tag">{{ parsedTags }}</span>
           </div>
           <div class="account">
             <span class="subtitle">계좌 정보</span>
@@ -77,7 +77,7 @@ export default {
       return this.$route.params.TransactionDetailId
     },
     parsedTags() {
-      return this.productStore.transactionDetail.product?.tags.map((cur) => `#${cur}`)
+      return this.productStore.transactionDetail.product?.tags.map((cur) => `#${cur}`).join(' ')
     },
   },
   watch: {
