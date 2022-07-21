@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', {
       displayName: '',
       accessToken: '',
       img: '',
-      password: ''
+      password: '',
     }
   },
   actions: {
@@ -78,8 +78,8 @@ export const useUserStore = defineStore('user', {
             },
           }
         )
-        const { user, accessToken } = res.data
-        window.localStorage.setItem('token', accessToken)
+        // const { user, accessToken } = res.data
+        // window.localStorage.setItem('token', accessToken)
         if (res.status === 200) {
           alert('회원가입이 완료되었습니다. 로그인 해주세요!')
           this.$router.push('/login')
