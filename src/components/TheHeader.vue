@@ -142,8 +142,8 @@
           <li v-if="userStore.displayName">
             <RouterLink to="/user">정보 수정</RouterLink>
           </li>
-          <li v-if="userStore.email === 'testemail@test.com'">
-            <a href="https://lovely-queijadas-a67809.netlify.app/">관리자 페이지</a>
+          <li>
+            <a href="https://lovely-queijadas-a67809.netlify.app/login">관리자 페이지</a>
           </li>
         </ul>
       </div>
