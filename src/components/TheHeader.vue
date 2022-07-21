@@ -524,7 +524,7 @@ header {
     width: 130px;
     height: 117px;
     background-size: contain;
-    background: url('../../publicbg_search.png') no-repeat;
+    background: url('../../public/bg_search.png') no-repeat;
     background-size: 130px 117px;
   }
   &:after {
@@ -535,7 +535,7 @@ header {
     width: 130px;
     height: 117px;
     background-size: contain;
-    background: url('../../publicbg_search2.png') no-repeat;
+    background: url('../../public/bg_search2.png') no-repeat;
     background-size: 130px 117px;
   }
 }
