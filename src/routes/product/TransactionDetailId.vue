@@ -5,13 +5,13 @@
       {{productStore.transactionDetail}}
     </div>
     <button
-      @click.stop="productStore.transactionFixed({detailId: currentTransactionId})"
+      @click.stop="transactionFixed()"
       class="square-btn yellow"
       :disabled="this.productStore.transactionDetail.isCanceled || this.productStore.transactionDetail.done">
       구매확정
     </button>
     <button 
-      @click.stop="productStore.transactionCancel({detailId: currentTransactionId})"
+      @click.stop="transactionCancel()"
       class="square-btn danger"
       :disabled="this.productStore.transactionDetail.isCanceled || this.productStore.transactionDetail.done">
       거래취소
@@ -48,22 +48,15 @@ export default {
     // }
   },
   methods: {
-    // isButtonDisabled() {
-
-    //   if(!this.productStore.transactionDetail.isCanceled) return false
-    //   if(!this.productStore.transactionDetail.done) return false
+    async transactionFixed() {
+      await this.productStore.transactionFixed({detailId: this.currentTransactionId})
+      await this.productStore.transactionHistory()
       
-      
-    //   return true
-    //   // if(!this.productStore.transactionDetail.isCanceled || !this.productStore.transactionDetail.done){
-    //   //   console.log(this.productStore.transactionDetail.isCanceled, this.productStore.transactionDetail.done)
-
-    //   //   this.isdisabled = false
-    //   // }else{
-    //   //   this.isdisabled = true
-    //   //   console.log(this.productStore.transactionDetail.isCanceled, this.productStore.transactionDetail.done)
-    //   // }
-    // }
+    },
+    async transactionCancel() {
+      await this.productStore.transactionCancel({detailId: this.currentTransactionId})
+      await this.productStore.transactionHistory()
+    }
   }
   
 
