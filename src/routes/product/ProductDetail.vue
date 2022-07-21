@@ -27,8 +27,6 @@
           </div>
           <div class="modal-body--card coupon">
             <div class="coupon">
-              <!-- <div class="coupon--title">할인쿠폰</div> -->
-              <!-- <div class="coupon--dropdown">할인쿠폰</div> -->
               <CouponDropdown />
               <div class="coupon--price">
                 <div class="title">결제금액</div>
@@ -55,7 +53,9 @@
           <div class="modal-body--card">
             <div class="agree">
               <button @click="isButtonDisable = !isButtonDisable">
-                <span class="material-symbols-rounded" :class="{ yellow: !isButtonDisable }">done</span>
+                <span class="material-symbols-rounded" :class="{ yellow: !isButtonDisable }"
+                  >done</span
+                >
                 <div class="agree--title">아래 내용에 동의합니다.</div>
               </button>
               <li>쿠폰은 중복사용 불가하며, 일부 결제수단은 할인쿠폰 적용이 불가합니다.</li>
@@ -67,7 +67,8 @@
           <button
             class="square-btn yellow"
             @click="$router.push('/PurchaseProduct')"
-            :disabled="isButtonDisable">
+            :disabled="isButtonDisable"
+          >
             구매하기
           </button>
         </div>
@@ -233,8 +234,6 @@
   </div>
 
   <TheLoader :loading="loading" :size="50" :width="10" class="loader" />
-
-  <!-- <div class="see" @click="getProductDetail(`${$route.params.productId}`)"></div> -->
 </template>
 
 <script>
@@ -622,5 +621,4 @@ export default {
     }
   }
 }
-
 </style>

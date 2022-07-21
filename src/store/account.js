@@ -1,39 +1,28 @@
-import {
-  defineStore
-} from 'pinia'
+import { defineStore } from 'pinia'
 import { readAccounts, readAccount, createAccount, deleteAccount } from '~/api'
 
 const AUTH_URL = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup'
 const LOGIN_URL = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login'
 const headers = {
-	"content-type": "application/json",
-	"apikey": "FcKdtJs202204",
-	"username": "KDT2TEAM8",
+  'content-type': 'application/json',
+  apikey: 'FcKdtJs202204',
+  username: 'KDT2TEAM8',
 }
 export const useAccountStore = defineStore('account', {
   state() {
-    return {
-    }
+    return {}
   },
-  getters: {
-
-  },
+  getters: {},
   actions: {
     async getAccounts() {
       const data = await readAccounts()
-			return data
+      return data
     },
     async getAccount() {
       const data = await readAccount()
-			return data
+      return data
     },
     async setAccount(payload) {
-      // const payload = {
-      //   bankCode: '011',
-      //   accountNumber: '1117777777777',
-      //   phoneNumber: '01011114444',
-      //   signature: true
-      // }
       console.log(payload)
       const newAccount = await createAccount(payload)
       console.log(newAccount)
@@ -41,7 +30,6 @@ export const useAccountStore = defineStore('account', {
     async removeAccount(accountId, signature) {
       const isDeleted = await deleteAccount(accountId, signature)
       console.log(isDeleted)
-    }
-  }
+    },
+  },
 })
-

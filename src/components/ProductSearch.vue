@@ -1,11 +1,6 @@
 <template>
-
   <div class="cover-img"></div>
-  <TheLoader
-    :loading="loading"
-    :size="50"
-    :width="10"
-    class="loader" />
+  <TheLoader :loading="loading" :size="50" :width="10" class="loader" />
 
   <div class="card--wrap">
     <div class="card--title">
@@ -13,50 +8,41 @@
         <h3>
           <a href="javascript:void(0)">
             전체 이모티콘
-            <!-- <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg> -->
-            <span class="material-symbols-rounded">
-              arrow_forward_ios
-            </span>
+            <span class="material-symbols-rounded"> arrow_forward_ios </span>
           </a>
         </h3>
-        
       </div>
     </div>
     <div class="card--container">
-      <BaseCard 
-        v-for=" product in productStore.productsArray"
+      <BaseCard
+        v-for="product in productStore.productsArray"
         :key="product.id"
         @click="$router.push(`/ProductDetail/${product.id}`)"
-        class="card">
+        class="card"
+      >
         <div class="image">
-          <img 
-          v-if =product.thumbnail
-          :src="product.thumbnail" 
-          :alt="product.title">
+          <img v-if="product.thumbnail" :src="product.thumbnail" :alt="product.title" />
           <div v-else class="no-image"></div>
         </div>
-        <h4>{{product.title}}</h4>
-
+        <h4>{{ product.title }}</h4>
       </BaseCard>
-
     </div>
   </div>
-  
 </template>
 
 <script>
-import { mapStores } from "pinia";
-import { useProductStore } from "~/store/product";
-import { useUserStore } from "~/store/user";
+import { mapStores } from 'pinia'
+import { useProductStore } from '~/store/product'
+import { useUserStore } from '~/store/user'
 
 export default {
   data() {
     return {
-      loading: true
+      loading: true,
     }
   },
   computed: {
-    ...mapStores(useProductStore, useUserStore)
+    ...mapStores(useProductStore, useUserStore),
   },
   async created() {
     await this.productStore.productSearch() // 다 불러오기..!!
@@ -68,16 +54,12 @@ export default {
       console.log(await this.productStore.productSearch())
 
       this.loading = false
-    }
-  }
+    },
+  },
 }
-
-
 </script>
 
 <style scoped lang="scss">
-
-
 .cover-img {
   width: 20;
   background: url('../../public/assets/bg_search.png') no-repeat;
@@ -92,10 +74,9 @@ export default {
         font-size: 24px;
         color: #000;
         .material-symbols-rounded {
-          color: #808080
+          color: #808080;
         }
       }
-     
     }
   }
   .card--container {
@@ -104,20 +85,16 @@ export default {
     grid-template-columns: repeat(5, 1fr);
     row-gap: 20px;
     .card {
-    
       margin: 0 auto;
-      .image{
-      
+      .image {
         width: 70%;
         height: calc(70% * 0.9);
         margin: 10px auto;
-        img{
+        img {
           width: 100%;
           margin: 10px auto;
-        
         }
-        .no-image{
-
+        .no-image {
           width: 100%;
           height: 100%;
           margin: 10px auto;
@@ -126,21 +103,16 @@ export default {
           background-size: cover;
         }
       }
-      h4{
+      h4 {
         width: 80%;
-        text-align: center; 
+        text-align: center;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
         margin: 0 auto;
         font-weight: lighter; //400으로 하면 안되고 lighter로 하니까되네..? 왜지?
-        // font-size: 1rem;
-        
       }
     }
   }
 }
-
-
-
 </style>

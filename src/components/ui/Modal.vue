@@ -1,7 +1,6 @@
 <template>
   <div class="modal">
     <Backdrop @click="$emit('close-modal')" :display="this.display" />
-    <!-- <Backdrop class="modal-backdrop" @click="closeModal()" :display="this.display" /> -->
     <div
       class="modal-card"
       :class="{ closeModal: this.isCloseModal }"

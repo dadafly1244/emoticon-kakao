@@ -16,7 +16,6 @@ import ProductDetail from './product/ProductDetail.vue'
 import PurchaseProduct from './product/PurchaseProduct.vue'
 import TransactionDetailId from './product/TransactionDetailId.vue'
 
-
 export default createRouter({
   history: createWebHistory(),
   scrollBehavior: () => ({ top: 0 }),
@@ -44,12 +43,6 @@ export default createRouter({
     {
       path: '/ProductDetail/:productId',
       component: ProductDetail,
-      // children: [
-      //   {
-      //     path: 'PurchaseProduct',
-      //     component: PurchaseProduct,
-      //   }
-      // ]
     },
     {
       path: '/PurchaseProduct',
@@ -82,8 +75,8 @@ export default createRouter({
             {
               path: ':TransactionDetailId',
               component: TransactionDetailId,
-            }
-          ]
+            },
+          ],
         },
         {
           path: 'reservation',
@@ -91,17 +84,13 @@ export default createRouter({
         },
         {
           path: 'accountmanagement',
-          component: AccountNav
-        }
+          component: AccountNav,
+        },
       ],
     },
     {
       path: '/:notFound(.*)*',
       component: NotFound,
     },
-    // {
-    //   path: '/mypage/purchaseHistory',
-    //   component: PurchaseHistory,
-    // },
   ],
 })

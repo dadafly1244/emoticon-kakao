@@ -2,7 +2,6 @@
   <div class="login-form-wrap">
     <h1 class="title">LOGIN</h1>
     <form @submit.prevent="login">
-      <!-- <div class="login-container"> -->
       <div>
         <label>
           이메일*

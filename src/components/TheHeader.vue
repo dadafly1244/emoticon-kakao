@@ -168,12 +168,6 @@ export default {
       leftNavOn: false,
       popupOn: false,
       searchValue: '',
-      // email: '',
-      // displayName: '로그인 해주세요',
-      // img: '',
-      // header에 프로필 화면 보여주는 변수
-      // img: this.userStore.img || 'profile_default.png',
-      // user: this.userStore.user || '',
     }
   },
   created() {
@@ -189,8 +183,6 @@ export default {
       return path.test(this.$route.fullPath)
     },
     searchEmoticon(event) {
-      //console.log('이벤트',event)
-      //console.log('이벤트',event.target.value)
       if (event.isComposing) return //한글 입력중인가?
       if (!this.searchValue.trim()) return // 빈문자인가?
 

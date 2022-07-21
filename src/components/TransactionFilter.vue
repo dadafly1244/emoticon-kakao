@@ -4,10 +4,7 @@
       {{ coupones.title }}
     </div>
     <select v-model="productStore.filters" class="dropdown--item">
-      <option 
-        v-for="item of coupones.values" 
-        :key="item.value" 
-        :value="item.value">
+      <option v-for="item of coupones.values" :key="item.value" :value="item.value">
         {{ item.name }}
       </option>
     </select>
@@ -27,7 +24,7 @@ export default {
           { name: '전체', value: 'all' },
           { name: '거래요청', value: 'request' },
           { name: '거래완료', value: 'done' },
-          { name: '거래취소', value: 'canceled'},
+          { name: '거래취소', value: 'canceled' },
         ],
       },
     }
@@ -42,7 +39,7 @@ export default {
 .dropdown {
   display: flex;
   margin: 22px auto 10px 450px;
-  &--title{
+  &--title {
     display: block;
     margin: 10px 20px;
     font-size: 1.1rem;
@@ -57,8 +54,4 @@ export default {
     border-radius: 3px;
   }
 }
-// div {
-  
-// }
-// 
 </style>
