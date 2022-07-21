@@ -15,18 +15,33 @@ export const useProductStore = defineStore('product', {
     productsArray: [],
     ispruchaseSuccess: false,
     coupone: 'discount',
-    transactions: [],
-    transactionDetail: {}
-
+    transactions: [], //전체 구매 내력
+    transactionDetail: {}, //구매 내역 상세 
+    filters: 'all'  //필터링에서 씀!
     }
   },
   getters: {
     chooseCoupone(state) {
       if(state.coupone !== 'discount') {
-       
         return this.product.price * 1.2
       }
       return this.product.price
+    }, 
+    filteredTransaction(state) {
+      let filteredTransaction = [...state.transactions]
+      if(state.filters !== 'all'){
+        filteredTransaction = state.transactions.filter(transaction => {
+          switch(state.filters){
+            case 'request':
+              return (transaction.isCanceled === false) && (transaction.done === false)
+            case 'done':
+              return (transaction.isCanceled === false) && (transaction.done === true)
+            case 'canceled':
+              return (transaction.isCanceled === true) && (transaction.done === false)
+          }
+        })
+      }
+      return filteredTransaction
     }
   },
   actions: {

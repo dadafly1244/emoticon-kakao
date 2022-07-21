@@ -3,8 +3,11 @@
   <div>
     {{ coupones.title }}
   </div>
-  <select v-model="productStore.coupone" class="dropdown--item">
-    <option v-for="item of coupones.values" :key="item.name" :value="item.value">
+  <select v-model="productStore.filters" class="dropdown--item">
+    <option 
+      v-for="item of coupones.values" 
+      :key="item.value" 
+      :value="item.value">
       {{ item.name }}
     </option>
   </select>
@@ -18,10 +21,12 @@ export default {
   data() {
     return {
       coupones: {
-        title: '할인쿠폰',
+        title: '거래 상태',
         values: [
-          { name: '항상 전상품 20% 할인', value: 'discount' },
-          { name: '쿠폰 선택 안함', value: 'nodiscount' },
+          { name: '전체', value: 'all' },
+          { name: '거래요청', value: 'request' },
+          { name: '거래완료', value: 'done' },
+          { name: '거래취소', value: 'canceled'},
         ],
       },
     }

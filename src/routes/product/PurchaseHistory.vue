@@ -6,6 +6,7 @@
     class="loader" />
   
   <div class="history-container">
+    <TransactionFilter />
     <div class="history-container--title">
       <div class="history-container--item" 
         v-for="(title, index) in titles"
@@ -14,9 +15,9 @@
         
       </div>
     </div>
-   
+    
     <HistoryItem 
-    v-for="transaction in productStore.transactions"
+    v-for="transaction in productStore.filteredTransaction"
     :key="transaction.detailId"
     :transaction = "transaction"
     @click="showTransactionDetail(transaction.detailId)"/>
@@ -40,10 +41,12 @@ import { mapStores } from 'pinia'
 import { useUserStore } from '~/store/user'
 import { useProductStore } from '~/store/product'
 import HistoryItem from '~/components/HistoryItem.vue'
+import TransactionFilter from '~/components/TransactionFilter.vue'
 
 export default {
   components: {
-    HistoryItem
+    HistoryItem,
+    TransactionFilter
   },
    data() {
     return {
