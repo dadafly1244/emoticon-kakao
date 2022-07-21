@@ -288,10 +288,6 @@ export default {
 
 <style scoped lang="scss">
 .wrap {
-  // position:relative;
-  // height: 30vh;
-  border: 1px solid red;
-
   .modal-inner {
     display: flex;
     flex-direction: column;
@@ -315,8 +311,6 @@ export default {
           padding: 10px;
           .detail {
             margin-left: 20px;
-            &--title {
-            }
             &--author {
               font-size: 12px;
               color: #7f7f7f;
@@ -463,7 +457,6 @@ export default {
     background-color: #fff;
 
     &--inner {
-      border: 1px solid greenyellow;
       width: 1024px;
       margin: 0 auto;
       display: flex;
@@ -511,8 +504,6 @@ export default {
             }
             .price {
               display: flex;
-              // background-color: aqua;
-              // flex-grow: 1;
               &--discount {
                 color: #fa4637;
                 font-size: 1.5rem;
@@ -529,7 +520,6 @@ export default {
               }
             }
           }
-
           .round-btn {
             width: 44px;
             height: 44px;
@@ -541,7 +531,6 @@ export default {
             margin-right: 10px;
           }
         }
-
         .product--purchase {
           display: flex;
           .square-btn {
@@ -564,7 +553,6 @@ export default {
   .product--photo {
     background-color: #fafafa;
     &--inner {
-      border: 1px solid greenyellow;
       width: 1024px;
       margin: 0 auto;
       display: flex;
@@ -581,7 +569,6 @@ export default {
     background-color: #fafafa;
     &--inner {
       width: 1024px;
-      border: 1px solid red;
       margin: 0 auto;
       padding: 0 40px;
 
@@ -616,7 +603,6 @@ export default {
           font-size: 14px;
           line-height: 20px;
           color: #7f7f7f;
-
           .link_txt {
             display: inline;
             font-size: 14px;
@@ -637,9 +623,4 @@ export default {
   }
 }
 
-// .see{
-//   height: 100px;
-//   width: 100px;
-//   background-color: aqua;
-// }
 </style>

@@ -36,7 +36,6 @@ main {
     }
   }
   .content--inner {
-    border: 1px solid red;
     width: 1024px;
     margin: 0 auto;
   }
