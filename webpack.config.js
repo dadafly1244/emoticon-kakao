@@ -47,9 +47,9 @@ module.exports = (env, options) => {
                   @use "sass:meta";
                   @use "sass:selector";
                   @use "sass:string";
-                  @import "~/scss/_variables";
+                  @import "~/src/scss/_variables";
                   
-                  @import "~/scss/_mixins";
+                  @import "~/src/scss/_mixins";
                 `,
               },
             },
