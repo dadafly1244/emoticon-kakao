@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AccountLayout from '~/components/AccountLayout'
+import AccountLayout from '~/src/components/AccountLayout'
 	export default {
 		data() {
 			return {

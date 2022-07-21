@@ -31,8 +31,8 @@
 <script>
 import { mapStores } from 'pinia'
 import { useUserStore } from '~/store/user.js'
-import { useAccountStore } from '~/store/account.js'
-import AccountLayout from '~/components/AccountLayout'
+import { useAccountStore } from '~/src/store/account.js'
+import AccountLayout from '~/src/components/AccountLayout'
 
 	export default {
 		components: {

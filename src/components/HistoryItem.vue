@@ -29,7 +29,7 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { useProductStore } from '~/store/product'
+import { useProductStore } from '~/src/store/product'
 
 export default {
   props: {

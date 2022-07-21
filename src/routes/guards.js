@@ -1,5 +1,5 @@
 import router from './index'
-import { validateTokenUser } from '~/core'
+import { validateTokenUser } from '~/src/core'
 
 router.beforeEach(async (to) => {
   if (to.path.includes('/mypage')) {

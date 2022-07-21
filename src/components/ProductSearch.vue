@@ -32,8 +32,8 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { useProductStore } from '~/store/product'
-import { useUserStore } from '~/store/user'
+import { useProductStore } from '~/src/store/product'
+import { useUserStore } from '~/src/store/user'
 
 export default {
   data() {

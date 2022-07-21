@@ -8,7 +8,7 @@ module.exports = (env, options) => {
     resolve: {
       extensions: ['.js', '.vue'],
       alias: {
-        '~': `${__dirname}/src`,
+        '~': `${__dirname}`,
       },
     },
     entry: './src/main.js',

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Backdrop from '~/components/ui/Backdrop.vue'
+import Backdrop from '~/src/components/ui/Backdrop.vue'
 
 export default {
   props: {

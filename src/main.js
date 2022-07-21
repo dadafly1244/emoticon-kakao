@@ -1,12 +1,12 @@
 import { createApp, markRaw } from 'vue'
-import App from '~/App.vue'
-import router from '~/routes'
-import '~/routes/guards'
+import App from '~/src/App.vue'
+import router from '~/src/routes'
+import '~/src/routes/guards'
 import { createPinia } from 'pinia'
-import { useUserStore } from '~/store/user.js'
+import { useUserStore } from '~/src/store/user.js'
 
-import BaseCard from '~/components/ui/BaseCard.vue';
-import BaseButton from '~/components/ui/BaseButton.vue';
+import BaseCard from '~/src/components/ui/BaseCard.vue';
+import BaseButton from '~/src/components/ui/BaseButton.vue';
 import TheLoader from './components/ui/TheLoader.vue'
 import Modal from './components/ui/Modal.vue'
 
