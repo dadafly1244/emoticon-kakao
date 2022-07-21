@@ -22,7 +22,7 @@
       <div>{{transaction.detailId}}</div>
     </div>
     <div class="timePaid">
-      <div>{{getDate(transaction.timePaid)}}</div>
+      <div>{{new Date(transaction.timePaid).toLocaleString()}}</div>
       <!-- <div>{{transaction.timePaid}}</div> -->
     </div>
     <div class="isCanceled">
@@ -37,7 +37,6 @@
 <script>
 import { mapStores } from "pinia";
 import { useProductStore } from "~/store/product";
-import dayjs from 'dayjs'
 
 export default {
   props: {
@@ -67,9 +66,7 @@ export default {
     //   // time 
     //   return dayjs.utc(time).format('YY년 MM월 YY일 HH:mm')
     // }
-    getDate(timestamp) {
-      return dayjs(timestamp).format('MM월 YY일 HH:mm')
-    },
+   
     
   }
 
