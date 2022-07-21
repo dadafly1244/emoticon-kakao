@@ -275,7 +275,6 @@ export default {
     changeIcon() {
       this.iscloseDd = !this.iscloseDd
       if (this.iscloseDd) {
-        console.log(this.$refs.ico_open)
         this.$refs.ico_open.content = 'expand_less'
       } else {
         this.$refs.ico_open.content = 'expand_more'

@@ -28,7 +28,6 @@ import AccountLayout from '~/components/AccountLayout'
 		methods: {
 			/* Account.vue에서 emit 받아오기 */
 			onSelected(account) {
-				console.log(account)
 				this.isSelected = true
 				this.$refs.paragraph.innerHTML = `고객님 <strong>${account.bankName}</strong> 계좌에 <br>
 				잔액이 <strong class="emp">${account.balance.toLocaleString()}원</strong> 있습니다`

@@ -70,7 +70,6 @@ import AccountLayout from '~/components/AccountLayout'
 			isFormValid() {
 				this.errors = {}
 				const accountLength = String(this.accountValue).length
-				console.log(this.accountValue, this.digitsLength)
 				const phoneLength = this.phoneValue.replaceAll('-','').length
 				if (!this.bankValue) this.errors['bank'] = '은행을 선택 하세요.'
 				if (accountLength !== this.digitsLength) this.errors['account'] = '올바른 길이의 계좌를 입력해주세요.'

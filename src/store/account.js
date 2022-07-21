@@ -1,15 +1,12 @@
 import {
   defineStore
 } from 'pinia'
+import axios from 'axios'
+
 import { readAccounts, readAccount, createAccount, deleteAccount } from '~/api'
 
-const AUTH_URL = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup'
-const LOGIN_URL = 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login'
-const headers = {
-	"content-type": "application/json",
-	"apikey": "FcKdtJs202204",
-	"username": "KDT2TEAM8",
-}
+
+
 export const useAccountStore = defineStore('account', {
   state() {
     return {
@@ -20,27 +17,64 @@ export const useAccountStore = defineStore('account', {
   },
   actions: {
     async getAccounts() {
-      const data = await readAccounts()
+      const token = localStorage.getItem('token')
+      const headers = {
+        "content-type": "application/json",
+        "apikey": "FcKdtJs202204",
+        "username": "KDT2TEAM8",
+        'Authorization': `Bearer ${token}`
+      }
+      const instance = axios.create({
+        baseURL: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+        headers
+      })
+      const { data } = await instance.get('/banks')
 			return data
     },
     async getAccount() {
-      const data = await readAccount()
+      const token = localStorage.getItem('token')
+      const headers = {
+        "content-type": "application/json",
+        "apikey": "FcKdtJs202204",
+        "username": "KDT2TEAM8",
+        'Authorization': `Bearer ${token}`
+      }
+      const instance = axios.create({
+        baseURL: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+        headers
+      })
+      const { data } = await instance.get('/')
 			return data
     },
     async setAccount(payload) {
-      // const payload = {
-      //   bankCode: '011',
-      //   accountNumber: '1117777777777',
-      //   phoneNumber: '01011114444',
-      //   signature: true
-      // }
-      console.log(payload)
-      const newAccount = await createAccount(payload)
-      console.log(newAccount)
+      const token = localStorage.getItem('token')
+      const headers = {
+        "content-type": "application/json",
+        "apikey": "FcKdtJs202204",
+        "username": "KDT2TEAM8",
+        'Authorization': `Bearer ${token}`
+      }
+      const instance = axios.create({
+        baseURL: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+        headers
+      })
+      const newAccount = await instance.post('/', {
+        ...payload
+      })
     },
     async removeAccount(accountId, signature) {
-      const isDeleted = await deleteAccount(accountId, signature)
-      console.log(isDeleted)
+      const token = localStorage.getItem('token')
+      const headers = {
+        "content-type": "application/json",
+        "apikey": "FcKdtJs202204",
+        "username": "KDT2TEAM8",
+        'Authorization': `Bearer ${token}`
+      }
+      const instance = axios.create({
+        baseURL: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+        headers
+      })
+      const isDeleted = await instance.delete('/', { data: {accountId, signature} })
     }
   }
 })
