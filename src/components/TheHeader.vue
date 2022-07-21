@@ -4,7 +4,7 @@
     <div class="head">
       <div class="head__inner">
         <div class="menu-icon" :class="{ clicked: leftNavOn }" @click="leftNavOn = !leftNavOn">
-          <img src="~/static/hamburger_menu.svg" alt="menu-icon" />
+          <img src="../../static/hamburger_menu.svg" alt="menu-icon" />
         </div>
         <RouterLink to="/">
           <div class="head-title">kakao<strong>emoticon</strong> shop</div>
