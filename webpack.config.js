@@ -4,7 +4,6 @@ const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 module.exports = (env, options) => {
-  console.log(env, options)
   return {
     resolve: {
       extensions: ['.js', '.vue'],

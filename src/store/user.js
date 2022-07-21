@@ -35,13 +35,11 @@ export const useUserStore = defineStore('user', {
 
         const { user, accessToken } = await res.data
         window.localStorage.setItem('token', accessToken)
-        console.log(user, accessToken)
         this.email = user.email
         this.displayName = user.displayName
         this.accessToken = accessToken
         this.password = password
         this.img = user.profileImg
-        console.log(this.user)
         if (res.status === 200) {
           alert('로그인이 완료되었습니다')
           this.$router.push('/')
@@ -143,7 +141,6 @@ export const useUserStore = defineStore('user', {
     // MODIFYUSER
     async modifyUser(payload) {
       const { email, displayName, img, oldPassword, newPassword } = payload
-      console.log(email, displayName, img, oldPassword, newPassword)
       try {
         const res = await axios(
           'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
@@ -164,7 +161,6 @@ export const useUserStore = defineStore('user', {
             },
           }
         )
-        console.log(res)
         if (res.status === 200) {
           alert('수정이 완료 되었습니다!')
         }

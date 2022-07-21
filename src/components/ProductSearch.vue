@@ -51,8 +51,6 @@ export default {
   methods: {
     async searchAll() {
       this.loading = true
-      console.log(await this.productStore.productSearch())
-
       this.loading = false
     },
   },

@@ -172,7 +172,6 @@ export default {
   },
   created() {
     this.userStore.authUser()
-    console.log(this.userStore.img)
   },
   computed: {
     ...mapStores(useUserStore, useProductStore),
@@ -201,8 +200,6 @@ export default {
           tags = [...tags, temp]
         }
       }
-
-      console.log('title', title, 'tags', tags)
 
       this.productStore.productSearch({ searchText: title[0], searchTags: tags }) // 사용자가 입력한 제목 중에서 첫번째로 입력한 제목만 입력하기!
 

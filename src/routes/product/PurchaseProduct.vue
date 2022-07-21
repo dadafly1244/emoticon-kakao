@@ -55,7 +55,6 @@ export default {
     }
   },
   created() {
-    console.log(this.productStore.product)
   },
   computed: {
     ...mapStores(useUserStore, useProductStore),
@@ -69,7 +68,6 @@ export default {
       //계좌가 선택되면 계좌정보 갱신하기!
       this.isSelected = true
       this.selectedAccount = account
-      console.log('this.selectedAccount', this.selectedAccount)
     },
     addComma(num) {
       const regexp = /\B(?=(\d{3})+(?!\d))/g
