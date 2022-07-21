@@ -15,18 +15,34 @@ export const useProductStore = defineStore('product', {
     productsArray: [],
     ispruchaseSuccess: false,
     coupone: 'discount',
-    transactions: [],
-    transactionDetail: {}
-
+    transactions: [], //전체 구매 내력
+    transactionDetail: {}, //구매 내역 상세 
+    filters: 'all'  //필터링에서 씀!
     }
   },
   getters: {
     chooseCoupone(state) {
       if(state.coupone !== 'discount') {
-       
         return this.product.price * 1.2
       }
       return this.product.price
+    }, 
+    //거래요청, 거래완료, 거래취소에 따라서 필터링하기
+    filteredTransaction(state) {
+      let filteredTransaction = [...state.transactions]
+      if(state.filters !== 'all'){
+        filteredTransaction = state.transactions.filter(transaction => {
+          switch(state.filters){
+            case 'request': //거래요청
+              return (transaction.isCanceled === false) && (transaction.done === false)
+            case 'done': //거래완료
+              return (transaction.isCanceled === false) && (transaction.done === true)
+            case 'canceled': //거래취소
+              return (transaction.isCanceled === true) && (transaction.done === false)
+          }
+        })
+      }
+      return filteredTransaction
     }
   },
   actions: {
@@ -164,16 +180,20 @@ export const useProductStore = defineStore('product', {
         throw '제품을 선택해주세요!!'
       }
       try{
-        const {data} = await requestApi({
-          requestCategory: 'cancel',
-          method: 'POST',
-          data: {
-            detailId
+        if(confirm('거래를 취소할까요?')){
+          const {data} = await requestApi({
+            requestCategory: 'cancel',
+            method: 'POST',
+            data: {
+              detailId
+            }
+  
+          }) 
+          if(data) {
+            alert('거래를 성공적으로 취소했습니다!')
+            this.$router.push(`/mypage/PurchaseHistory`)
           }
-
-        }) 
-        if(data) {
-          console.log('거래를 성공적으로 취소했습니다!')
+        }else{
           this.$router.push(`/mypage/PurchaseHistory`)
         }
       }catch(error){
@@ -187,18 +207,23 @@ export const useProductStore = defineStore('product', {
         throw '제품을 선택해주세요!!'
       }
       try{
-        const {data} = await requestApi({
-          requestCategory: 'ok ',
-          method: 'POST',
-          data: {
-            detailId
+        if(confirm('"거래(구매) 확정" 후에는 "거래 취소"를 할 수 없습니다. 거래(구매)를 확정할까요?')){
+          const {data} = await requestApi({
+            requestCategory: 'ok ',
+            method: 'POST',
+            data: {
+              detailId
+            }
+  
+          }) 
+          if(data) {
+            alert('거래를 성공적으로 확정했습니다!')
+            this.$router.push(`/mypage/PurchaseHistory`)
           }
-
-        }) 
-        if(data) {
-          console.log('거래를 성공적으로 확정했습니다!')
+        }else {
           this.$router.push(`/mypage/PurchaseHistory`)
         }
+
       }catch(error){
         console.log(error)
       }

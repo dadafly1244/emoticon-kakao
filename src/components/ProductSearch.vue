@@ -85,10 +85,8 @@ export default {
 .card--wrap {
   margin: 2rem 0;
   .card--title {
-
     h3 {
       padding: 10px 0;
-      
       a {
         line-height: 1.5rem;
         font-size: 24px;
@@ -96,18 +94,9 @@ export default {
         .material-symbols-rounded {
           color: #808080
         }
-        // svg {
-        //   fill: #808080;
-        // }
       }
      
     }
-
-  // .svg-color {
-  //   svg {
-  //     fill: #808080;
-  //   }
-  // }
   }
   .card--container {
     margin: 1rem 0;
@@ -148,8 +137,6 @@ export default {
         // font-size: 1rem;
         
       }
-
-
     }
   }
 }

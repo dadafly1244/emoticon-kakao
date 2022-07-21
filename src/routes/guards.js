@@ -17,4 +17,11 @@ router.beforeEach(async (to) => {
       return '/login'
     }
   }
+  if (to.path.includes('/PurchaseProduct')) {
+    const accessToken = window.localStorage.getItem('token')
+    if (!accessToken) {
+      alert('로그인 해주세요')
+      return '/login'
+    }
+  }
 })
