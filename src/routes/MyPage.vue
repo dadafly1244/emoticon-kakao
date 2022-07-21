@@ -90,7 +90,7 @@ export default {
     }
   }
   .bg-image {
-    background-image: url('../../public/mypage_header_bg.png');
+    background-image: url('~/static/mypage_header_bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;

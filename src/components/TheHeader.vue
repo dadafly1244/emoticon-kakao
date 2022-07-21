@@ -4,30 +4,31 @@
     <div class="head">
       <div class="head__inner">
         <div class="menu-icon" :class="{ clicked: leftNavOn }" @click="leftNavOn = !leftNavOn">
-          <img src="hamburger_menu.svg" alt="menu-icon" />
+          <img src="~/static/hamburger_menu.svg" alt="menu-icon" />
         </div>
         <RouterLink to="/">
           <div class="head-title">kakao<strong>emoticon</strong> shop</div>
         </RouterLink>
         <div class="search-profile">
           <div class="search-icon" :class="{ clicked: searchOn }" @click="searchOn = !searchOn">
-            <img src="search_icon.svg" alt="search-icon" />
+            <img src="~/static/search_icon.svg" alt="search-icon" />
           </div>
           <div v-if="userStore.img" class="profile-default" @click="popupOn = !popupOn">
             <img v-bind:src="userStore.img" alt="profile-default" />
           </div>
           <div v-else class="profile-default" @click="popupOn = !popupOn">
-            <img src="profile_default.png" alt="profile-default" />
+            <img src="~/static/profile_default.png" alt="profile-default" />
           </div>
+          ~/static/
         </div>
         <!-- popup -->
         <div v-show="popupOn" class="popup">
           <div v-if="userStore.displayName" class="popup-profile">
             <img v-if="userStore.img" v-bind:src="userStore.img" alt="profile-default" />
-            <img v-else v-bind:src="'profile_default.png'" alt="profile-default" />
+            <img v-else v-bind:src="'~/static/profile_default.png'" alt="profile-default" />
           </div>
           <div v-else class="popup-profile">
-            <img src="profile_default.png" alt="profile-default" />
+            <img src="~/static/profile_default.png" alt="profile-default" />
           </div>
           <div class="popup-name">{{ this.userStore.displayName }}</div>
           <div class="popup-email">{{ this.userStore.email }}</div>
@@ -69,12 +70,12 @@
           />
           <button v-show="searchValue" type="reset">
             <div class="cancel-icon">
-              <img src="cancel_icon.svg" alt="cancel-icon" />
+              <img src="~/static/cancel_icon.svg" alt="cancel-icon" />
             </div>
           </button>
           <button type="submit" @click="searchEmoticon">
             <div class="search-icon button">
-              <img src="search_icon.svg" alt="search-icon" />
+              <img src="~/static/search_icon.svg" alt="search-icon" />
             </div>
           </button>
         </form>
@@ -86,14 +87,18 @@
       <div class="leftnav__inner">
         <RouterLink v-if="userStore.displayName" to="/mypage/PurchaseHistory" class="nav-profile">
           <div class="profile-big">
-            <img v-if="!userStore.img" v-bind:src="'profile_default.png'" alt="profile-default" />
+            <img
+              v-if="!userStore.img"
+              v-bind:src="'~/static/profile_default.png'"
+              alt="profile-default"
+            />
             <img v-else v-bind:src="userStore.img" alt="" />
           </div>
           <div class="profile-name">{{ this.userStore.displayName }}</div>
         </RouterLink>
         <RouterLink v-else to="/login" class="nav-profile">
           <div class="profile-big">
-            <img src="profile_default.png" alt="profile-default" />
+            <img src="~/static/profile_default.png" alt="profile-default" />
           </div>
           <div class="profile-name">로그인</div>
         </RouterLink>
@@ -101,7 +106,7 @@
           <li>
             <RouterLink to="/mypage/PurchaseHistory">
               <div class="nav-icon buy-icon">
-                <img src="buy_icon.svg" alt="buy-icon" />
+                <img src="~/static/buy_icon.svg" alt="buy-icon" />
               </div>
               <div class="text-mypage">구매 내역</div>
             </RouterLink>
@@ -109,7 +114,7 @@
           <li>
             <RouterLink to="/mypage/reservation">
               <div class="nav-icon reserve-icon">
-                <img src="reserve_icon.svg" alt="reserve-icon" />
+                <img src="~/static/reserve_icon.svg" alt="reserve-icon" />
               </div>
               <div class="text-mypage">예약 하기</div>
             </RouterLink>
@@ -117,7 +122,7 @@
           <li>
             <RouterLink to="/mypage/accountmanagement">
               <div class="nav-icon account-icon">
-                <img src="account_icon.svg" alt="account-icon" />
+                <img src="~/static/account_icon.svg" alt="account-icon" />
               </div>
               <div class="text-mypage">계좌 관리</div>
             </RouterLink>
@@ -524,7 +529,7 @@ header {
     width: 130px;
     height: 117px;
     background-size: contain;
-    background: url('../../public/bg_search.png') no-repeat;
+    background: url('~/static/bg_search.png') no-repeat;
     background-size: 130px 117px;
   }
   &:after {
