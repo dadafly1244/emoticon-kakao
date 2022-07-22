@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ProductSearch from '~/components/ProductSearch'
+import ProductSearch from '~/src/components/ProductSearch'
 export default {
   components: {
     ProductSearch

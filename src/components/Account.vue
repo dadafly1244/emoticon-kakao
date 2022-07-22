@@ -15,7 +15,7 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { useAccountStore } from '~/store/account.js'
+import { useAccountStore } from '~/src/store/account.js'
 export default {
 		emits: ['selected'],
 		data() {

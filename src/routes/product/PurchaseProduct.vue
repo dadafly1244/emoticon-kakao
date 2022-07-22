@@ -42,10 +42,10 @@
 </template>
 <script>
 import { mapStores } from 'pinia'
-import { useUserStore } from '~/store/user'
-import { useProductStore } from '~/store/product'
+import { useUserStore } from '~/src/store/user'
+import { useProductStore } from '~/src/store/product'
 
-import Account from '~/components/Account'
+import Account from '~/src/components/Account'
 export default {
   data() {
     return {
@@ -54,8 +54,7 @@ export default {
       selectedAccount: {},
     }
   },
-  created() {
-  },
+  created() {},
   computed: {
     ...mapStores(useUserStore, useProductStore),
   },

@@ -24,10 +24,10 @@
 <!--  -->
 <script>
 import { mapStores } from 'pinia'
-import { useUserStore } from '~/store/user'
-import { useProductStore } from '~/store/product'
-import HistoryItem from '~/components/HistoryItem.vue'
-import TransactionFilter from '~/components/TransactionFilter.vue'
+import { useUserStore } from '~/src/store/user'
+import { useProductStore } from '~/src/store/product'
+import HistoryItem from '~/src/components/HistoryItem.vue'
+import TransactionFilter from '~/src/components/TransactionFilter.vue'
 
 export default {
   components: {

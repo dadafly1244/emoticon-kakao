@@ -238,10 +238,10 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { useProductStore } from '~/store/product'
-import { useUserStore } from '~/store/user'
-import Modal from '~/components/ui/Modal.vue'
-import CouponDropdown from '~/components/CouponDropdown.vue'
+import { useProductStore } from '~/src/store/product'
+import { useUserStore } from '~/src/store/user'
+import Modal from '~/src/components/ui/Modal.vue'
+import CouponDropdown from '~/src/components/CouponDropdown.vue'
 
 export default {
   data() {

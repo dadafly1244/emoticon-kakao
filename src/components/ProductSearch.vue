@@ -32,8 +32,8 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { useProductStore } from '~/store/product'
-import { useUserStore } from '~/store/user'
+import { useProductStore } from '~/src/store/product'
+import { useUserStore } from '~/src/store/user'
 
 export default {
   data() {
@@ -60,7 +60,7 @@ export default {
 <style scoped lang="scss">
 .cover-img {
   width: 20;
-  background: url('../../public/bg_search.png') no-repeat;
+  background: url('~/static/bg_search.png') no-repeat;
 }
 .card--wrap {
   margin: 2rem 0;

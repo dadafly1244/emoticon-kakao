@@ -67,7 +67,7 @@
 </template>
 <script>
 import { mapStores } from 'pinia'
-import { useUserStore } from '~/store/user'
+import { useUserStore } from '~/src/store/user'
 import axios from 'axios'
 export default {
   data() {
