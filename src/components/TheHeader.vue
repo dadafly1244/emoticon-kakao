@@ -48,8 +48,8 @@
           <li :class="{ current: $route.path === '/' }">
             <RouterLink to="/"> 홈 </RouterLink>
           </li>
-          <li :class="{ current: isMatch(/^\/style/) }">
-            <RouterLink to="/style"> 스타일 </RouterLink>
+          <li :class="{ current: isMatch(/^\/about/) }">
+            <RouterLink to="/about"> 어바웃 </RouterLink>
           </li>
         </ul>
       </nav>

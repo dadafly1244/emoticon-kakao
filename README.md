@@ -1,9 +1,9 @@
 # 🤝 팀 프로젝트
 
-- 과제 기한: 
+- 과제 기한:
   - 과제 수행 기간: 06월 09일(목) ~ 07월 22일(금)
   - 코드 리뷰 기간: 07월 22일(금) ~ 07월 29일(금)
-- 내용: 
+- 내용:
   - API 분석 후 어떤 프로젝트로 진행/완성할 것인지 팀 단위로 결정하세요.
 
 ## API 사용법
@@ -62,7 +62,8 @@ interface RequestBody {
 
 ```ts
 interface ResponseValue {
-  user: { // 회원가입한 사용자 정보
+  user: {
+    // 회원가입한 사용자 정보
     email: string // 사용자 아이디
     displayName: string // 사용자 표시 이름
     profileImg: string | null // 사용자 프로필 이미지(URL)
@@ -111,7 +112,8 @@ interface RequestBody {
 
 ```ts
 interface ResponseValue {
-  user: { // 회원가입한 사용자 정보
+  user: {
+    // 회원가입한 사용자 정보
     email: string // 사용자 아이디
     displayName: string // 사용자 표시 이름
     profileImg: string | null // 사용자 프로필 이미지(URL)
@@ -255,7 +257,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks
 ```ts
 type ResponseValue = Bank[] // 선택 가능한 은행 정보 목록
 
-interface Bank { // 선택 가능한 은행 정보
+interface Bank {
+  // 선택 가능한 은행 정보
   name: string // 은행 이름
   code: string // 은행 코드
   digits: number[] // 은행 계좌 자릿수
@@ -333,7 +336,8 @@ interface ResponseValue {
   accounts: Bank[] // 사용자 계좌 정보 목록
 }
 
-interface Bank { // 사용자 계좌 정보
+interface Bank {
+  // 사용자 계좌 정보
   id: string // 계좌 ID
   bankName: string // 은행 이름
   bankCode: string // 은행 코드
@@ -370,7 +374,7 @@ interface Bank { // 사용자 계좌 정보
 - 요청하는 계좌번호와 전화번호에는 `-` 구분이 없어야 합니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -398,7 +402,8 @@ interface RequestBody {
 응답 데이터 타입 및 예시:
 
 ```ts
-interface ResponseValue { // 연결된 계좌 정보
+interface ResponseValue {
+  // 연결된 계좌 정보
   id: string // 계좌 ID
   bankName: string // 은행 이름
   bankCode: string // 은행 코드
@@ -422,7 +427,7 @@ interface ResponseValue { // 연결된 계좌 정보
 - 해지한 계좌는 다시 연결해도 잔액이 반영되지 않습니다.(기본 금액으로 추가됩니다)
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
   \ -X 'DELETE'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -446,7 +451,7 @@ interface RequestBody {
 응답 데이터 타입 및 예시:
 
 ```ts
-type ResponseValue = true  // 계좌 해지 처리 상태
+type ResponseValue = true // 계좌 해지 처리 상태
 ```
 
 <hr />
@@ -463,7 +468,7 @@ type ResponseValue = true  // 계좌 해지 처리 상태
 - 상세 정보가 아닌 기본 정보의 제품 상세 사진은 포함되지 않습니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
   \ -X 'GET'
   \ -H 'masterKey: true'
 ```
@@ -477,7 +482,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
 ```ts
 type ResponseValue = Product[] // 관리하는 모든 제품의 목록
 
-interface Product { // 제품 정보
+interface Product {
+  // 제품 정보
   id: string // 제품 ID
   title: string // 제품 이름
   price: number // 제품 가격
@@ -495,11 +501,7 @@ interface Product { // 제품 정보
     "title": "삼성전자 스마트모니터 M7 S43AM700",
     "price": 639000,
     "description": "107.9cm(43인치) / 와이드(16:9) / 평면 / VA / 3840 x 2160(4K UHD) / 픽셀피치: 0.2451mm / 8ms(GTG) / 300cd / 5,00",
-    "tags": [
-      "가전",
-      "모니터",
-      "컴퓨터"
-    ],
+    "tags": ["가전", "모니터", "컴퓨터"],
     "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png",
     "isSoldOut": false
   },
@@ -508,11 +510,7 @@ interface Product { // 제품 정보
     "title": "MacBook Pro 16",
     "price": 3360000,
     "description": "역대 가장 강력한 MacBook Pro가 등장했습니다. 최초의 프로용 Apple Silicon인 M1 Pro 또는 M1 Max 칩을 탑재해 쏜살같이 빠른 속도는 물론, 획기적인 성",
-    "tags": [
-      "가전",
-      "노트북",
-      "컴퓨터"
-    ],
+    "tags": ["가전", "노트북", "컴퓨터"],
     "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png",
     "isSoldOut": false
   }
@@ -524,7 +522,7 @@ interface Product { // 제품 정보
 - 관리자 전용 API입니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all
   \ -X 'GET'
   \ -H 'masterKey: true'
 ```
@@ -538,19 +536,23 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
 ```ts
 type RequestValue = TransactionDetail[] // 모든 거래 내역의 목록
 
-interface TransactionDetail { // 거래 내역 정보
+interface TransactionDetail {
+  // 거래 내역 정보
   detailId: string // 거래 내역 ID
-  user: { // 거래한 사용자 정보
+  user: {
+    // 거래한 사용자 정보
     email: string
     displayName: string
     profileImg: string | null
   }
-  account: { // 거래한 사용자의 계좌 정보
+  account: {
+    // 거래한 사용자의 계좌 정보
     bankName: string
     bankCode: string
     accountNumber: string
   }
-  product: { // 거래한 제품 정보
+  product: {
+    // 거래한 제품 정보
     productId: string
     title: string
     price: number
@@ -591,11 +593,7 @@ interface Reservation {
       "title": "삼성전자 스마트모니터 M7 S43AM700",
       "price": 639000,
       "description": "107.9cm(43인치) / 와이드(16:9) / 평면 / VA / 3840 x 2160(4K UHD) / 픽셀피치: 0.2451mm / 8ms(GTG) / 300cd / 5,00",
-      "tags": [
-        "가전",
-        "모니터",
-        "컴퓨터"
-      ],
+      "tags": ["가전", "모니터", "컴퓨터"],
       "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png"
     },
     "reservation": null,
@@ -628,7 +626,7 @@ interface Reservation {
 - 거래 내역을 취소 해제하면, 예약도 같이 취소가 해제됩니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/:detailId 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/:detailId
   \ -X 'PUT'
   \ -H 'masterKey: true'
 ```
@@ -650,7 +648,6 @@ interface RequestBody {
 
 응답 데이터 타입 및 예시:
 
-
 ```ts
 type ResponseValue = true // 거래 내역 완료/취소 및 해제 처리 상태
 ```
@@ -663,7 +660,7 @@ type ResponseValue = true // 거래 내역 완료/취소 및 해제 처리 상�
 - 제품 상세 사진은 4MB 이하여야 합니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
   \ -X 'POST'
   \ -H 'masterKey: true'
 ```
@@ -686,11 +683,7 @@ interface RequestBody {
   "title": "MacBook Pro 16",
   "price": 3360000,
   "description": "역대 가장 강력한 MacBook Pro가 등장했습니다. 최초의 프로용 Apple Silicon인 M1 Pro 또는 M1 Max 칩을 탑재해 쏜살같이 빠른 속도는 물론, 획기적인 성능과 놀라운 배터리 사용 시간을 자랑하죠. 여기에 시선을 사로잡는 Liquid Retina XDR 디스플레이, Mac 노트북 사상 최고의 카메라 및 오디오 그리고 더할 나위 없이 다양한 포트까지. 기존 그 어떤 카테고리에도 속하지 않는 노트북. 새로운 MacBook Pro는 그야말로 야수입니다.",
-  "tags": [
-    "가전",
-    "노트북",
-    "컴퓨터"
-  ],
+  "tags": ["가전", "노트북", "컴퓨터"],
   "thumbnailBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...(생략)"
 }
 ```
@@ -698,7 +691,8 @@ interface RequestBody {
 응답 데이터 타입 및 예시:
 
 ```ts
-interface ResponseValue { // 추가한 제품의 상세 내용
+interface ResponseValue {
+  // 추가한 제품의 상세 내용
   id: string // 제품 ID
   title: string // 제품 이름
   price: number // 제품 가격
@@ -716,11 +710,7 @@ interface ResponseValue { // 추가한 제품의 상세 내용
   "title": "MacBook Pro 16",
   "price": 3360000,
   "description": "역대 가장 강력한 MacBook Pro가 등장했습니다. 최초의 프로용 Apple Silicon인 M1 Pro 또는 M1 Max 칩을 탑재해 쏜살같이 빠른 속도는 물론, 획기적인 성능과 놀라운 배터리 사용 시간을 자랑하죠. 여기에 시선을 사로잡는 Liquid Retina XDR 디스플레이, Mac 노트북 사상 최고의 카메라 및 오디오 그리고 더할 나위 없이 다양한 포트까지. 기존 그 어떤 카테고리에도 속하지 않는 노트북. 새로운 MacBook Pro는 그야말로 야수입니다.",
-  "tags": [
-    "가전",
-    "노트북",
-    "컴퓨터"
-  ],
+  "tags": ["가전", "노트북", "컴퓨터"],
   "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png",
   "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png",
   "isSoldOut": false
@@ -762,7 +752,8 @@ interface RequestBody {
 응답 데이터 타입 및 예시:
 
 ```ts
-interface ResponseValue { // 수정한 제품의 상세 내용
+interface ResponseValue {
+  // 수정한 제품의 상세 내용
   id: string // 제품 ID
   title: string // 제품 이름
   price: number // 제품 가격
@@ -770,7 +761,7 @@ interface ResponseValue { // 수정한 제품의 상세 내용
   tags: string[] // 제품 태그
   thumbnail: string | null // 제품 썸네일 이미지(URL)
   photo: string | null // 제품 상세 이미지(URL)
-  isSoldOut: boolean // 제품 매진 여부 
+  isSoldOut: boolean // 제품 매진 여부
 }
 ```
 
@@ -780,11 +771,7 @@ interface ResponseValue { // 수정한 제품의 상세 내용
   "title": "MacBook Pro 16",
   "price": 1500,
   "description": "역대 가장 강력한 MacBook Pro가 등장했습니다. 최초의 프로용 Apple Silicon인 M1 Pro 또는 M1 Max 칩을 탑재해 쏜살같이 빠른 속도는 물론, 획기적인 성능과 놀라운 배터리 사용 시간을 자랑하죠. 여기에 시선을 사로잡는 Liquid Retina XDR 디스플레이, Mac 노트북 사상 최고의 카메라 및 오디오 그리고 더할 나위 없이 다양한 포트까지. 기존 그 어떤 카테고리에도 속하지 않는 노트북. 새로운 MacBook Pro는 그야말로 야수입니다.",
-  "tags": [
-    "가전",
-    "노트북",
-    "컴퓨터"
-  ],
+  "tags": ["가전", "노트북", "컴퓨터"],
   "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png",
   "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png",
   "isSoldOut": false
@@ -807,7 +794,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/:product
 응답 데이터 타입 및 예시:
 
 ```ts
-interface ResponseValue { // 제품의 상세 내용
+interface ResponseValue {
+  // 제품의 상세 내용
   id: string // 제품 ID
   title: string // 제품 이름
   price: number // 제품 가격
@@ -815,7 +803,7 @@ interface ResponseValue { // 제품의 상세 내용
   tags: string[] // 제품 태그
   thumbnail: string | null // 제품 썸네일 이미지(URL)
   photo: string | null // 제품 상세 이미지(URL)
-  isSoldOut: boolean // 제품 매진 여부 
+  isSoldOut: boolean // 제품 매진 여부
   reservations: Reservation[] // 제품의 모든 예약 정보 목록
 }
 
@@ -833,11 +821,7 @@ interface Reservation {
   "title": "MacBook Pro 16",
   "price": 3360000,
   "description": "역대 가장 강력한 MacBook Pro가 등장했습니다. 최초의 프로용 Apple Silicon인 M1 Pro 또는 M1 Max 칩을 탑재해 쏜살같이 빠른 속도는 물론, 획기적인 성능과 놀라운 배터리 사용 시간을 자랑하죠. 여기에 시선을 사로잡는 Liquid Retina XDR 디스플레이, Mac 노트북 사상 최고의 카메라 및 오디오 그리고 더할 나위 없이 다양한 포트까지. 기존 그 어떤 카테고리에도 속하지 않는 노트북. 새로운 MacBook Pro는 그야말로 야수입니다.",
-  "tags": [
-    "가전",
-    "노트북",
-    "컴퓨터"
-  ],
+  "tags": ["가전", "노트북", "컴퓨터"],
   "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png",
   "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png",
   "isSoldOut": false,
@@ -858,7 +842,7 @@ interface Reservation {
         "isExpired": true
       }
     }
-  ] 
+  ]
 }
 ```
 
@@ -896,7 +880,8 @@ interface RequestBody {
 ```ts
 type ResponseValue = Product[] // 관리하는 모든 제품의 목록
 
-interface Product { // 제품 정보
+interface Product {
+  // 제품 정보
   id: string // 제품 ID
   title: string // 제품 이름
   price: number // 제품 가격
@@ -913,11 +898,7 @@ interface Product { // 제품 정보
     "title": "삼성전자 스마트모니터 M7 S43AM700",
     "price": 639000,
     "description": "107.9cm(43인치) / 와이드(16:9) / 평면 / VA / 3840 x 2160(4K UHD) / 픽셀피치: 0.2451mm / 8ms(GTG) / 300cd / 5,00",
-    "tags": [
-      "가전",
-      "모니터",
-      "컴퓨터"
-    ],
+    "tags": ["가전", "모니터", "컴퓨터"],
     "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png"
   }
 ]
@@ -931,7 +912,7 @@ interface Product { // 제품 정보
 - 선택한 계좌의 잔액보다 결제 금액이 크면 결제가 처리되지 않습니다.(에러 반환)
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -942,7 +923,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy
 interface RequestBody {
   productId: string // 거래할 제품 ID (필수!)
   accountId: string // 결제할 사용자 계좌 ID (필수!)
-  reservation?: { // 예약 정보(예약 시스템을 사용하는 경우만 필요)
+  reservation?: {
+    // 예약 정보(예약 시스템을 사용하는 경우만 필요)
     start: string // 예약 시작 시간(ISO)
     end: string // 예약 종료 시간(ISO)
   }
@@ -976,7 +958,7 @@ type ResponseValue = true // 거래 신청 처리 여부
 - '거래 취소'시 결제한 사용자 계좌로 금액이 환불됩니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -1007,7 +989,7 @@ type ResponseValue = true // 거래 취소 처리 여부
 - '거래(구매) 확정' 후에는 '거래 취소'를 할 수 없습니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -1038,7 +1020,7 @@ type ResponseValue = true // 거래(구매) 확정 처리 여부
 - 거래 내역의 기본 정보만 포함됩니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details
   \ -X 'GET'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -1052,9 +1034,11 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
 ```ts
 type RequestValue = TransactionDetail[] // 모든 거래 내역의 목록
 
-interface TransactionDetail { // 거래 내역 정보
+interface TransactionDetail {
+  // 거래 내역 정보
   detailId: string // 거래 내역 ID
-  product: { // 거래한 제품 정보
+  product: {
+    // 거래한 제품 정보
     productId: string
     title: string
     price: number
@@ -1085,11 +1069,7 @@ interface Reservation {
       "title": "MacBook Pro 16",
       "price": 3360000,
       "description": "역대 가장 강력한 MacBook Pro가 등장했습니다. 최초의 프로용 Apple Silicon인 M1 Pro 또는 M1 Max 칩을 탑재해 쏜살같이 빠른 속도는 물론, 획기적인 성",
-      "tags": [
-        "가전",
-        "노트북",
-        "컴퓨터"
-      ],
+      "tags": ["가전", "노트북", "컴퓨터"],
       "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png"
     },
     "reservation": null,
@@ -1104,11 +1084,7 @@ interface Reservation {
       "title": "삼성전자 스마트모니터 M7 S43AM700",
       "price": 639000,
       "description": "107.9cm(43인치) / 와이드(16:9) / 평면 / VA / 3840 x 2160(4K UHD) / 픽셀피치: 0.2451mm / 8ms(GTG) / 300cd / 5,00",
-      "tags": [
-        "가전",
-        "모니터",
-        "컴퓨터"
-      ],
+      "tags": ["가전", "모니터", "컴퓨터"],
       "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png"
     },
     "reservation": {
@@ -1129,7 +1105,7 @@ interface Reservation {
 - 사용자 전용 API입니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/detail 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/detail
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -1151,14 +1127,17 @@ interface RequestBody {
 응답 데이터 타입 및 예시:
 
 ```ts
-interface TransactionDetail { // 상세 거래 정보
+interface TransactionDetail {
+  // 상세 거래 정보
   detailId: string // 거래 내역 ID
-  account: { // 거래한 사용자의 계좌 정보
+  account: {
+    // 거래한 사용자의 계좌 정보
     bankName: string
     bankCode: string
     accountNumber: string
   }
-  product: { // 거래한 제품 정보
+  product: {
+    // 거래한 제품 정보
     productId: string
     title: string
     price: number
@@ -1194,11 +1173,7 @@ interface Reservation {
     "title": "삼성전자 스마트모니터 M7 S43AM700",
     "price": 639000,
     "description": "107.9cm(43인치) / 와이드(16:9) / 평면 / VA / 3840 x 2160(4K UHD) / 픽셀피치: 0.2451mm / 8ms(GTG) / 300cd / 5,000:1 / 최대 주사율: 60Hz / HDMI 2.0 / USB Type-C / 플리커 프리 / 블루라이트 차단 / 게임모드 지원 / 스피커 / 리모컨 / USB허브 / Wi-Fi(무선) / 스마트TV / 블루투스 / 틸트(상하) / 200 x 200mm / HDR / HDR10 / 10.6kg 기획전 차세대 게임 라이프 PS5 매력분석 관련기사 큐소닉, 43인치 4K UHD 스마트 모니터 ‘삼성전자 M7 S43AM700’ 출시 및 할인 행사 사용기 삼성 스마트모니터 m7 s43am700",
-    "tags": [
-      "가전",
-      "모니터",
-      "컴퓨터"
-    ],
+    "tags": ["가전", "모니터", "컴퓨터"],
     "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png",
     "photo": "https://storage.googleapis.com/heropy-api/vVLP-ox_zSDv195712.jpg"
   },

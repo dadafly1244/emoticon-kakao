@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
-import Style from './Style'
+import About from './About'
 import Login from './user/Login.vue'
 import SignUp from './user/SignUp.vue'
 import EditUser from './user/EditUser.vue'
@@ -25,8 +25,8 @@ export default createRouter({
       component: Home,
     },
     {
-      path: '/style',
-      component: Style,
+      path: '/about',
+      component: About,
     },
     {
       path: '/login',
