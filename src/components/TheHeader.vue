@@ -24,7 +24,7 @@
         <div v-show="popupOn" class="popup">
           <div v-if="userStore.displayName" class="popup-profile">
             <img v-if="userStore.img" v-bind:src="userStore.img" alt="profile-default" />
-            <img v-else v-bind:src="'../../static/profile_default.png'" alt="profile-default" />
+            <img v-else src="../../static/profile_default.png" alt="profile-default" />
           </div>
           <div v-else class="popup-profile">
             <img src="../../static/profile_default.png" alt="profile-default" />
@@ -88,7 +88,7 @@
           <div class="profile-big">
             <img
               v-if="!userStore.img"
-              v-bind:src="'../../static/profile_default.png'"
+              src="../../static/profile_default.png"
               alt="profile-default"
             />
             <img v-else v-bind:src="userStore.img" alt="" />
