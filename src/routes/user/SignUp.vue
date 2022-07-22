@@ -1,4 +1,4 @@
-<template>
+<template> 
   <section class="signup-form-wrap">
     <h1 class="title">SIGNUP</h1>
     <form @submit.prevent="signUp">
